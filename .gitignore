@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Local datasets, databases, model artifacts, and experiment outputs
+data/
+*.duckdb
+*.duckdb.wal
+mlruns/
+.mlflow/
+artifacts/
+outputs/
+
+# Logs and temporary files
+*.log
+*.tmp
+~$*
