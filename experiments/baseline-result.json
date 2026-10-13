@@ -1,0 +1,465 @@
+{
+  "experiment": "sequential-baseline-v1",
+  "config": {
+    "seed": 42,
+    "data": {
+      "max_users": 1000,
+      "catalog_size": 2000,
+      "history_length": 64,
+      "minimum_history": 5,
+      "minimum_train_events": 50,
+      "train_quantile": 0.7,
+      "validation_quantile": 0.85,
+      "max_queries": {
+        "train": 60000,
+        "validation": 5000,
+        "test": 5000
+      }
+    },
+    "model": {
+      "embedding_size": 128,
+      "layers": 2,
+      "heads": 4,
+      "dropout": 0.1
+    },
+    "training": {
+      "epochs": 3,
+      "batch_size": 128,
+      "learning_rate": 0.0005,
+      "weight_decay": 0.01,
+      "gradient_clip": 1.0
+    },
+    "evaluation": {
+      "top_k": [
+        5,
+        10,
+        20
+      ],
+      "checkpoint_metric": "ndcg@10"
+    }
+  },
+  "config_sha256": "a8381d7e0becf3d882b2b54b01a5a757c537c1449b69ead293d4e3c5bcb28242",
+  "protocol_sha256": "dea21f9984e027ebed3e99fb5f0a260b369a9e5e8febc145820418a83fe52bb8",
+  "data": {
+    "source": {
+      "dataset": "yandex/yambda",
+      "file": "flat/50m/multi_event.parquet",
+      "sha256": "b92f6c97277a554c8a7d6cfea900eca51639fd53a3e6c4fa58b82e35fd35804d",
+      "bytes": 384465869,
+      "listen_events": 46467212,
+      "users": 9238,
+      "items": 877168,
+      "timestamp_min": 0,
+      "timestamp_max": 26000000
+    },
+    "cutoffs_seconds": {
+      "train_end": 19983235,
+      "validation_end": 23121935,
+      "data_end": 26000000
+    },
+    "population_users": 1000,
+    "catalog_size": 2000,
+    "partitions": {
+      "train": {
+        "queries": 59888,
+        "users": 961,
+        "targets": 68451,
+        "multi_target_queries": 4509,
+        "skipped_short_histories": 112,
+        "sha256": "488ebafffb924b9bed034039cd5a1ccb9946cc652b8f75e32e1d27bfbeedad3d",
+        "listen_events": 4325743,
+        "in_catalog_events": 1120561,
+        "event_coverage": 0.2590447467637352
+      },
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "targets": 5840,
+        "multi_target_queries": 447,
+        "skipped_short_histories": 0,
+        "sha256": "ceb777e8445d7343411ecb039486dff74d2f9b8aeb89021d23f206294d780d86",
+        "listen_events": 872710,
+        "in_catalog_events": 207617,
+        "event_coverage": 0.23789918758808767
+      },
+      "test": {
+        "queries": 5000,
+        "users": 755,
+        "targets": 5793,
+        "multi_target_queries": 355,
+        "skipped_short_histories": 0,
+        "sha256": "ba0fdfaa56cf69692dd48e8b5de5ead5052ac619db6d046e15600423fa4d13af",
+        "listen_events": 821815,
+        "in_catalog_events": 163305,
+        "event_coverage": 0.1987126056350882
+      }
+    },
+    "ranking_scope": "Full train-selected restricted catalog; conditional on an in-catalog observed next-listen target."
+  },
+  "environment": {
+    "python": "3.14.7",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "torch": "2.14.1",
+    "transformers": "5.19.0",
+    "numpy": "2.5.4",
+    "device": "mps",
+    "determinism": "Fixed RNG seeds; exact cross-device floating-point reproducibility is not guaranteed."
+  },
+  "parameters": 661504,
+  "total_seconds": 75.55524679200002,
+  "selected_epoch": 3,
+  "validation": {
+    "gpt2": {
+      "queries": 5000,
+      "users": 734,
+      "metrics": {
+        "recall@5": 0.07568827561327561,
+        "ndcg@5": 0.055227033772592825,
+        "recall@10": 0.11424898490398491,
+        "ndcg@10": 0.06785519540262964,
+        "recall@20": 0.16638043512043513,
+        "ndcg@20": 0.08154375880624189
+      },
+      "behavior_at_10": {
+        "catalog_coverage": 0.5475,
+        "top_10_items_share": 0.11546,
+        "context_repeat_fraction": 0.1773,
+        "mean_duration_seconds": 188.0601,
+        "duration_known_fraction": 1.0
+      },
+      "target_duration_tertiles_seconds": [
+        175.0,
+        215.0
+      ],
+      "target_duration_slices": {
+        "short": {
+          "queries": 1694,
+          "recall@10": 0.13439590712317984,
+          "ndcg@10": 0.08469515462640262
+        },
+        "medium": {
+          "queries": 1532,
+          "recall@10": 0.10933420365535249,
+          "ndcg@10": 0.060777337677369966
+        },
+        "long": {
+          "queries": 1471,
+          "recall@10": 0.09902560616360752,
+          "ndcg@10": 0.05392347473914373
+        },
+        "mixed": {
+          "queries": 303,
+          "recall@10": 0.10036828774452536,
+          "ndcg@10": 0.07712895185812202
+        },
+        "unknown": {
+          "queries": 0,
+          "recall@10": null,
+          "ndcg@10": null
+        }
+      }
+    },
+    "train_popularity": {
+      "queries": 5000,
+      "users": 734,
+      "metrics": {
+        "recall@5": 0.01774595238095238,
+        "ndcg@5": 0.009467517062368444,
+        "recall@10": 0.03227928571428572,
+        "ndcg@10": 0.014268360773271434,
+        "recall@20": 0.05479492784992785,
+        "ndcg@20": 0.02020052509396926
+      },
+      "behavior_at_10": {
+        "catalog_coverage": 0.005,
+        "top_10_items_share": 1.0,
+        "context_repeat_fraction": 0.0591,
+        "mean_duration_seconds": 168.5,
+        "duration_known_fraction": 1.0
+      },
+      "target_duration_tertiles_seconds": [
+        175.0,
+        215.0
+      ],
+      "target_duration_slices": {
+        "short": {
+          "queries": 1694,
+          "recall@10": 0.03955135773317592,
+          "ndcg@10": 0.018827454563443615
+        },
+        "medium": {
+          "queries": 1532,
+          "recall@10": 0.041829852045256743,
+          "ndcg@10": 0.018217948681483725
+        },
+        "long": {
+          "queries": 1471,
+          "recall@10": 0.01495581237253569,
+          "ndcg@10": 0.004570838934371053
+        },
+        "mixed": {
+          "queries": 303,
+          "recall@10": 0.027435957881502437,
+          "ndcg@10": 0.01588942040723039
+        },
+        "unknown": {
+          "queries": 0,
+          "recall@10": null,
+          "ndcg@10": null
+        }
+      }
+    },
+    "recent_items": {
+      "queries": 5000,
+      "users": 734,
+      "metrics": {
+        "recall@5": 0.12016298701298701,
+        "ndcg@5": 0.09416977535620447,
+        "recall@10": 0.16142466089466087,
+        "ndcg@10": 0.10775509399008554,
+        "recall@20": 0.20823098845598847,
+        "ndcg@20": 0.12036574349926364
+      },
+      "behavior_at_10": {
+        "catalog_coverage": 0.9935,
+        "top_10_items_share": 0.13156,
+        "context_repeat_fraction": 0.89752,
+        "mean_duration_seconds": 190.2685,
+        "duration_known_fraction": 1.0
+      },
+      "target_duration_tertiles_seconds": [
+        175.0,
+        215.0
+      ],
+      "target_duration_slices": {
+        "short": {
+          "queries": 1694,
+          "recall@10": 0.15422077922077923,
+          "ndcg@10": 0.10897915749613017
+        },
+        "medium": {
+          "queries": 1532,
+          "recall@10": 0.15823542210617927,
+          "ndcg@10": 0.1002116244099754
+        },
+        "long": {
+          "queries": 1471,
+          "recall@10": 0.17471108089734874,
+          "ndcg@10": 0.11143259671985607
+        },
+        "mixed": {
+          "queries": 303,
+          "recall@10": 0.1533222369856033,
+          "ndcg@10": 0.1211987418514608
+        },
+        "unknown": {
+          "queries": 0,
+          "recall@10": null,
+          "ndcg@10": null
+        }
+      }
+    }
+  },
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 7.307542794660995,
+      "seconds": 28.183722499999988,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.04981643578643579,
+          "ndcg@5": 0.035166158789872386,
+          "recall@10": 0.07321000721500721,
+          "ndcg@10": 0.04293563927683495,
+          "recall@20": 0.11026351370851371,
+          "ndcg@20": 0.052677512561350226
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.186,
+          "top_10_items_share": 0.24874,
+          "context_repeat_fraction": 0.11832,
+          "mean_duration_seconds": 179.5362,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.09159779614325068,
+            "ndcg@10": 0.056548325924652254
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.07637075718015666,
+            "ndcg@10": 0.04779258574076309
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.04656696125084976,
+            "ndcg@10": 0.01954558243496669
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.08377349639725877,
+            "ndcg@10": 0.05582686188491335
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      }
+    },
+    {
+      "epoch": 2,
+      "train_loss": 6.795353018979545,
+      "seconds": 23.65238416600002,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.0673941414141414,
+          "ndcg@5": 0.04854420332739169,
+          "recall@10": 0.0961149372849373,
+          "ndcg@10": 0.05798741043764643,
+          "recall@20": 0.14573948273948273,
+          "ndcg@20": 0.07095292859463205
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.3985,
+          "top_10_items_share": 0.16538,
+          "context_repeat_fraction": 0.15416,
+          "mean_duration_seconds": 183.212,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.12003148366784731,
+            "ndcg@10": 0.07955880741161257
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.09236292428198434,
+            "ndcg@10": 0.05137081918845157
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.07296623612055292,
+            "ndcg@10": 0.03822460011635164
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.09375584078554375,
+            "ndcg@10": 0.06678531572640058
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      }
+    },
+    {
+      "epoch": 3,
+      "train_loss": 6.480199946205532,
+      "seconds": 23.57364658299997,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.07568827561327561,
+          "ndcg@5": 0.055227033772592825,
+          "recall@10": 0.11424898490398491,
+          "ndcg@10": 0.06785519540262964,
+          "recall@20": 0.16638043512043513,
+          "ndcg@20": 0.08154375880624189
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.5475,
+          "top_10_items_share": 0.11546,
+          "context_repeat_fraction": 0.1773,
+          "mean_duration_seconds": 188.0601,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.13439590712317984,
+            "ndcg@10": 0.08469515462640262
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.10933420365535249,
+            "ndcg@10": 0.060777337677369966
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.09902560616360752,
+            "ndcg@10": 0.05392347473914373
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.10036828774452536,
+            "ndcg@10": 0.07712895185812202
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      }
+    }
+  ],
+  "model_sha256": "d3832817680fe66621be84578137af70095d6a66d3413db00cdf3e59f4d604eb",
+  "test_evaluated": false,
+  "reward_model_trained": false,
+  "rl_trained": false,
+  "run": {
+    "date": "2026-10-13",
+    "source_commit": "6f276bcbe337e2d50c07c04721fb2de087bab985",
+    "command": "python -m recsys_rl baseline --device auto",
+    "model_constructed": true,
+    "forward_backward_completed": true,
+    "config_and_protocol_unchanged": true,
+    "saved_prediction_metrics_recomputed": true,
+    "held_out_file_hash_unchanged": true,
+    "process_measurements": {
+      "tool": "/usr/bin/time -l",
+      "wall_seconds": 81.54,
+      "cpu_user_seconds": 14.11,
+      "cpu_system_seconds": 2.47,
+      "maximum_resident_set_size_bytes": 625590272,
+      "peak_memory_footprint_bytes": 1703757168,
+      "note": "macOS process accounting; not a measurement of total system or peak MPS device allocation."
+    },
+    "files": {
+      "checkpoint_sha256": "d3832817680fe66621be84578137af70095d6a66d3413db00cdf3e59f4d604eb",
+      "checkpoint_bytes": 3681199,
+      "validation_predictions_sha256": "658fa8d8e36a4ec6fcb85c24864e8977b7df322936c76b198c926722fa102e86",
+      "validation_predictions_bytes": 194520,
+      "process_log_sha256": "6be10ac676859d28c96f7938f02fa35f79101b7b86518c8de8038239e52680cc"
+    },
+    "limits": [
+      "Single seed and checkpoint chosen using validation. No confidence intervals or independent test evaluation.",
+      "Full ranking within a train-selected 2000-item catalog; validation event coverage is 23.79%.",
+      "Observed next listens are not direct satisfaction or retention labels. No reward model or RL has been run."
+    ]
+  }
+}
