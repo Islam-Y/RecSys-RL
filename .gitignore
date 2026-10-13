@@ -36,6 +36,8 @@ artifacts/
 outputs/
 
 # Logs and temporary files
+tmp/
+.cache/
 *.log
 *.tmp
 ~$*

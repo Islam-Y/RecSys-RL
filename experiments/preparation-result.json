@@ -1,0 +1,86 @@
+{
+  "status": "prepared_awaiting_model_start",
+  "config_sha256": "a8381d7e0becf3d882b2b54b01a5a757c537c1449b69ead293d4e3c5bcb28242",
+  "protocol_sha256": "dea21f9984e027ebed3e99fb5f0a260b369a9e5e8febc145820418a83fe52bb8",
+  "data": {
+    "source": {
+      "dataset": "yandex/yambda",
+      "file": "flat/50m/multi_event.parquet",
+      "sha256": "b92f6c97277a554c8a7d6cfea900eca51639fd53a3e6c4fa58b82e35fd35804d",
+      "bytes": 384465869,
+      "listen_events": 46467212,
+      "users": 9238,
+      "items": 877168,
+      "timestamp_min": 0,
+      "timestamp_max": 26000000
+    },
+    "cutoffs_seconds": {
+      "train_end": 19983235,
+      "validation_end": 23121935,
+      "data_end": 26000000
+    },
+    "population_users": 1000,
+    "catalog_size": 2000,
+    "partitions": {
+      "train": {
+        "queries": 59888,
+        "users": 961,
+        "targets": 68451,
+        "multi_target_queries": 4509,
+        "skipped_short_histories": 112,
+        "sha256": "488ebafffb924b9bed034039cd5a1ccb9946cc652b8f75e32e1d27bfbeedad3d",
+        "listen_events": 4325743,
+        "in_catalog_events": 1120561,
+        "event_coverage": 0.2590447467637352
+      },
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "targets": 5840,
+        "multi_target_queries": 447,
+        "skipped_short_histories": 0,
+        "sha256": "ceb777e8445d7343411ecb039486dff74d2f9b8aeb89021d23f206294d780d86",
+        "listen_events": 872710,
+        "in_catalog_events": 207617,
+        "event_coverage": 0.23789918758808767
+      },
+      "test": {
+        "queries": 5000,
+        "users": 755,
+        "targets": 5793,
+        "multi_target_queries": 355,
+        "skipped_short_histories": 0,
+        "sha256": "ba0fdfaa56cf69692dd48e8b5de5ead5052ac619db6d046e15600423fa4d13af",
+        "listen_events": 821815,
+        "in_catalog_events": 163305,
+        "event_coverage": 0.1987126056350882
+      }
+    },
+    "ranking_scope": "Full train-selected restricted catalog; conditional on an in-catalog observed next-listen target."
+  },
+  "environment": {
+    "python": "3.14.7",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "torch": "2.14.1",
+    "transformers": "5.19.0",
+    "duckdb": "1.5.6",
+    "numpy": "2.5.4",
+    "mps_built": true,
+    "mps_available": true,
+    "cuda_available": false,
+    "available_device": "mps"
+  },
+  "checks": {
+    "config_and_protocol_hashes": true,
+    "catalog_and_partition_hashes": true,
+    "train_validation_shapes_and_tokens": true,
+    "context_strictly_before_target": true,
+    "global_time_boundaries": true,
+    "gpt2_class_imports": true
+  },
+  "model_constructed": false,
+  "model_forward_run": false,
+  "training_started": false,
+  "test_evaluated": false,
+  "note": "Data and imports are ready. Model construction, forward/backward compatibility, resource usage and quality remain unmeasured until an explicit model run."
+}
