@@ -45,6 +45,9 @@ def load_config(path: Path) -> dict:
     training = config["training"]
     if min(training["epochs"], training["batch_size"], training["learning_rate"], training["gradient_clip"]) <= 0:
         raise ValueError("Training budget, learning rate and gradient clip must be positive.")
+    patience = training.get("early_stopping_patience")
+    if patience is not None and (not isinstance(patience, int) or isinstance(patience, bool) or patience < 1):
+        raise ValueError("Early-stopping patience must be a positive integer.")
     return config
 
 

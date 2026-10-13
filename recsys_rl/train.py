@@ -34,11 +34,14 @@ def predict(model: NextItemPolicy, arrays: dict, device: torch.device, batch_siz
     return np.concatenate(rankings).astype(np.int32)
 
 
-def train(data_dir: Path, output_dir: Path, config_path: Path, requested_device: str) -> dict:
+def train(data_dir: Path, output_dir: Path, config_path: Path, requested_device: str, protocol_path: Path | None = None) -> dict:
     config = load_config(config_path)
     manifest = json.loads((data_dir / "manifest.json").read_text())
-    if sha256(config_path) != manifest["config_sha256"]:
-        raise ValueError("Configuration differs from the prepared experiment; create a separate preparation.")
+    prepared_config = manifest["config"]
+    if config["data"] != prepared_config["data"] or config["seed"] != prepared_config["seed"]:
+        raise ValueError("Data settings or sampling seed differ from the preparation; prepare separate data.")
+    config_hash = sha256(config_path)
+    protocol_hash = sha256(protocol_path) if protocol_path is not None else manifest["protocol_sha256"]
     if output_dir.exists() and any(output_dir.iterdir()):
         raise FileExistsError(f"Training output is not empty: {output_dir}")
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -54,9 +57,14 @@ def train(data_dir: Path, output_dir: Path, config_path: Path, requested_device:
     settings = config["training"]
     optimizer = torch.optim.AdamW(model.parameters(), lr=settings["learning_rate"], weight_decay=settings["weight_decay"])
     top_k = config["evaluation"]["top_k"]
+    if max(top_k) > len(catalog["items"]):
+        raise ValueError("Ranking cutoff exceeds the prepared catalog size.")
     controls = {name: evaluate_rankings(validation, ranking, catalog, top_k) for name, ranking in control_rankings(validation, catalog, max(top_k)).items()}
     history = []
     best = -float("inf")
+    patience = settings.get("early_stopping_patience")
+    epochs_without_improvement = 0
+    stop_reason = "epoch_budget_exhausted"
     started = time.perf_counter()
     print(json.dumps({"stage": "training_started", "device": str(device), "parameters": sum(p.numel() for p in model.parameters()), "train_queries": len(train_rows["lengths"]), "validation_queries": len(validation["lengths"])}), flush=True)
     for epoch in range(settings["epochs"]):
@@ -94,17 +102,26 @@ def train(data_dir: Path, output_dir: Path, config_path: Path, requested_device:
         metric = evaluation["metrics"][config["evaluation"]["checkpoint_metric"]]
         if metric > best:
             best = metric
+            epochs_without_improvement = 0
             state = {key: value.detach().cpu() for key, value in model.state_dict().items()}
             torch.save(state, output_dir / "baseline.pt")
             np.savez_compressed(output_dir / "validation-top-items.npz", rankings=rankings, user_ids=validation["user_ids"], timestamps=validation["timestamps"], target_tokens=validation["target_tokens"], target_offsets=validation["target_offsets"])
             best_epoch = epoch + 1
             best_result = evaluation
+        else:
+            epochs_without_improvement += 1
         write_json(output_dir / "training-history.json", {"epochs": history})
         print(json.dumps({"stage": "epoch_completed", "epoch": epoch + 1, "train_loss": record["train_loss"], "validation_ndcg_at_10": metric, "seconds": record["seconds"]}), flush=True)
-    result = {"experiment": "sequential-baseline-v1", "config": config, "config_sha256": manifest["config_sha256"], "protocol_sha256": manifest["protocol_sha256"],
+        if patience is not None and epochs_without_improvement >= patience:
+            stop_reason = "early_stopping_patience_exhausted"
+            print(json.dumps({"stage": "early_stopping", "epoch": epoch + 1, "selected_epoch": best_epoch, "patience": patience}), flush=True)
+            break
+    result = {"experiment": config.get("experiment", "sequential-baseline-v1"), "config": config, "config_sha256": config_hash, "protocol_sha256": protocol_hash,
+        "preparation_config_sha256": manifest["config_sha256"], "preparation_protocol_sha256": manifest["protocol_sha256"], "preparation_manifest_sha256": sha256(data_dir / "manifest.json"),
         "data": {key: manifest[key] for key in ("source", "cutoffs_seconds", "population_users", "catalog_size", "partitions", "ranking_scope")},
         "environment": {"python": platform.python_version(), "platform": platform.platform(), "torch": torch.__version__, "transformers": transformers.__version__, "numpy": np.__version__, "device": str(device), "determinism": "Fixed RNG seeds; exact cross-device floating-point reproducibility is not guaranteed."},
         "parameters": sum(p.numel() for p in model.parameters()), "total_seconds": time.perf_counter() - started,
+        "epochs_completed": len(history), "early_stopping_patience": patience, "stop_reason": stop_reason,
         "selected_epoch": best_epoch, "validation": {"gpt2": best_result, **controls}, "training_history": history,
         "model_sha256": sha256(output_dir / "baseline.pt"), "test_evaluated": False, "reward_model_trained": False, "rl_trained": False}
     write_json(output_dir / "summary.json", result)

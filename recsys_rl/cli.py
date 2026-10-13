@@ -17,6 +17,7 @@ def main() -> None:
     baseline.add_argument("--data-dir", type=Path, default=Path("data/processed/mvp"))
     baseline.add_argument("--output-dir", type=Path, default=Path("outputs/baseline-v1"))
     baseline.add_argument("--config", type=Path, default=Path("configs/mvp.json"))
+    baseline.add_argument("--protocol", type=Path, help="Protocol for this training variant; defaults to the preparation protocol.")
     baseline.add_argument("--device", choices=("auto", "cpu", "mps", "cuda"), default="auto")
     status = commands.add_parser("status", help="Inspect data and dependency readiness without creating or running a model.")
     status.add_argument("--data-dir", type=Path, default=Path("data/processed/mvp"))
@@ -31,7 +32,7 @@ def main() -> None:
             print(json.dumps({"stage": "preparation_complete", "catalog_size": result["catalog_size"], "partitions": result["partitions"]}, ensure_ascii=False))
         elif args.command == "baseline":
             from recsys_rl.train import train
-            result = train(args.data_dir, args.output_dir, args.config, args.device)
+            result = train(args.data_dir, args.output_dir, args.config, args.device, args.protocol)
             print(json.dumps({"stage": "baseline_complete", "selected_epoch": result["selected_epoch"], "validation": result["validation"], "test_evaluated": False}, ensure_ascii=False))
         else:
             from recsys_rl.data import write_json
