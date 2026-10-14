@@ -48,6 +48,9 @@ def load_config(path: Path) -> dict:
     patience = training.get("early_stopping_patience")
     if patience is not None and (not isinstance(patience, int) or isinstance(patience, bool) or patience < 1):
         raise ValueError("Early-stopping patience must be a positive integer.")
+    training_seed = training.get("seed", config["seed"])
+    if not isinstance(training_seed, int) or isinstance(training_seed, bool) or not 0 <= training_seed < 2 ** 32:
+        raise ValueError("Training seed must be an integer in [0, 2**32).")
     return config
 
 

@@ -1,0 +1,19 @@
+{
+  "experiment": "small-policy-tuning-v1",
+  "base_config": "baseline-small-long.json",
+  "reference_result": "../experiments/baseline-capacity-result.json",
+  "raw_source": "../data/raw/yambda-50m-multi_event.parquet",
+  "screening_seed": 42,
+  "confirmation_seeds": [42, 43, 44],
+  "training": {"epochs": 30, "early_stopping_patience": 5},
+  "trials": [
+    {"name": "control", "model": {}, "training": {}},
+    {"name": "lr-low", "model": {}, "training": {"learning_rate": 0.0001}},
+    {"name": "lr-medium", "model": {}, "training": {"learning_rate": 0.0003}},
+    {"name": "lr-high", "model": {}, "training": {"learning_rate": 0.001}},
+    {"name": "dropout-low", "model": {"dropout": 0.05}, "training": {}},
+    {"name": "dropout-high", "model": {"dropout": 0.2}, "training": {}},
+    {"name": "decay-low", "model": {}, "training": {"weight_decay": 0.001}},
+    {"name": "decay-high", "model": {}, "training": {"weight_decay": 0.1}}
+  ]
+}

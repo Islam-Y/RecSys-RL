@@ -46,7 +46,9 @@ def train(data_dir: Path, output_dir: Path, config_path: Path, requested_device:
         raise FileExistsError(f"Training output is not empty: {output_dir}")
     output_dir.mkdir(parents=True, exist_ok=True)
     torch.set_num_threads(4)
-    seed_everything(config["seed"])
+    settings = config["training"]
+    training_seed = settings.get("seed", config["seed"])
+    seed_everything(training_seed)
     device = select_device(requested_device)
     catalog = json.loads((data_dir / "catalog.json").read_text())
     if sha256(data_dir / "catalog.json") != manifest["catalog_sha256"]:
@@ -54,7 +56,6 @@ def train(data_dir: Path, output_dir: Path, config_path: Path, requested_device:
     train_rows = load_partition(data_dir, "train")
     validation = load_partition(data_dir, "validation")
     model = NextItemPolicy(len(catalog["items"]), config["data"]["history_length"], config["model"]).to(device)
-    settings = config["training"]
     optimizer = torch.optim.AdamW(model.parameters(), lr=settings["learning_rate"], weight_decay=settings["weight_decay"])
     top_k = config["evaluation"]["top_k"]
     if max(top_k) > len(catalog["items"]):
@@ -66,10 +67,10 @@ def train(data_dir: Path, output_dir: Path, config_path: Path, requested_device:
     epochs_without_improvement = 0
     stop_reason = "epoch_budget_exhausted"
     started = time.perf_counter()
-    print(json.dumps({"stage": "training_started", "device": str(device), "parameters": sum(p.numel() for p in model.parameters()), "train_queries": len(train_rows["lengths"]), "validation_queries": len(validation["lengths"])}), flush=True)
+    print(json.dumps({"stage": "training_started", "device": str(device), "training_seed": training_seed, "parameters": sum(p.numel() for p in model.parameters()), "train_queries": len(train_rows["lengths"]), "validation_queries": len(validation["lengths"])}), flush=True)
     for epoch in range(settings["epochs"]):
         model.train()
-        order = np.random.default_rng(config["seed"] + epoch).permutation(len(train_rows["lengths"]))
+        order = np.random.default_rng(training_seed + epoch).permutation(len(train_rows["lengths"]))
         losses = []
         epoch_started = time.perf_counter()
         for offset in range(0, len(order), settings["batch_size"]):
@@ -121,6 +122,7 @@ def train(data_dir: Path, output_dir: Path, config_path: Path, requested_device:
         "data": {key: manifest[key] for key in ("source", "cutoffs_seconds", "population_users", "catalog_size", "partitions", "ranking_scope")},
         "environment": {"python": platform.python_version(), "platform": platform.platform(), "torch": torch.__version__, "transformers": transformers.__version__, "numpy": np.__version__, "device": str(device), "determinism": "Fixed RNG seeds; exact cross-device floating-point reproducibility is not guaranteed."},
         "parameters": sum(p.numel() for p in model.parameters()), "total_seconds": time.perf_counter() - started,
+        "data_seed": config["seed"], "training_seed": training_seed,
         "epochs_completed": len(history), "early_stopping_patience": patience, "stop_reason": stop_reason,
         "selected_epoch": best_epoch, "validation": {"gpt2": best_result, **controls}, "training_history": history,
         "model_sha256": sha256(output_dir / "baseline.pt"), "test_evaluated": False, "reward_model_trained": False, "rl_trained": False}
