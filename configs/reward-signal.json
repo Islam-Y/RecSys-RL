@@ -1,0 +1,12 @@
+{
+  "experiment": "reward-signal-v1",
+  "reward_report": "../experiments/reward-result.json",
+  "reward_output_dir": "../outputs/reward-v1",
+  "permutation_seeds": [42, 43, 44],
+  "bootstrap_seed": 42,
+  "bootstrap_repeats": 2000,
+  "label_tolerance": 0.000001,
+  "prediction_tolerance": 0.0000001,
+  "strong_label_gap": 0.1,
+  "calibration_bins": 10
+}

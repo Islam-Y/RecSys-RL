@@ -41,6 +41,12 @@ def main() -> None:
     reward_audit = commands.add_parser("reward-audit", help="Recalculate saved reward predictions and verify frozen artifacts.")
     reward_audit.add_argument("--data-dir", type=Path, default=Path("data/processed/reward-v1"))
     reward_audit.add_argument("--output-dir", type=Path, default=Path("outputs/reward-v1"))
+    reward_signal = commands.add_parser("reward-signal", help="Audit candidate discrimination and calibrate a frozen reward model.")
+    reward_signal.add_argument("--data-dir", type=Path, default=Path("data/processed/reward-v1"))
+    reward_signal.add_argument("--output-dir", type=Path, default=Path("outputs/reward-signal-v1"))
+    reward_signal.add_argument("--config", type=Path, default=Path("configs/reward-signal.json"))
+    reward_signal.add_argument("--protocol", type=Path, default=Path("experiments/reward-signal-protocol.md"))
+    reward_signal.add_argument("--device", choices=("auto", "cpu", "mps", "cuda"), default="auto")
     status = commands.add_parser("status", help="Inspect data and dependency readiness without creating or running a model.")
     status.add_argument("--data-dir", type=Path, default=Path("data/processed/mvp"))
     status.add_argument("--config", type=Path, default=Path("configs/mvp.json"))
@@ -74,6 +80,11 @@ def main() -> None:
         elif args.command == "reward-audit":
             from recsys_rl.reward import audit_reward_run
             print(json.dumps(audit_reward_run(args.data_dir, args.output_dir), ensure_ascii=False))
+        elif args.command == "reward-signal":
+            from recsys_rl.reward_signal import run_reward_signal
+            result = run_reward_signal(args.data_dir, args.output_dir, args.config, args.protocol, args.device)
+            print(json.dumps({"stage": "reward_signal_complete", "calibration": result["calibration"],
+                              "audit": result["audit"], "rl_trained": False, "test_evaluated": False}))
         else:
             from recsys_rl.data import write_json
             from recsys_rl.status import readiness
