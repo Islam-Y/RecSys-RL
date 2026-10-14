@@ -18,6 +18,8 @@
 - [Протокол подбора настроек маленькой GPT-2](experiments/small-tuning-protocol.md)
 - [Результат восьми конфигураций и трёх training seeds](experiments/small-tuning-result.json)
 - [Выбранная конфигурация baseline](configs/baseline-selected.json)
+- [Протокол reward model](experiments/reward-protocol.md)
+- [Подготовленные метки reward model](experiments/reward-preparation-result.json)
 
 ## Текущий статус
 

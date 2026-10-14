@@ -26,6 +26,21 @@ def main() -> None:
     tune.add_argument("--protocol", type=Path, default=Path("experiments/small-tuning-protocol.md"))
     tune.add_argument("--device", choices=("auto", "cpu", "mps", "cuda"), default="auto")
     tune.add_argument("--resume", action="store_true", help="Reuse completed, audited runs of the same frozen plan.")
+    reward_prepare = commands.add_parser("reward-prepare", help="Attach observed completion labels and split policy train chronologically.")
+    reward_prepare.add_argument("input", type=Path)
+    reward_prepare.add_argument("--data-dir", type=Path, default=Path("data/processed/mvp"))
+    reward_prepare.add_argument("--output-dir", type=Path, default=Path("data/processed/reward-v1"))
+    reward_prepare.add_argument("--config", type=Path, default=Path("configs/reward.json"))
+    reward_prepare.add_argument("--protocol", type=Path, default=Path("experiments/reward-protocol.md"))
+    reward = commands.add_parser("reward", help="Train a completion reward model; evaluate policy validation after selection.")
+    reward.add_argument("--data-dir", type=Path, default=Path("data/processed/reward-v1"))
+    reward.add_argument("--output-dir", type=Path, default=Path("outputs/reward-v1"))
+    reward.add_argument("--config", type=Path, default=Path("configs/reward.json"))
+    reward.add_argument("--protocol", type=Path, default=Path("experiments/reward-protocol.md"))
+    reward.add_argument("--device", choices=("auto", "cpu", "mps", "cuda"), default="auto")
+    reward_audit = commands.add_parser("reward-audit", help="Recalculate saved reward predictions and verify frozen artifacts.")
+    reward_audit.add_argument("--data-dir", type=Path, default=Path("data/processed/reward-v1"))
+    reward_audit.add_argument("--output-dir", type=Path, default=Path("outputs/reward-v1"))
     status = commands.add_parser("status", help="Inspect data and dependency readiness without creating or running a model.")
     status.add_argument("--data-dir", type=Path, default=Path("data/processed/mvp"))
     status.add_argument("--config", type=Path, default=Path("configs/mvp.json"))
@@ -45,6 +60,20 @@ def main() -> None:
             from recsys_rl.tuning import run_tuning
             result = run_tuning(args.data_dir, args.output_dir, args.config, args.protocol, args.device, args.resume)
             print(json.dumps({"stage": "tuning_complete", "selected_variant": result["selected_variant"], "screening_winner": result["screening_winner"], "test_evaluated": False}))
+        elif args.command == "reward-prepare":
+            from recsys_rl.reward_data import prepare_reward
+            result = prepare_reward(args.input, args.data_dir, args.output_dir, args.config, args.protocol)
+            print(json.dumps({"stage": "reward_preparation_complete", "cutoffs_seconds": result["cutoffs_seconds"],
+                              "partitions": result["partitions"], "test_evaluated": False}, ensure_ascii=False))
+        elif args.command == "reward":
+            from recsys_rl.reward import train_reward
+            result = train_reward(args.data_dir, args.output_dir, args.config, args.protocol, args.device)
+            print(json.dumps({"stage": "reward_training_complete", "selected_epoch": result["selected_epoch"],
+                              "validation": {name: value["metrics"] for name, value in result["validation"].items()},
+                              "audit": result["audit"], "test_evaluated": False}, ensure_ascii=False))
+        elif args.command == "reward-audit":
+            from recsys_rl.reward import audit_reward_run
+            print(json.dumps(audit_reward_run(args.data_dir, args.output_dir), ensure_ascii=False))
         else:
             from recsys_rl.data import write_json
             from recsys_rl.status import readiness

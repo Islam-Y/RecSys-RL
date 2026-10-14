@@ -1,0 +1,28 @@
+{
+  "experiment": "completion-reward-v1",
+  "seed": 42,
+  "reference_policy_report": "../experiments/small-tuning-result.json",
+  "data": {
+    "selection_quantile": 0.8,
+    "label": "mean_of_clipped_played_ratio",
+    "missing_label": "exclude_pair"
+  },
+  "model": {
+    "embedding_size": 64,
+    "user_embedding_size": 32,
+    "hidden_sizes": [128, 64],
+    "dropout": 0.1
+  },
+  "training": {
+    "epochs": 20,
+    "early_stopping_patience": 4,
+    "batch_size": 256,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "checkpoint_metric": "mse"
+  },
+  "evaluation": {
+    "calibration_bins": 10
+  }
+}

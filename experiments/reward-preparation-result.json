@@ -1,0 +1,179 @@
+{
+  "experiment": "completion-reward-v1",
+  "config": {
+    "experiment": "completion-reward-v1",
+    "seed": 42,
+    "reference_policy_report": "../experiments/small-tuning-result.json",
+    "data": {
+      "selection_quantile": 0.8,
+      "label": "mean_of_clipped_played_ratio",
+      "missing_label": "exclude_pair"
+    },
+    "model": {
+      "embedding_size": 64,
+      "user_embedding_size": 32,
+      "hidden_sizes": [
+        128,
+        64
+      ],
+      "dropout": 0.1
+    },
+    "training": {
+      "epochs": 20,
+      "early_stopping_patience": 4,
+      "batch_size": 256,
+      "learning_rate": 0.001,
+      "weight_decay": 0.01,
+      "gradient_clip": 1.0,
+      "checkpoint_metric": "mse"
+    },
+    "evaluation": {
+      "calibration_bins": 10
+    }
+  },
+  "config_sha256": "1b39504dae6a20453ea862baf129a67cb842546162cbb72fe63fc0507895f8d7",
+  "protocol_sha256": "441082245c4c56b37aec60aa5c23ff7123bb87270e6fcb90f9801b82f8f52d2e",
+  "policy_data_dir": "data/processed/mvp",
+  "policy_manifest_sha256": "6017fed06393bd416ecbe08b98080c6ddd2628a7fc4cab600b7fb4223eea33db",
+  "policy_catalog_sha256": "9c055d1a0b3928153acda8a16c4e290d930fdedd94778d46ac61801da0fbe514",
+  "policy_partitions_sha256": {
+    "train": "488ebafffb924b9bed034039cd5a1ccb9946cc652b8f75e32e1d27bfbeedad3d",
+    "validation": "ceb777e8445d7343411ecb039486dff74d2f9b8aeb89021d23f206294d780d86",
+    "test": "ba0fdfaa56cf69692dd48e8b5de5ead5052ac619db6d046e15600423fa4d13af"
+  },
+  "reference_policy_report_sha256": "6852f95801e4c66bc9ff29349720136778aa80ed553808013f3e5881a4b9fc38",
+  "reference_policy_checkpoint": {
+    "path": "outputs/small-tuning-v1/runs/lr-low/seed-42/baseline.pt",
+    "sha256": "bc9467e3137a14b8399cfba2e4705f80f0996d4bea5b43f19b38457516208faf",
+    "bytes": 3681199
+  },
+  "source": {
+    "dataset": "yandex/yambda",
+    "file": "flat/50m/multi_event.parquet",
+    "sha256": "b92f6c97277a554c8a7d6cfea900eca51639fd53a3e6c4fa58b82e35fd35804d",
+    "bytes": 384465869,
+    "listen_events": 46467212,
+    "users": 9238,
+    "items": 877168,
+    "timestamp_min": 0,
+    "timestamp_max": 26000000
+  },
+  "source_path": "data/raw/yambda-50m-multi_event.parquet",
+  "catalog_size": 2000,
+  "history_length": 64,
+  "cutoffs_seconds": {
+    "reward_train_end": 16809665,
+    "selection_end": 19983235,
+    "validation_end": 23121935
+  },
+  "excluded_missing_label_pairs": {
+    "policy_train": 0,
+    "policy_validation": 0
+  },
+  "partitions": {
+    "train": {
+      "pairs": 54412,
+      "queries": 47911,
+      "users": 888,
+      "items": 1988,
+      "timestamp_min": 4595,
+      "timestamp_max": 16809665,
+      "observed_events": 55158,
+      "label_events": 55158,
+      "pairs_with_duplicate_events": 501,
+      "events_above_100": 346,
+      "zero_events": 4017,
+      "raw_ratio_min": 0,
+      "raw_ratio_max": 159,
+      "reward_mean": 0.6549854440854241,
+      "reward_std": 0.437160184474882,
+      "reward_quantiles": [
+        0.0,
+        0.009999999776482582,
+        0.07999999821186066,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "full_completion_fraction": 0.5394030728515768,
+      "organic_pairs": {
+        "0": 26776,
+        "1": 27635,
+        "2": 1
+      },
+      "sha256": "6bc6be670c18c03ef5ae2fd509e73e4cf7414543218100728219835dbae55596"
+    },
+    "selection": {
+      "pairs": 14039,
+      "queries": 11977,
+      "users": 816,
+      "items": 1954,
+      "timestamp_min": 16809945,
+      "timestamp_max": 19983140,
+      "observed_events": 14263,
+      "label_events": 14263,
+      "pairs_with_duplicate_events": 166,
+      "events_above_100": 103,
+      "zero_events": 1200,
+      "raw_ratio_min": 0,
+      "raw_ratio_max": 157,
+      "reward_mean": 0.6357147709653391,
+      "reward_std": 0.4431681177273801,
+      "reward_quantiles": [
+        0.0,
+        0.009999999776482582,
+        0.05999999865889549,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "full_completion_fraction": 0.5280290618989957,
+      "organic_pairs": {
+        "0": 6435,
+        "1": 7604,
+        "2": 0
+      },
+      "sha256": "5b2a2a4aa609f0ffa7939f894882a510a65a70bace81b3bcaf76d829c8147bfe"
+    },
+    "validation": {
+      "pairs": 5840,
+      "queries": 5000,
+      "users": 734,
+      "items": 1689,
+      "timestamp_min": 19983245,
+      "timestamp_max": 23120900,
+      "observed_events": 5912,
+      "label_events": 5912,
+      "pairs_with_duplicate_events": 57,
+      "events_above_100": 32,
+      "zero_events": 444,
+      "raw_ratio_min": 0,
+      "raw_ratio_max": 154,
+      "reward_mean": 0.6485129855464735,
+      "reward_std": 0.44105636369367945,
+      "reward_quantiles": [
+        0.0,
+        0.009999999776482582,
+        0.05999999865889549,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "full_completion_fraction": 0.5325342465753424,
+      "organic_pairs": {
+        "0": 2585,
+        "1": 3255,
+        "2": 0
+      },
+      "sha256": "d29a755db2a0df1dd3eb249a23edc8f671f82e3ce03c1fc68786ae2f43009d0b"
+    }
+  },
+  "label_scope": "Observed listen pairs only; mean of per-event min(played_ratio_pct,100)/100, stored as float32.",
+  "test_labels_read": false,
+  "test_evaluated": false,
+  "reward_model_trained": false,
+  "rl_trained": false
+}
