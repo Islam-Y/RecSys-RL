@@ -47,6 +47,18 @@ def main() -> None:
     reward_signal.add_argument("--config", type=Path, default=Path("configs/reward-signal.json"))
     reward_signal.add_argument("--protocol", type=Path, default=Path("experiments/reward-signal-protocol.md"))
     reward_signal.add_argument("--device", choices=("auto", "cpu", "mps", "cuda"), default="auto")
+    rl = commands.add_parser("rl", help="Run the frozen six-variant contextual-bandit pilot and five-item rollouts.")
+    rl.add_argument("--data-dir", type=Path, default=Path("data/processed/mvp"))
+    rl.add_argument("--reward-data-dir", type=Path, default=Path("data/processed/reward-v1"))
+    rl.add_argument("--output-dir", type=Path, default=Path("outputs/policy-rl-pilot-v1"))
+    rl.add_argument("--config", type=Path, default=Path("configs/rl-pilot.json"))
+    rl.add_argument("--protocol", type=Path, default=Path("experiments/rl-pilot-protocol.md"))
+    rl.add_argument("--device", choices=("auto", "cpu", "mps", "cuda"), default="auto")
+    rl.add_argument("--resume", action="store_true", help="Reuse completed artifacts of the same frozen plan.")
+    rl.add_argument("--prepare-only", action="store_true", help="Cache and validate the frozen models without RL training.")
+    rl_audit = commands.add_parser("rl-audit", help="Replay saved policy forwards, controls, selection, and rollouts.")
+    rl_audit.add_argument("--output-dir", type=Path, default=Path("outputs/policy-rl-pilot-v1"))
+    rl_audit.add_argument("--device", choices=("auto", "cpu", "mps", "cuda"), default="auto")
     status = commands.add_parser("status", help="Inspect data and dependency readiness without creating or running a model.")
     status.add_argument("--data-dir", type=Path, default=Path("data/processed/mvp"))
     status.add_argument("--config", type=Path, default=Path("configs/mvp.json"))
@@ -85,6 +97,16 @@ def main() -> None:
             result = run_reward_signal(args.data_dir, args.output_dir, args.config, args.protocol, args.device)
             print(json.dumps({"stage": "reward_signal_complete", "calibration": result["calibration"],
                               "audit": result["audit"], "rl_trained": False, "test_evaluated": False}))
+        elif args.command == "rl":
+            from recsys_rl.policy_optimization import run_policy_pilot
+            result = run_policy_pilot(args.data_dir, args.reward_data_dir, args.output_dir, args.config,
+                                      args.protocol, args.device, args.resume, args.prepare_only)
+            print(json.dumps({"stage": result.get("stage", "rl_pilot_complete"),
+                              "selected_variant": result.get("selected_variant"), "runs": len(result.get("runs", {})),
+                              "rl_trained": result["rl_trained"], "test_evaluated": False}))
+        elif args.command == "rl-audit":
+            from recsys_rl.policy_optimization import audit_policy_pilot
+            print(json.dumps(audit_policy_pilot(args.output_dir, args.device)))
         else:
             from recsys_rl.data import write_json
             from recsys_rl.status import readiness

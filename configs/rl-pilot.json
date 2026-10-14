@@ -1,10 +1,11 @@
 {
   "experiment": "policy-rl-pilot-v1",
-  "status": "planned_not_implemented",
+  "status": "implemented",
   "policy_report": "../experiments/small-tuning-result.json",
   "policy_config": "baseline-selected.json",
   "reward_report": "../experiments/reward-result.json",
   "signal_report": "../experiments/reward-signal-result.json",
+  "reward_output_dir": "../outputs/reward-v1",
   "data_seed": 42,
   "training_seed": 42,
   "confirmation_seeds": [42, 43, 44],
@@ -35,6 +36,16 @@
     "duration_cap_catalog_quantile": 0.95,
     "unknown_duration_fallback": "catalog_median",
     "matched_policy_tolerance": 0.00001
+  },
+  "execution": {
+    "reward_cache_batch_size": 32,
+    "inference_batch_size": 128,
+    "reward_forward_tolerance": 0.000002
+  },
+  "evaluation": {
+    "low_support_threshold": 10,
+    "bootstrap_repeats": 2000,
+    "bootstrap_seed": 42
   },
   "rollout": {
     "validation_contexts": 1000,
