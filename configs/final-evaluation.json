@@ -1,0 +1,27 @@
+{
+  "experiment": "final-evaluation-v1",
+  "pilot_report": "../experiments/rl-pilot-result.json",
+  "pilot_execution": "../experiments/rl-pilot-execution.json",
+  "signal_config": "reward-signal.json",
+  "policies": [
+    {"name": "baseline", "role": "reference"},
+    {"name": "raw-kl", "role": "selected_primary", "training_seed": 42},
+    {"name": "raw-strong-kl", "role": "prespecified_secondary", "training_seed": 42}
+  ],
+  "controls": ["train_popularity", "recent_items"],
+  "evaluation": {
+    "top_k": [5, 10, 20],
+    "primary_metric": "ndcg@10",
+    "bootstrap_repeats": 2000,
+    "bootstrap_seed": 42,
+    "low_support_threshold": 10,
+    "inference_batch_size": 128,
+    "reward_cache_batch_size": 32,
+    "reward_forward_tolerance": 0.000002,
+    "policy_forward_tolerance": 0.00001,
+    "calibration_bins": 10
+  },
+  "training_allowed": false,
+  "selection_on_test_allowed": false,
+  "rollout_scope": "previous_validation_pilot_only"
+}
