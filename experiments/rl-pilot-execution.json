@@ -1,0 +1,61 @@
+{
+  "experiment": "policy-rl-pilot-v1",
+  "source_commit": "15835b0349c87426bc9179c34b304e0b640e8575",
+  "result_sha256": "c9878601e476d53dc0532d896c4534e11c5f3d676e95b7d0c18d8d7246e31468",
+  "public_result_is_exact_copy": true,
+  "phases": {
+    "prepare": {
+      "command": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl rl --device auto --prepare-only",
+      "real_seconds": 14.81,
+      "user_seconds": 6.84,
+      "sys_seconds": 1.09,
+      "maximum_resident_set_size_bytes": 969998336,
+      "peak_memory_footprint_bytes": 1902052960,
+      "log_sha256": "a34588535499d0aaf43c82a48c090248aa43a3f8d1ca415cf08020680749e7a8",
+      "log_path": "outputs/policy-rl-pilot-v1-prepare.log"
+    },
+    "pilot": {
+      "command": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl rl --device auto --resume",
+      "real_seconds": 177.83,
+      "user_seconds": 66.42,
+      "sys_seconds": 6.58,
+      "maximum_resident_set_size_bytes": 1669955584,
+      "peak_memory_footprint_bytes": 2944256304,
+      "log_sha256": "cd6dac088bdb88ec5f149a487fbad02a5bccd4fa2a8e341e9e7681fee0cbe203",
+      "log_path": "outputs/policy-rl-pilot-v1.log"
+    },
+    "audit": {
+      "command": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl rl-audit --device auto",
+      "real_seconds": 38.96,
+      "user_seconds": 22.46,
+      "sys_seconds": 2.01,
+      "maximum_resident_set_size_bytes": 1625669632,
+      "peak_memory_footprint_bytes": 2672724032,
+      "log_sha256": "8a5f66afcad54c49d0dbe2f0769db979f4a13512cfb69387b985f5c3037e3577",
+      "log_path": "outputs/policy-rl-pilot-v1-audit.log"
+    }
+  },
+  "independent_invocation_audit": {
+    "stage": "rl_pilot_audit_complete",
+    "runs_checked": 8,
+    "validation_forward_maximum_differences": {
+      "raw-stress/seed-42": 0.0,
+      "raw-kl/seed-42": 0.0,
+      "raw-strong-kl/seed-42": 0.0,
+      "hybrid-matched-kl/seed-42": 0.0,
+      "time-kl/seed-42": 0.0,
+      "time-strong-kl/seed-42": 0.0,
+      "raw-kl/seed-43": 0.0,
+      "raw-kl/seed-44": 0.0
+    },
+    "controls_and_selection_recalculated": true,
+    "rollout_actions_and_rewards_replayed": true,
+    "frozen_inputs_unchanged": true,
+    "selected_variant": "raw-kl",
+    "test_evaluated": false
+  },
+  "memory_scope": "macOS process accounting; no independent per-variant, MPS allocator, or system peak measurement.",
+  "test_evaluated": false,
+  "bootstrap_observation_unit": "validation query",
+  "bootstrap_weighting": "Equal query weights; users resampled as clusters. The shared helper inherits a generic \"pair weights\" scope label; here its 5000 input observations are queries, not individual target tracks."
+}
