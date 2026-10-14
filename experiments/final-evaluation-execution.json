@@ -1,0 +1,47 @@
+{
+  "experiment": "final-evaluation-v1",
+  "source_commit": "c97ac8f0bf4656b24eeb74aa161f6b6c853d7594",
+  "public_result_is_exact_copy": true,
+  "result_sha256": "0df23f5ec2ef57f68cee2f1be0ce1bfd60c220db81457e074c5a188eaa810165",
+  "phases": {
+    "evaluation": {
+      "command": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.final_evaluation --device auto",
+      "real_seconds": 16.49,
+      "user_seconds": 10.32,
+      "sys_seconds": 1.18,
+      "maximum_resident_set_size_bytes": 1262190592,
+      "peak_memory_footprint_bytes": 2276165576,
+      "log_path": "outputs/final-evaluation-v1.log",
+      "log_sha256": "fe7d4b0ffbce90d43340eeebabc4a5785299eb82af65fd31fccb05bdc1fbfbbe"
+    },
+    "audit": {
+      "command": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.final_evaluation --device auto --audit",
+      "real_seconds": 14.13,
+      "user_seconds": 8.63,
+      "sys_seconds": 0.88,
+      "maximum_resident_set_size_bytes": 1355988992,
+      "peak_memory_footprint_bytes": 2360133576,
+      "log_path": "outputs/final-evaluation-v1-audit.log",
+      "log_sha256": "51342947175e4e38888c18ee06c0a40fea6ccc85f3e046a989f6f1b4635a943e"
+    }
+  },
+  "audit": {
+    "stage": "final_evaluation_audit_complete",
+    "policy_forward_maximum_differences": {
+      "baseline": 0.0,
+      "raw-kl": 0.0,
+      "raw-strong-kl": 0.0
+    },
+    "full_catalog_reward_maximum_difference": 0.0,
+    "observed_labels_rejoined": true,
+    "rankings_metrics_intervals_and_controls_recalculated": true,
+    "frozen_inputs_unchanged": true,
+    "training_performed": false,
+    "selection_changed_on_test": false,
+    "test_evaluated": true
+  },
+  "memory_scope": "macOS process accounting, not a separate MPS or full-system peak.",
+  "test_evaluated": true,
+  "training_performed": false,
+  "selection_changed_on_test": false
+}
