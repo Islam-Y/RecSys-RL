@@ -1,0 +1,4051 @@
+{
+  "experiment": "reward-signal-v1",
+  "source_commit": "40b54399f61d05cb9884a24cde582baf18c95c8d",
+  "config": {
+    "experiment": "reward-signal-v1",
+    "reward_report": "../experiments/reward-result.json",
+    "reward_output_dir": "../outputs/reward-v1",
+    "permutation_seeds": [
+      42,
+      43,
+      44
+    ],
+    "bootstrap_seed": 42,
+    "bootstrap_repeats": 2000,
+    "label_tolerance": 1e-06,
+    "prediction_tolerance": 1e-07,
+    "strong_label_gap": 0.1,
+    "calibration_bins": 10
+  },
+  "frozen": {
+    "config": "c70b2b8a065fb1d26ae14d7150bfe90bec0d931853763bcaa9a7c9aec097522e",
+    "protocol": "946aa8ae0be66ef5a8a82249a6015ff1138f0fd0e4bb9de62a1eb13a6f0fe6b6",
+    "reference_report": "3dc91c1bba581102ac740cd30aed17f5ee5b55d7df0f454a9fccb990c2685598",
+    "preparation": "4874171cddc788a8337f9993a25d2921ba41c083b1ff6441ec453ca18e4d7629",
+    "source_files": {
+      "__init__.py": "cd4e71abac041d54337132310fc423b22aadf8a403a1c07d3c0985b6f9dcfa6d",
+      "__main__.py": "b2ac0f5a590badd7e0a10aaf0637f8233b35a65c9233d607d3b982ac39a7eaea",
+      "cli.py": "47dfc66318365af1c95f45ff3f7e4a4c8bd3bc88f039d52ea219e0055dd4da5a",
+      "data.py": "8b6d7a36cc7069e922e0972f114cce1b781b6fe402628ae0d7d296255f896c38",
+      "evaluation.py": "8e62b5bed9ca85d35904118a584549353796d843d01e707bbbd9c15a7ee58c84",
+      "model.py": "7e38b843500e5f7d348287f91f4090e9938aadb1474a512f0f02b940b4672cfe",
+      "reward.py": "b32e6a8e310e5a50e47768c6ced5bbed11fbedd242b97f9aa9bbeca007d2d978",
+      "reward_data.py": "0b122902a0fa43d86f720253e06c452119dcfc3f16b03c507e2a07004f9c6125",
+      "reward_evaluation.py": "775d93b97cf03fe805868d983debf1d332110e9e6b26a20767bc7eacf0573d6b",
+      "reward_model.py": "6c106e96b142a9b5a4de0bca13131c43956ce97a548413add1e272a31df0ae1f",
+      "reward_signal.py": "b16ea89ca644552ab52fcc91dcc00abe039ad22ab1d54dc49a17c1d319d4f265",
+      "status.py": "a47c35327f5c1eaecc199ab9c3d956f14f59b4773a2565e4875cc05292d3657d",
+      "train.py": "abcdb42f938f3767d6296ec47dfc3d5132e4635aaad1d029d9ef1ecefee6ad2e",
+      "tuning.py": "e9f2a846d4fc1e4b87d01935469b748e23092d94f9edcb2b7dccb29e52538a44"
+    }
+  },
+  "calibration": {
+    "slope": 0.7548164607325821,
+    "intercept": 0.13426430371062537,
+    "personal_mix_alpha": 0.472399008018318,
+    "fit_partition": "selection",
+    "fit_pairs": 14039,
+    "neural_network_retrained": false
+  },
+  "device": "mps",
+  "maximum_original_prediction_difference": 0.0,
+  "selection": {
+    "evaluation": {
+      "raw": {
+        "metrics": {
+          "pairs": 14039,
+          "mse": 0.1765944325550339,
+          "rmse": 0.4202314035802583,
+          "mae": 0.3549788087265186,
+          "r2": 0.10083376599655935,
+          "pearson": 0.3426226698670866,
+          "bias": 0.028619531930008796,
+          "mean_prediction": 0.664334302895348,
+          "mean_observed": 0.6357147709653391
+        },
+        "users": 816,
+        "user_macro_mse": 0.17262888441729962,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 5617,
+              "mse": 0.16964041849698447,
+              "rmse": 0.4118742751095102,
+              "mae": 0.34414151370709734,
+              "r2": 0.0956383458374398,
+              "pearson": 0.3320126776739262,
+              "bias": 0.020517878929106326,
+              "mean_prediction": 0.687611019253752,
+              "mean_observed": 0.6670931403246456
+            },
+            "medium": {
+              "pairs": 4654,
+              "mse": 0.1768112233048189,
+              "rmse": 0.4204892665750446,
+              "mae": 0.35592533661301523,
+              "r2": 0.11247406877165222,
+              "pearson": 0.3572553243015542,
+              "bias": 0.03376407293602024,
+              "mean_prediction": 0.660950901548706,
+              "mean_observed": 0.6271868286126857
+            },
+            "long": {
+              "pairs": 3768,
+              "mse": 0.1866930930684533,
+              "rmse": 0.432079961428962,
+              "mae": 0.3699649937956094,
+              "r2": 0.08118167625494699,
+              "pearson": 0.32503078184265766,
+              "bias": 0.03434253911262342,
+              "mean_prediction": 0.633814407481897,
+              "mean_observed": 0.5994718683692736
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 6435,
+              "mse": 0.16351242019555537,
+              "rmse": 0.4043666902646104,
+              "mae": 0.3345772118325741,
+              "r2": 0.14311177304032208,
+              "pearson": 0.3886540361639073,
+              "bias": 0.025360497612312217,
+              "mean_prediction": 0.6908909305519111,
+              "mean_observed": 0.6655304329395989
+            },
+            "organic": {
+              "pairs": 7604,
+              "mse": 0.1876652833616152,
+              "rmse": 0.43320351263766915,
+              "mae": 0.3722439686440006,
+              "r2": 0.0603979596430374,
+              "pearson": 0.29673308173109014,
+              "bias": 0.03137753900975334,
+              "mean_prediction": 0.6418603551086589,
+              "mean_observed": 0.6104828160989055
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 12958,
+              "mse": 0.173716669607219,
+              "rmse": 0.41679331761344135,
+              "mae": 0.34942491436512285,
+              "r2": 0.11171909398217639,
+              "pearson": 0.3565535074394701,
+              "bias": 0.02478440222068057,
+              "mean_prediction": 0.6666470998330356,
+              "mean_observed": 0.641862697612355
+            },
+            "unseen": {
+              "pairs": 1081,
+              "mse": 0.21109031810340162,
+              "rmse": 0.4594456639292634,
+              "mae": 0.42155361273666286,
+              "r2": -0.052826543244524515,
+              "pearson": 0.07622953543168885,
+              "bias": 0.07459141978706259,
+              "mean_prediction": 0.6366106926099114,
+              "mean_observed": 0.5620192728228488
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 13716,
+              "mse": 0.17643782238863745,
+              "rmse": 0.4200450242398277,
+              "mae": 0.3545536273509453,
+              "r2": 0.10229325595143046,
+              "pearson": 0.3445934996696203,
+              "bias": 0.029570089470482137,
+              "mean_prediction": 0.6649918355608289,
+              "mean_observed": 0.6354217460903467
+            },
+            "unseen": {
+              "pairs": 323,
+              "mse": 0.18324478872312572,
+              "rmse": 0.42807100897295736,
+              "mae": 0.3730338791517927,
+              "r2": 0.036003448032858376,
+              "pearson": 0.26130552227048875,
+              "bias": -0.011745320160184113,
+              "mean_prediction": 0.6364125752181461,
+              "mean_observed": 0.6481578953783301
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 3258,
+              "mse": 0.18574726036742248,
+              "rmse": 0.4309840604563265,
+              "mae": 0.3676449651464001,
+              "r2": 0.03174785442304917,
+              "pearson": 0.25685239979505153,
+              "bias": 0.03801604090578639,
+              "mean_prediction": 0.6684014000103765,
+              "mean_observed": 0.6303853591045901
+            },
+            "new_to_context": {
+              "pairs": 10781,
+              "mse": 0.17382846344152292,
+              "rmse": 0.41692740787998445,
+              "mae": 0.3511511176388668,
+              "r2": 0.12103486917359385,
+              "pearson": 0.3659000277085847,
+              "bias": 0.02577992278029324,
+              "mean_prediction": 0.663105233013077,
+              "mean_observed": 0.6373253102327838
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 26,
+            "mean_prediction": 0.07185959185545261,
+            "mean_observed": 0.40384615320139206
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 193,
+            "mean_prediction": 0.15868359568668772,
+            "mean_observed": 0.2887823834262518
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 490,
+            "mean_prediction": 0.25854812763175183,
+            "mean_observed": 0.3318673470114567
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 981,
+            "mean_prediction": 0.3520124149371117,
+            "mean_observed": 0.42004587157524054
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 1364,
+            "mean_prediction": 0.45238238562149735,
+            "mean_observed": 0.47706561583391993
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 1896,
+            "mean_prediction": 0.5515548363956722,
+            "mean_observed": 0.546597398137713
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 2350,
+            "mean_prediction": 0.6518154778125438,
+            "mean_observed": 0.6135057447787295
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 2599,
+            "mean_prediction": 0.7498318972657304,
+            "mean_observed": 0.6788107608722701
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 2401,
+            "mean_prediction": 0.849100148340207,
+            "mean_observed": 0.7634072611686378
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 1739,
+            "mean_prediction": 0.9430797927471466,
+            "mean_observed": 0.8958654404125675
+          }
+        ]
+      },
+      "calibrated": {
+        "metrics": {
+          "pairs": 14039,
+          "mse": 0.1733427639082014,
+          "rmse": 0.4163445254932523,
+          "mae": 0.37445799202501023,
+          "r2": 0.11739029390685041,
+          "pearson": 0.34262266986708656,
+          "bias": -6.680792159009418e-17,
+          "mean_prediction": 0.635714770965339,
+          "mean_observed": 0.6357147709653391
+        },
+        "users": 816,
+        "user_macro_mse": 0.1697490730883636,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 5617,
+              "mse": 0.16709469121171525,
+              "rmse": 0.4087721751926313,
+              "mae": 0.36574220091991233,
+              "r2": 0.10920974679925577,
+              "pearson": 0.3320126776739263,
+              "bias": -0.013808720700179836,
+              "mean_prediction": 0.6532844196244658,
+              "mean_observed": 0.6670931403246456
+            },
+            "medium": {
+              "pairs": 4654,
+              "mse": 0.17386790302272984,
+              "rmse": 0.41697470309687834,
+              "mae": 0.3756405753876444,
+              "r2": 0.12724843108552464,
+              "pearson": 0.35725532430155416,
+              "bias": 0.005974095322943214,
+              "mean_prediction": 0.633160923935629,
+              "mean_observed": 0.6271868286126857
+            },
+            "long": {
+              "pairs": 3768,
+              "mse": 0.18200821690638277,
+              "rmse": 0.42662421040815623,
+              "mae": 0.3859900662467817,
+              "r2": 0.10423850171880322,
+              "pearson": 0.32503078184265766,
+              "bias": 0.013205983158155916,
+              "mean_prediction": 0.6126778515274295,
+              "mean_observed": 0.5994718683692736
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 6435,
+              "mse": 0.1624666354979147,
+              "rmse": 0.403071501718882,
+              "mae": 0.3598154461758374,
+              "r2": 0.14859221663152533,
+              "pearson": 0.3886540361639073,
+              "bias": -0.009770282277539788,
+              "mean_prediction": 0.6557601506620592,
+              "mean_observed": 0.6655304329395989
+            },
+            "organic": {
+              "pairs": 7604,
+              "mse": 0.1825468520618304,
+              "rmse": 0.42725501993754317,
+              "mae": 0.38684946789815955,
+              "r2": 0.08602490782736216,
+              "pearson": 0.29673308173109014,
+              "bias": 0.008268249139396056,
+              "mean_prediction": 0.6187510652383017,
+              "mean_observed": 0.6104828160989055
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 12958,
+              "mse": 0.17072497305292522,
+              "rmse": 0.4131887862139112,
+              "mae": 0.3703298929088377,
+              "r2": 0.12701680220895228,
+              "pearson": 0.3565535074394701,
+              "bias": -0.004402189448117403,
+              "mean_prediction": 0.6374605081642377,
+              "mean_observed": 0.641862697612355
+            },
+            "unseen": {
+              "pairs": 1081,
+              "mse": 0.20472235123721916,
+              "rmse": 0.4524625412531066,
+              "mae": 0.423941718525808,
+              "r2": -0.02106589877984355,
+              "pearson": 0.07622953543168887,
+              "bias": 0.05276926074810765,
+              "mean_prediction": 0.6147885335709564,
+              "mean_observed": 0.5620192728228488
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 13716,
+              "mse": 0.17320566845187557,
+              "rmse": 0.4161798510882952,
+              "mae": 0.3741456348916232,
+              "r2": 0.11873829221153065,
+              "pearson": 0.34459349966962016,
+              "bias": 0.0007893413543667207,
+              "mean_prediction": 0.6362110874447134,
+              "mean_observed": 0.6354217460903467
+            },
+            "unseen": {
+              "pairs": 323,
+              "mse": 0.17916443969447088,
+              "rmse": 0.4232782060234981,
+              "mae": 0.38772204911954916,
+              "r2": 0.0574689555752802,
+              "pearson": 0.2613055222704887,
+              "bias": -0.03351890407583559,
+              "mean_prediction": 0.6146389913024946,
+              "mean_observed": 0.6481578953783301
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 3258,
+              "mse": 0.17995064012508358,
+              "rmse": 0.4242058935529816,
+              "mae": 0.3817314250972619,
+              "r2": 0.06196412773786031,
+              "pearson": 0.25685239979505153,
+              "bias": 0.008399323710570531,
+              "mean_prediction": 0.6387846828151607,
+              "mean_observed": 0.6303853591045901
+            },
+            "new_to_context": {
+              "pairs": 10781,
+              "mse": 0.17134587487057948,
+              "rmse": 0.4139394579773466,
+              "mae": 0.3722599728292588,
+              "r2": 0.13358809978292685,
+              "pearson": 0.36590002770858476,
+              "bias": -0.002538261445973445,
+              "mean_prediction": 0.6347870487868104,
+              "mean_observed": 0.6373253102327838
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 20,
+            "mean_prediction": 0.18419044418304079,
+            "mean_observed": 0.4029999998398125
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 263,
+            "mean_prediction": 0.26231973455016083,
+            "mean_observed": 0.29703422039463945
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 893,
+            "mean_prediction": 0.3587626061284054,
+            "mean_observed": 0.36614781632927673
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 1634,
+            "mean_prediction": 0.45299132264027364,
+            "mean_observed": 0.4582114443302638
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 2484,
+            "mean_prediction": 0.5521385603201493,
+            "mean_observed": 0.5506415728250168
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 3310,
+            "mean_prediction": 0.6514241991201497,
+            "mean_observed": 0.6358880163972291
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 3296,
+            "mean_prediction": 0.7492654942628614,
+            "mean_observed": 0.7312472190911932
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 2139,
+            "mean_prediction": 0.8388301028666818,
+            "mean_observed": 0.8789894036032597
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          }
+        ]
+      },
+      "hybrid": {
+        "metrics": {
+          "pairs": 14039,
+          "mse": 0.16765712468624178,
+          "rmse": 0.4094595519538429,
+          "mae": 0.3618349339267096,
+          "r2": 0.14633987478063304,
+          "pearson": 0.3825950851815106,
+          "bias": 0.002728906286652456,
+          "mean_prediction": 0.6384436772519917,
+          "mean_observed": 0.6357147709653391
+        },
+        "users": 816,
+        "user_macro_mse": 0.16338661146951594,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 5617,
+              "mse": 0.16107009615789622,
+              "rmse": 0.40133539111059746,
+              "mae": 0.3534631847185704,
+              "r2": 0.14132716785258925,
+              "pearson": 0.3783054879068073,
+              "bias": -0.017894246688457766,
+              "mean_prediction": 0.6491988936361879,
+              "mean_observed": 0.6670931403246456
+            },
+            "medium": {
+              "pairs": 4654,
+              "mse": 0.16794768559853437,
+              "rmse": 0.4098142086342717,
+              "mae": 0.3619052673171977,
+              "r2": 0.156965698939189,
+              "pearson": 0.3967731551280356,
+              "bias": 0.008173390753001391,
+              "mean_prediction": 0.6353602193656871,
+              "mean_observed": 0.6271868286126857
+            },
+            "long": {
+              "pairs": 3768,
+              "mse": 0.17711759940967797,
+              "rmse": 0.4208534179612635,
+              "mae": 0.37422792323212023,
+              "r2": 0.12830789227066952,
+              "pearson": 0.3633421569849646,
+              "bias": 0.02674738281393647,
+              "mean_prediction": 0.62621925118321,
+              "mean_observed": 0.5994718683692736
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 6435,
+              "mse": 0.15285390421397888,
+              "rmse": 0.39096534912186126,
+              "mae": 0.33959656556170853,
+              "r2": 0.19896781657849194,
+              "pearson": 0.4496012001485188,
+              "bias": 0.000968860078374077,
+              "mean_prediction": 0.666499293017973,
+              "mean_observed": 0.6655304329395989
+            },
+            "organic": {
+              "pairs": 7604,
+              "mse": 0.18018457388916284,
+              "rmse": 0.42448153539248656,
+              "mae": 0.38065448948020547,
+              "r2": 0.09785235588365593,
+              "pearson": 0.31718992448087924,
+              "bias": 0.004218372008676569,
+              "mean_prediction": 0.6147011881075821,
+              "mean_observed": 0.6104828160989055
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 12958,
+              "mse": 0.16455492086501422,
+              "rmse": 0.40565369573691085,
+              "mae": 0.3565052064971772,
+              "r2": 0.1585666791438891,
+              "pearson": 0.3982721580441159,
+              "bias": -0.0032148655418465194,
+              "mean_prediction": 0.6386478320705086,
+              "mean_observed": 0.641862697612355
+            },
+            "unseen": {
+              "pairs": 1081,
+              "mse": 0.20484339398824625,
+              "rmse": 0.45259628145649433,
+              "mae": 0.42572263793400006,
+              "r2": -0.02166960728856937,
+              "pearson": 0.07622953543168884,
+              "bias": 0.0739771906101397,
+              "mean_prediction": 0.6359964634329885,
+              "mean_observed": 0.5620192728228488
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 13716,
+              "mse": 0.1676260222636194,
+              "rmse": 0.40942157034482124,
+              "mae": 0.3616570760204843,
+              "r2": 0.14712725068308485,
+              "pearson": 0.38365250759823133,
+              "bias": 0.0034906076881178567,
+              "mean_prediction": 0.6389123537784646,
+              "mean_observed": 0.6354217460903467
+            },
+            "unseen": {
+              "pairs": 323,
+              "mse": 0.16897787028589722,
+              "rmse": 0.4110691794405137,
+              "mae": 0.3693875625390539,
+              "r2": 0.1110574797273981,
+              "pearson": 0.34226346114324596,
+              "bias": -0.02961628387588456,
+              "mean_prediction": 0.6185416115024456,
+              "mean_observed": 0.6481578953783301
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 3258,
+              "mse": 0.17965894333633492,
+              "rmse": 0.42386193900412306,
+              "mae": 0.3785545364041488,
+              "r2": 0.06348466721179447,
+              "pearson": 0.26803508281115657,
+              "bias": -0.005675328897189942,
+              "mean_prediction": 0.6247100302074002,
+              "mean_observed": 0.6303853591045901
+            },
+            "new_to_context": {
+              "pairs": 10781,
+              "mse": 0.16403019535111488,
+              "rmse": 0.4050064139629333,
+              "mae": 0.3567822982833095,
+              "r2": 0.17057989663024486,
+              "pearson": 0.4138543792913427,
+              "bias": 0.005268651971557242,
+              "mean_prediction": 0.6425939622043411,
+              "mean_observed": 0.6373253102327838
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 35,
+            "mean_prediction": 0.17652833282085648,
+            "mean_observed": 0.3784285717244659
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 307,
+            "mean_prediction": 0.2623625221345421,
+            "mean_observed": 0.2151302927012892
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 1058,
+            "mean_prediction": 0.35594690304814625,
+            "mean_observed": 0.35430529301841734
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 1657,
+            "mean_prediction": 0.4526277835566964,
+            "mean_observed": 0.4736407162097783
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 2567,
+            "mean_prediction": 0.5534546594803532,
+            "mean_observed": 0.5577064668095769
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 3097,
+            "mean_prediction": 0.6475104908731538,
+            "mean_observed": 0.6190537620019463
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 2462,
+            "mean_prediction": 0.7491962583148775,
+            "mean_observed": 0.7466639591536804
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 2107,
+            "mean_prediction": 0.848929456441066,
+            "mean_observed": 0.851605758960277
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 749,
+            "mean_prediction": 0.9219189377910714,
+            "mean_observed": 0.940413885385554
+          }
+        ]
+      },
+      "global_mean": {
+        "metrics": {
+          "pairs": 14039,
+          "mse": 0.19676933941253022,
+          "rmse": 0.44358690175943,
+          "mae": 0.4161797555062434,
+          "r2": -0.0018908485791113705,
+          "pearson": null,
+          "bias": 0.01927067312008499,
+          "mean_prediction": 0.6549854440854245,
+          "mean_observed": 0.6357147709653391
+        },
+        "users": 816,
+        "user_macro_mse": 0.19002816700394748,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 5617,
+              "mse": 0.18772688315051517,
+              "rmse": 0.43327460478375046,
+              "mae": 0.4073271028092955,
+              "r2": -0.0007815123363388299,
+              "pearson": null,
+              "bias": -0.012107696239221517,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6670931403246456
+            },
+            "medium": {
+              "pairs": 4654,
+              "mse": 0.19999085579399187,
+              "rmse": 0.44720337184998044,
+              "mae": 0.42012344757530107,
+              "r2": -0.003878980123990905,
+              "pearson": null,
+              "bias": 0.02779861547273843,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6271868286126857
+            },
+            "long": {
+              "pairs": 3768,
+              "mse": 0.20627001339990167,
+              "rmse": 0.45416958660824225,
+              "mae": 0.42450550054588315,
+              "r2": -0.015167003963428627,
+              "pearson": null,
+              "bias": 0.055513575716150614,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.5994718683692736
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 6435,
+              "mse": 0.19093237398793772,
+              "rmse": 0.4369580917982155,
+              "mae": 0.4119877269245152,
+              "r2": -0.0005827277221923666,
+              "pearson": null,
+              "bias": -0.010544988854174731,
+              "mean_prediction": 0.6549854440854244,
+              "mean_observed": 0.6655304329395989
+            },
+            "organic": {
+              "pairs": 7604,
+              "mse": 0.2017089596791337,
+              "rmse": 0.4491202062690274,
+              "mae": 0.41972732309217475,
+              "r2": -0.00991588149840883,
+              "pearson": null,
+              "bias": 0.04450262798651861,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6104828160989055
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 12958,
+              "mse": 0.19573722248552106,
+              "rmse": 0.44242199593320525,
+              "mae": 0.4152118403078559,
+              "r2": -0.0008805586935198839,
+              "pearson": null,
+              "bias": 0.013122746473069073,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.641862697612355
+            },
+            "unseen": {
+              "pairs": 1081,
+              "mse": 0.2091413756199165,
+              "rmse": 0.45731977392183304,
+              "mae": 0.42778220244491655,
+              "r2": -0.0431060672117729,
+              "pearson": null,
+              "bias": 0.09296617126257536,
+              "mean_prediction": 0.6549854440854241,
+              "mean_observed": 0.5620192728228488
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 13716,
+              "mse": 0.19692556650053916,
+              "rmse": 0.4437629620648158,
+              "mae": 0.4163048003180499,
+              "r2": -0.0019473530665370387,
+              "pearson": null,
+              "bias": 0.019563697995077407,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6354217460903467
+            },
+            "unseen": {
+              "pairs": 323,
+              "mse": 0.19013525043689258,
+              "rmse": 0.43604500964567017,
+              "mae": 0.41086980306433074,
+              "r2": -0.000245229923103496,
+              "pearson": null,
+              "bias": 0.00682754870709398,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6481578953783301
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 3258,
+              "mse": 0.19244285978125483,
+              "rmse": 0.43868309721398524,
+              "mae": 0.40908376759881104,
+              "r2": -0.0031545634405738543,
+              "pearson": null,
+              "bias": 0.024600084980834058,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6303853591045901
+            },
+            "new_to_context": {
+              "pairs": 10781,
+              "mse": 0.19807679425333302,
+              "rmse": 0.4450581919854223,
+              "mae": 0.4183241510727415,
+              "r2": -0.0015770255780078735,
+              "pearson": null,
+              "bias": 0.01766013385264035,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6373253102327838
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 14039,
+            "mean_prediction": 0.6549854440854245,
+            "mean_observed": 0.6357147709653391
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          }
+        ]
+      },
+      "item_mean": {
+        "metrics": {
+          "pairs": 14039,
+          "mse": 0.19867341545946188,
+          "rmse": 0.44572796127174014,
+          "mae": 0.40645286073195724,
+          "r2": -0.011585836487873147,
+          "pearson": 0.10698650931703597,
+          "bias": 0.020503526916220996,
+          "mean_prediction": 0.6562182978815602,
+          "mean_observed": 0.6357147709653391
+        },
+        "users": 816,
+        "user_macro_mse": 0.19115223072606416,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 5617,
+              "mse": 0.18977410444790416,
+              "rmse": 0.435630697320453,
+              "mae": 0.3918470037474224,
+              "r2": -0.011695352654272462,
+              "pearson": 0.09797946202417948,
+              "bias": 0.015481611423669968,
+              "mean_prediction": 0.6825747517483156,
+              "mean_observed": 0.6670931403246456
+            },
+            "medium": {
+              "pairs": 4654,
+              "mse": 0.20481120711951425,
+              "rmse": 0.4525607220246961,
+              "mae": 0.41461541211200537,
+              "r2": -0.028075333268703595,
+              "pearson": 0.07485232132754197,
+              "bias": 0.024151108788424427,
+              "mean_prediction": 0.6513379374011101,
+              "mean_observed": 0.6271868286126857
+            },
+            "long": {
+              "pairs": 3768,
+              "mse": 0.2043586987837814,
+              "rmse": 0.45206050345477145,
+              "mae": 0.4181440986723468,
+              "r2": -0.005760384452930145,
+              "pearson": 0.1188261379350264,
+              "bias": 0.023484485856885624,
+              "mean_prediction": 0.6229563542261591,
+              "mean_observed": 0.5994718683692736
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 6435,
+              "mse": 0.19289372840633368,
+              "rmse": 0.43919668533167877,
+              "mae": 0.3993052779917676,
+              "r2": -0.010861222212144916,
+              "pearson": 0.10739983014309136,
+              "bias": 0.0016355951855732756,
+              "mean_prediction": 0.6671660281251721,
+              "mean_observed": 0.6655304329395989
+            },
+            "organic": {
+              "pairs": 7604,
+              "mse": 0.20356456303795736,
+              "rmse": 0.4511812973051491,
+              "mae": 0.4125016107231618,
+              "r2": -0.01920651144771246,
+              "pearson": 0.0974956550359766,
+              "bias": 0.036470799494695234,
+              "mean_prediction": 0.6469536155936009,
+              "mean_observed": 0.6104828160989055
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 12958,
+              "mse": 0.1977275767718565,
+              "rmse": 0.44466569102175685,
+              "mae": 0.4053330346403126,
+              "r2": -0.011058014390546766,
+              "pearson": 0.10707385599951477,
+              "bias": 0.01514485345990747,
+              "mean_prediction": 0.6570075510722625,
+              "mean_observed": 0.641862697612355
+            },
+            "unseen": {
+              "pairs": 1081,
+              "mse": 0.21001123018100715,
+              "rmse": 0.45826982246380477,
+              "mae": 0.41987627099609365,
+              "r2": -0.047444522802284395,
+              "pearson": 0.092220373888519,
+              "bias": 0.08473820836572213,
+              "mean_prediction": 0.6467574811885709,
+              "mean_observed": 0.5620192728228488
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 13716,
+              "mse": 0.19887448190028206,
+              "rmse": 0.4459534526161694,
+              "mae": 0.4063488455399657,
+              "r2": -0.01186333635313419,
+              "pearson": 0.10820655877088382,
+              "bias": 0.020825584437477052,
+              "mean_prediction": 0.6562473305278237,
+              "mean_observed": 0.6354217460903467
+            },
+            "unseen": {
+              "pairs": 323,
+              "mse": 0.19013525043689258,
+              "rmse": 0.43604500964567017,
+              "mae": 0.41086980306433074,
+              "r2": -0.000245229923103496,
+              "pearson": null,
+              "bias": 0.00682754870709398,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6481578953783301
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 3258,
+              "mse": 0.1934428102207454,
+              "rmse": 0.43982133897839176,
+              "mae": 0.3972766210490542,
+              "r2": -0.008367044941470114,
+              "pearson": 0.120651013089021,
+              "bias": 0.025588935618044265,
+              "mean_prediction": 0.6559742947226345,
+              "mean_observed": 0.6303853591045901
+            },
+            "new_to_context": {
+              "pairs": 10781,
+              "mse": 0.20025409553252915,
+              "rmse": 0.447497592767301,
+              "mae": 0.40922590487321486,
+              "r2": -0.012586568352692229,
+              "pearson": 0.10281489177313977,
+              "bias": 0.018966724991488573,
+              "mean_prediction": 0.6562920352242724,
+              "mean_observed": 0.6373253102327838
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 7,
+            "mean_prediction": 0.09833333299805722,
+            "mean_observed": 0.19142856981073106
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 4,
+            "mean_prediction": 0.18058823388727271,
+            "mean_observed": 0.75
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 19,
+            "mean_prediction": 0.2756750572559479,
+            "mean_observed": 0.46000000099210364
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 194,
+            "mean_prediction": 0.3620272585130261,
+            "mean_observed": 0.5421907222090462
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 822,
+            "mean_prediction": 0.45943437582835106,
+            "mean_observed": 0.537839010293276
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 3018,
+            "mean_prediction": 0.5608781051765929,
+            "mean_observed": 0.6038347692339946
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 5369,
+            "mean_prediction": 0.6512094181212118,
+            "mean_observed": 0.629108772859599
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 3330,
+            "mean_prediction": 0.7411710873737738,
+            "mean_observed": 0.6736201705103433
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 975,
+            "mean_prediction": 0.8349078627444717,
+            "mean_observed": 0.7135051283488671
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 301,
+            "mean_prediction": 0.953167614870841,
+            "mean_observed": 0.7493355482866202
+          }
+        ]
+      },
+      "user_mean": {
+        "metrics": {
+          "pairs": 14039,
+          "mse": 0.17221524774026317,
+          "rmse": 0.41498825012313684,
+          "mae": 0.35229361911536006,
+          "r2": 0.12313127028891768,
+          "pearson": 0.36662993668969984,
+          "bias": 0.005172291804082192,
+          "mean_prediction": 0.6408870627694213,
+          "mean_observed": 0.6357147709653391
+        },
+        "users": 816,
+        "user_macro_mse": 0.1694856279986813,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 5617,
+              "mse": 0.1652299039093961,
+              "rmse": 0.40648481387303526,
+              "mae": 0.3441589583137678,
+              "r2": 0.11915102225901109,
+              "pearson": 0.36781013875006674,
+              "bias": -0.0215523111224279,
+              "mean_prediction": 0.6455408292022178,
+              "mean_observed": 0.6670931403246456
+            },
+            "medium": {
+              "pairs": 4654,
+              "mse": 0.17198782347731828,
+              "rmse": 0.4147141467050748,
+              "mae": 0.35113377648743566,
+              "r2": 0.13668572425128767,
+              "pearson": 0.3814133073714116,
+              "bias": 0.01014257768647625,
+              "mean_prediction": 0.6373294062991619,
+              "mean_observed": 0.6271868286126857
+            },
+            "long": {
+              "pairs": 3768,
+              "mse": 0.18290927874284418,
+              "rmse": 0.427678943534568,
+              "mae": 0.36585261521751067,
+              "r2": 0.0998038859943503,
+              "pearson": 0.3459539014718276,
+              "bias": 0.03887196912402518,
+              "mean_prediction": 0.6383438374932987,
+              "mean_observed": 0.5994718683692736
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 6435,
+              "mse": 0.15359757080470962,
+              "rmse": 0.3919152597242287,
+              "mae": 0.32304465876969646,
+              "r2": 0.19507062549283438,
+              "pearson": 0.4441882648089527,
+              "bias": 0.010584384448118538,
+              "mean_prediction": 0.6761148173877175,
+              "mean_observed": 0.6655304329395989
+            },
+            "organic": {
+              "pairs": 7604,
+              "mse": 0.18797073841363066,
+              "rmse": 0.43355592305218327,
+              "mae": 0.3770459941580146,
+              "r2": 0.05886860810305106,
+              "pearson": 0.29145250765536673,
+              "bias": 0.0005922265536384913,
+              "mean_prediction": 0.611075042652544,
+              "mean_observed": 0.6104828160989055
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 12958,
+              "mse": 0.16913474579259336,
+              "rmse": 0.41125994917155906,
+              "mae": 0.34599610726328023,
+              "r2": 0.13514825277599174,
+              "pearson": 0.38347567935288557,
+              "bias": -0.002151769292895048,
+              "mean_prediction": 0.6397109283194601,
+              "mean_observed": 0.641862697612355
+            },
+            "unseen": {
+              "pairs": 1081,
+              "mse": 0.2091413756199165,
+              "rmse": 0.45731977392183304,
+              "mae": 0.42778220244491655,
+              "r2": -0.0431060672117729,
+              "pearson": null,
+              "bias": 0.09296617126257536,
+              "mean_prediction": 0.6549854440854241,
+              "mean_observed": 0.5620192728228488
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 13716,
+              "mse": 0.17226098153234168,
+              "rmse": 0.41504334897976825,
+              "mae": 0.352229844818968,
+              "r2": 0.12354481162556008,
+              "pearson": 0.3670595448486363,
+              "bias": 0.005909245173359017,
+              "mean_prediction": 0.6413309912637057,
+              "mean_observed": 0.6354217460903467
+            },
+            "unseen": {
+              "pairs": 323,
+              "mse": 0.17027318986983087,
+              "rmse": 0.4126417209515185,
+              "mae": 0.355001756110139,
+              "r2": 0.10424318710107816,
+              "pearson": 0.35248829163298834,
+              "bias": -0.026121988112329356,
+              "mean_prediction": 0.6220359072660009,
+              "mean_observed": 0.6481578953783301
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 3258,
+              "mse": 0.19002381568024587,
+              "rmse": 0.43591721195686445,
+              "mae": 0.37890692684777005,
+              "r2": 0.009455284136257402,
+              "pearson": 0.2398936588347685,
+              "bias": -0.01827737482044575,
+              "mean_prediction": 0.6121079842841444,
+              "mean_observed": 0.6303853591045901
+            },
+            "new_to_context": {
+              "pairs": 10781,
+              "mse": 0.1668335285724249,
+              "rmse": 0.4084526026020949,
+              "mae": 0.34425112244601663,
+              "r2": 0.15640481791853722,
+              "pearson": 0.4029949928031924,
+              "bias": 0.012258741471340522,
+              "mean_prediction": 0.6495840517041244,
+              "mean_observed": 0.6373253102327838
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 93,
+            "mean_prediction": 0.061946978194334215,
+            "mean_observed": 0.3234408600556274
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 154,
+            "mean_prediction": 0.17286496594983322,
+            "mean_observed": 0.40409090891843297
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 546,
+            "mean_prediction": 0.24608341069426254,
+            "mean_observed": 0.3169371183081479
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 1309,
+            "mean_prediction": 0.3522713955306284,
+            "mean_observed": 0.38861344542604787
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 1437,
+            "mean_prediction": 0.45148728291294576,
+            "mean_observed": 0.5462908839175663
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 2207,
+            "mean_prediction": 0.5568498060100264,
+            "mean_observed": 0.5706128230087179
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 2616,
+            "mean_prediction": 0.6498887276204146,
+            "mean_observed": 0.5739065369467226
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 2212,
+            "mean_prediction": 0.7483501277557686,
+            "mean_observed": 0.7390039181871471
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 1725,
+            "mean_prediction": 0.8499718263886146,
+            "mean_observed": 0.8068753627547319
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 1740,
+            "mean_prediction": 0.9598453215642204,
+            "mean_observed": 0.9071886976784759
+          }
+        ]
+      }
+    },
+    "mse_difference_vs_personal": {
+      "raw": {
+        "estimate": 0.004379184814770767,
+        "ci95": [
+          0.00042687372714181305,
+          0.008193254249854438
+        ],
+        "clusters": 816,
+        "observations": 14039,
+        "bootstrap_repeats": 2000,
+        "bootstrap_seed": 42,
+        "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+      },
+      "calibrated": {
+        "estimate": 0.0011275161679382684,
+        "ci95": [
+          -0.0031067709450222996,
+          0.00512784787118751
+        ],
+        "clusters": 816,
+        "observations": 14039,
+        "bootstrap_repeats": 2000,
+        "bootstrap_seed": 42,
+        "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+      },
+      "hybrid": {
+        "estimate": -0.004558123054021339,
+        "ci95": [
+          -0.006717725993835847,
+          -0.0025056329593260715
+        ],
+        "clusters": 816,
+        "observations": 14039,
+        "bootstrap_repeats": 2000,
+        "bootstrap_seed": 42,
+        "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+      }
+    },
+    "same_query_candidate_accuracy": {
+      "unequal_labels": {
+        "comparisons": 3461,
+        "queries": 571,
+        "users": 265,
+        "accuracy": {
+          "raw": {
+            "estimate": 0.5362611961860734,
+            "ci95": [
+              0.5084916900791547,
+              0.5717914583751362
+            ],
+            "clusters": 265,
+            "observations": 3461,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "calibrated": {
+            "estimate": 0.5362611961860734,
+            "ci95": [
+              0.5084916900791547,
+              0.5717914583751362
+            ],
+            "clusters": 265,
+            "observations": 3461,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "hybrid": {
+            "estimate": 0.5362611961860734,
+            "ci95": [
+              0.5084916900791547,
+              0.5717914583751362
+            ],
+            "clusters": 265,
+            "observations": 3461,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "global_mean": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 265,
+            "observations": 3461,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "item_mean": {
+            "estimate": 0.5338052585957815,
+            "ci95": [
+              0.48820315091210614,
+              0.5901215817373187
+            ],
+            "clusters": 265,
+            "observations": 3461,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "user_mean": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 265,
+            "observations": 3461,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "shorter_first": {
+            "estimate": 0.5641433111817393,
+            "ci95": [
+              0.5327595160687981,
+              0.6044735957637675
+            ],
+            "clusters": 265,
+            "observations": 3461,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "query_macro_accuracy": {
+          "raw": 0.5629967801031139,
+          "calibrated": 0.5629967801031139,
+          "hybrid": 0.5629967801031139,
+          "global_mean": 0.5,
+          "item_mean": 0.5685489202816761,
+          "user_mean": 0.5,
+          "shorter_first": 0.5589248043745664
+        },
+        "raw_minus_item_mean": {
+          "estimate": 0.0024559375902918233,
+          "ci95": [
+            -0.03778460044868499,
+            0.031031787707314986
+          ],
+          "clusters": 265,
+          "observations": 3461,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+        }
+      },
+      "gap_at_least_0_10": {
+        "comparisons": 2143,
+        "queries": 339,
+        "users": 192,
+        "accuracy": {
+          "raw": {
+            "estimate": 0.5300979934671022,
+            "ci95": [
+              0.4892229255042447,
+              0.5825249823787544
+            ],
+            "clusters": 192,
+            "observations": 2143,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "calibrated": {
+            "estimate": 0.5300979934671022,
+            "ci95": [
+              0.4892229255042447,
+              0.5825249823787544
+            ],
+            "clusters": 192,
+            "observations": 2143,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "hybrid": {
+            "estimate": 0.5300979934671022,
+            "ci95": [
+              0.4892229255042447,
+              0.5825249823787544
+            ],
+            "clusters": 192,
+            "observations": 2143,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "global_mean": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 192,
+            "observations": 2143,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "item_mean": {
+            "estimate": 0.5277648156789547,
+            "ci95": [
+              0.469506793672374,
+              0.602178815807848
+            ],
+            "clusters": 192,
+            "observations": 2143,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "user_mean": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 192,
+            "observations": 2143,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "shorter_first": {
+            "estimate": 0.5405972935137657,
+            "ci95": [
+              0.5058922626063692,
+              0.5849090743564649
+            ],
+            "clusters": 192,
+            "observations": 2143,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "query_macro_accuracy": {
+          "raw": 0.57624766969209,
+          "calibrated": 0.57624766969209,
+          "hybrid": 0.57624766969209,
+          "global_mean": 0.5,
+          "item_mean": 0.5904241100088874,
+          "user_mean": 0.5,
+          "shorter_first": 0.5289653170424922
+        },
+        "raw_minus_item_mean": {
+          "estimate": 0.0023331777881474567,
+          "ci95": [
+            -0.048548234705084306,
+            0.034488474366560835
+          ],
+          "clusters": 192,
+          "observations": 2143,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+        }
+      }
+    },
+    "candidate_permutations": {
+      "user": [
+        {
+          "seed": 42,
+          "changed_pairs": 13048,
+          "changed_fraction": 0.9294109267041812,
+          "raw_metrics": {
+            "pairs": 14039,
+            "mse": 0.1794064203279333,
+            "rmse": 0.42356395069450054,
+            "mae": 0.3585613217716675,
+            "r2": 0.08651596209278278,
+            "pearson": 0.32643482900261017,
+            "bias": 0.025849330099886644,
+            "mean_prediction": 0.6615641010652258,
+            "mean_observed": 0.6357147709653391
+          },
+          "mse_change": 0.002811987772899399,
+          "original_changed_pairs": {
+            "pairs": 13048,
+            "mse": 0.17698592963641718,
+            "rmse": 0.4206969570087442,
+            "mae": 0.35539169575471447,
+            "r2": 0.10259110604990895,
+            "pearson": 0.344870009562876,
+            "bias": 0.028997626093517165,
+            "mean_prediction": 0.6627445351258194,
+            "mean_observed": 0.6337469090323022
+          },
+          "permuted_changed_pairs": {
+            "pairs": 13048,
+            "mse": 0.18001148882891682,
+            "rmse": 0.4242776082106111,
+            "mae": 0.3592463018737247,
+            "r2": 0.0872499784580184,
+            "pearson": 0.32753170882004023,
+            "bias": 0.026017026500239657,
+            "mean_prediction": 0.659763935532542,
+            "mean_observed": 0.6337469090323022
+          }
+        },
+        {
+          "seed": 43,
+          "changed_pairs": 12994,
+          "changed_fraction": 0.9255644988959327,
+          "raw_metrics": {
+            "pairs": 14039,
+            "mse": 0.17981483597959874,
+            "rmse": 0.4240457946726966,
+            "mae": 0.3587594586468644,
+            "r2": 0.08443643128253697,
+            "pearson": 0.3247911523031487,
+            "bias": 0.025757116047740173,
+            "mean_prediction": 0.6614718870130794,
+            "mean_observed": 0.6357147709653391
+          },
+          "mse_change": 0.0032204034245648383,
+          "original_changed_pairs": {
+            "pairs": 12994,
+            "mse": 0.1767833634748887,
+            "rmse": 0.42045613739709964,
+            "mae": 0.3552380334029004,
+            "r2": 0.1026887782456195,
+            "pearson": 0.34493834136553764,
+            "bias": 0.028785830398536136,
+            "mean_prediction": 0.6629144412313303,
+            "mean_observed": 0.6341286108327941
+          },
+          "permuted_changed_pairs": {
+            "pairs": 12994,
+            "mse": 0.1802627573241627,
+            "rmse": 0.4245736182620897,
+            "mae": 0.3593227297421135,
+            "r2": 0.08502818459875072,
+            "pearson": 0.3257552204520989,
+            "bias": 0.025693214070140784,
+            "mean_prediction": 0.659821824902935,
+            "mean_observed": 0.6341286108327941
+          }
+        },
+        {
+          "seed": 44,
+          "changed_pairs": 13037,
+          "changed_fraction": 0.928627395113612,
+          "raw_metrics": {
+            "pairs": 14039,
+            "mse": 0.17964258984996018,
+            "rmse": 0.42384264751197487,
+            "mae": 0.3582835026375673,
+            "r2": 0.0853134572536729,
+            "pearson": 0.32590801960256544,
+            "bias": 0.026033070767914623,
+            "mean_prediction": 0.6617478417332538,
+            "mean_observed": 0.6357147709653391
+          },
+          "mse_change": 0.0030481572949262736,
+          "original_changed_pairs": {
+            "pairs": 13037,
+            "mse": 0.17747299386869084,
+            "rmse": 0.4212754370583346,
+            "mae": 0.3560622600721957,
+            "r2": 0.0997631828638621,
+            "pearson": 0.3421497708904073,
+            "bias": 0.02986850278841941,
+            "mean_prediction": 0.6629135286875679,
+            "mean_observed": 0.6330450258991485
+          },
+          "permuted_changed_pairs": {
+            "pairs": 13037,
+            "mse": 0.18075542696399421,
+            "rmse": 0.42515341579716165,
+            "mae": 0.3596209467192167,
+            "r2": 0.08311294748007991,
+            "pearson": 0.32424462661244374,
+            "bias": 0.027083250947149175,
+            "mean_prediction": 0.6601282768462976,
+            "mean_observed": 0.6330450258991485
+          }
+        }
+      ],
+      "user_duration": [
+        {
+          "seed": 42,
+          "changed_pairs": 11607,
+          "changed_fraction": 0.8267682883396253,
+          "raw_metrics": {
+            "pairs": 14039,
+            "mse": 0.1796457936068387,
+            "rmse": 0.4238464269129076,
+            "mae": 0.3584760127643371,
+            "r2": 0.08529714467821148,
+            "pearson": 0.32567133322782593,
+            "bias": 0.026936274481587953,
+            "mean_prediction": 0.6626510454469271,
+            "mean_observed": 0.6357147709653391
+          },
+          "mse_change": 0.003051361051804785,
+          "original_changed_pairs": {
+            "pairs": 11607,
+            "mse": 0.17538790903249896,
+            "rmse": 0.41879339659610076,
+            "mae": 0.35378884298598057,
+            "r2": 0.10876563226768476,
+            "pearson": 0.3516686604835314,
+            "bias": 0.02673126179294856,
+            "mean_prediction": 0.6606179683055128,
+            "mean_observed": 0.6338867065125642
+          },
+          "permuted_changed_pairs": {
+            "pairs": 11607,
+            "mse": 0.17907861789838053,
+            "rmse": 0.42317681635266896,
+            "mae": 0.3580188117537012,
+            "r2": 0.09001128026752192,
+            "pearson": 0.3313871519898574,
+            "bias": 0.02469531354461736,
+            "mean_prediction": 0.6585820200571816,
+            "mean_observed": 0.6338867065125642
+          }
+        },
+        {
+          "seed": 43,
+          "changed_pairs": 11513,
+          "changed_fraction": 0.8200726547474891,
+          "raw_metrics": {
+            "pairs": 14039,
+            "mse": 0.17954121906888684,
+            "rmse": 0.42372304524168475,
+            "mae": 0.3584175571540294,
+            "r2": 0.08582960706732734,
+            "pearson": 0.32628264221454534,
+            "bias": 0.026112572889767344,
+            "mean_prediction": 0.6618273438551066,
+            "mean_observed": 0.6357147709653391
+          },
+          "mse_change": 0.002946786513852939,
+          "original_changed_pairs": {
+            "pairs": 11513,
+            "mse": 0.17472097363831476,
+            "rmse": 0.4179963799344616,
+            "mae": 0.35232077925563476,
+            "r2": 0.1107424793337003,
+            "pearson": 0.3538261859669942,
+            "bias": 0.026556916582061357,
+            "mean_prediction": 0.6640961912549527,
+            "mean_observed": 0.6375392746728913
+          },
+          "permuted_changed_pairs": {
+            "pairs": 11513,
+            "mse": 0.17831429734785886,
+            "rmse": 0.4222727759965812,
+            "mae": 0.35651400336523464,
+            "r2": 0.09245394724530143,
+            "pearson": 0.33412235966814197,
+            "bias": 0.02349992031992727,
+            "mean_prediction": 0.6610391949928186,
+            "mean_observed": 0.6375392746728913
+          }
+        },
+        {
+          "seed": 44,
+          "changed_pairs": 11648,
+          "changed_fraction": 0.8296887242681102,
+          "raw_metrics": {
+            "pairs": 14039,
+            "mse": 0.17837066454294992,
+            "rmse": 0.4223395133573816,
+            "mae": 0.3571565218648749,
+            "r2": 0.0917897219449828,
+            "pearson": 0.33259362215487376,
+            "bias": 0.026565642171263466,
+            "mean_prediction": 0.6622804131366027,
+            "mean_observed": 0.6357147709653391
+          },
+          "mse_change": 0.001776231987916016,
+          "original_changed_pairs": {
+            "pairs": 11648,
+            "mse": 0.17629788812354147,
+            "rmse": 0.41987842064524045,
+            "mae": 0.35484258934545554,
+            "r2": 0.10747735015201376,
+            "pearson": 0.3508162842824312,
+            "bias": 0.029609684715898844,
+            "mean_prediction": 0.6617380617817117,
+            "mean_observed": 0.6321283770658128
+          },
+          "permuted_changed_pairs": {
+            "pairs": 11648,
+            "mse": 0.17843872954510334,
+            "rmse": 0.42242008657863717,
+            "mae": 0.35746732447160456,
+            "r2": 0.09663916326949273,
+            "pearson": 0.33879937233421314,
+            "bias": 0.027134190354375348,
+            "mean_prediction": 0.6592625674201882,
+            "mean_observed": 0.6321283770658128
+          }
+        }
+      ]
+    }
+  },
+  "validation": {
+    "evaluation": {
+      "raw": {
+        "metrics": {
+          "pairs": 5840,
+          "mse": 0.17864324972953655,
+          "rmse": 0.4226620987615716,
+          "mae": 0.3550298886549059,
+          "r2": 0.08167073331933394,
+          "pearson": 0.31911800178257865,
+          "bias": 0.030436509040388443,
+          "mean_prediction": 0.678949494586862,
+          "mean_observed": 0.6485129855464735
+        },
+        "users": 734,
+        "user_macro_mse": 0.17643795822465244,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 2271,
+              "mse": 0.1718553942980547,
+              "rmse": 0.4145544527538628,
+              "mae": 0.3420319767703291,
+              "r2": 0.07916320164448187,
+              "pearson": 0.3170805132787321,
+              "bias": 0.03489931143667731,
+              "mean_prediction": 0.7043334822199553,
+              "mean_observed": 0.6694341707832779
+            },
+            "medium": {
+              "pairs": 1941,
+              "mse": 0.17839037536178026,
+              "rmse": 0.4223628479894749,
+              "mae": 0.35584432272636846,
+              "r2": 0.08814232512729214,
+              "pearson": 0.32408528852292284,
+              "bias": 0.033667515671587926,
+              "mean_prediction": 0.6816260424787577,
+              "mean_observed": 0.6479585268071698
+            },
+            "long": {
+              "pairs": 1628,
+              "mse": 0.18841354999532908,
+              "rmse": 0.4340662967742705,
+              "mae": 0.37219047916913517,
+              "r2": 0.07099667674724452,
+              "pearson": 0.3069456030613697,
+              "bias": 0.020358862779251957,
+              "mean_prediction": 0.6403486251931738,
+              "mean_observed": 0.6199897624139219
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 2585,
+              "mse": 0.16494375085764196,
+              "rmse": 0.4061326764219323,
+              "mae": 0.338659406080842,
+              "r2": 0.11271287143359499,
+              "pearson": 0.3506348814582242,
+              "bias": 0.0130646802910119,
+              "mean_prediction": 0.6919737718033837,
+              "mean_observed": 0.6789090915123718
+            },
+            "organic": {
+              "pairs": 3255,
+              "mse": 0.1895228824741901,
+              "rmse": 0.43534225900340767,
+              "mae": 0.3680307173657985,
+              "r2": 0.05272220294658081,
+              "pearson": 0.2911644704090801,
+              "bias": 0.044232569660093014,
+              "mean_prediction": 0.6686060977805,
+              "mean_observed": 0.6243735281204069
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 5163,
+              "mse": 0.1761188691964323,
+              "rmse": 0.4196651870198817,
+              "mae": 0.3480606544458001,
+              "r2": 0.0975317880418779,
+              "pearson": 0.34305960737078006,
+              "bias": 0.034327373441266164,
+              "mean_prediction": 0.6822134542044266,
+              "mean_observed": 0.6478860807631605
+            },
+            "unseen": {
+              "pairs": 677,
+              "mse": 0.19789491397239808,
+              "rmse": 0.4448538119117314,
+              "mae": 0.40817930700293187,
+              "r2": -0.042850533926025,
+              "pearson": 0.035598070075945745,
+              "bias": 0.0007636391707700148,
+              "mean_prediction": 0.6540575839436037,
+              "mean_observed": 0.6532939447728336
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 5710,
+              "mse": 0.17916768132314193,
+              "rmse": 0.4232820352001038,
+              "mae": 0.3551508471275143,
+              "r2": 0.08178009564480748,
+              "pearson": 0.3201675273434179,
+              "bias": 0.03312249847324059,
+              "mean_prediction": 0.6799133628303423,
+              "mean_observed": 0.6467908643571018
+            },
+            "unseen": {
+              "pairs": 130,
+              "mse": 0.15560860050271574,
+              "rmse": 0.39447255988562213,
+              "mae": 0.3497170203580306,
+              "r2": 0.042850690714910544,
+              "pearson": 0.3241347922375882,
+              "bias": -0.08754041143334829,
+              "mean_prediction": 0.6366134355847652,
+              "mean_observed": 0.7241538470181135
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 1378,
+              "mse": 0.18373854887526964,
+              "rmse": 0.4286473479158242,
+              "mae": 0.3559648200541097,
+              "r2": 0.029047425886511546,
+              "pearson": 0.2567351092574838,
+              "bias": 0.04639173879021852,
+              "mean_prediction": 0.7006587930475139,
+              "mean_observed": 0.6542670542572954
+            },
+            "new_to_context": {
+              "pairs": 4462,
+              "mse": 0.1770696678777167,
+              "rmse": 0.42079646847106106,
+              "mae": 0.3547411536777426,
+              "r2": 0.09728662330491511,
+              "pearson": 0.3367446039114779,
+              "bias": 0.025509053505815196,
+              "mean_prediction": 0.672245009315957,
+              "mean_observed": 0.6467359558101418
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 8,
+            "mean_prediction": 0.07270040246658027,
+            "mean_observed": 0.43124999944120646
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 74,
+            "mean_prediction": 0.16238002297846046,
+            "mean_observed": 0.31310810813227213
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 177,
+            "mean_prediction": 0.25651419558430794,
+            "mean_observed": 0.32903954784496353
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 296,
+            "mean_prediction": 0.3551029210557809,
+            "mean_observed": 0.45390202686492653
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 555,
+            "mean_prediction": 0.4513452323707374,
+            "mean_observed": 0.476369369608929
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 772,
+            "mean_prediction": 0.5536544085166615,
+            "mean_observed": 0.5633873059293689
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 1014,
+            "mean_prediction": 0.6515769142018267,
+            "mean_observed": 0.6131681463234788
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 1124,
+            "mean_prediction": 0.7492271195102841,
+            "mean_observed": 0.6956183275976798
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 1030,
+            "mean_prediction": 0.8487128023962373,
+            "mean_observed": 0.7543834957692013
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 790,
+            "mean_prediction": 0.945609593768663,
+            "mean_observed": 0.8710611824417793
+          }
+        ]
+      },
+      "calibrated": {
+        "metrics": {
+          "pairs": 5840,
+          "mse": 0.17476991222972196,
+          "rmse": 0.41805491532778555,
+          "mae": 0.374823700979005,
+          "r2": 0.10158192051054715,
+          "pearson": 0.31911800178257865,
+          "bias": -0.0017664273156175895,
+          "mean_prediction": 0.646746558230856,
+          "mean_observed": 0.6485129855464735
+        },
+        "users": 734,
+        "user_macro_mse": 0.1732164985880844,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 2271,
+              "mse": 0.16791613760389182,
+              "rmse": 0.40977571622033904,
+              "mae": 0.3638253991876885,
+              "r2": 0.10027055493397086,
+              "pearson": 0.3170805132787321,
+              "bias": -0.003527360847930903,
+              "mean_prediction": 0.6659068099353471,
+              "mean_observed": 0.6694341707832779
+            },
+            "medium": {
+              "pairs": 1941,
+              "mse": 0.17508697631293985,
+              "rmse": 0.41843395693100705,
+              "mae": 0.3759692146814302,
+              "r2": 0.10502793215482076,
+              "pearson": 0.3240852885229229,
+              "bias": 0.0008083338304281614,
+              "mean_prediction": 0.6487668606375979,
+              "mean_observed": 0.6479585268071698
+            },
+            "long": {
+              "pairs": 1628,
+              "mse": 0.18395265227255642,
+              "rmse": 0.42889701826027704,
+              "mae": 0.388800175961605,
+              "r2": 0.09299185071031235,
+              "pearson": 0.3069456030613697,
+              "bias": -0.0023797758000102622,
+              "mean_prediction": 0.6176099866139116,
+              "mean_observed": 0.6199897624139219
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 2585,
+              "mse": 0.1635723849584659,
+              "rmse": 0.4044408299843945,
+              "mae": 0.3624463119146798,
+              "r2": 0.12008990332820724,
+              "pearson": 0.3506348814582242,
+              "bias": -0.022331594449340908,
+              "mean_prediction": 0.6565774970630309,
+              "mean_observed": 0.6789090915123718
+            },
+            "organic": {
+              "pairs": 3255,
+              "mse": 0.18366257213638773,
+              "rmse": 0.42855871492292363,
+              "mae": 0.3846533632620406,
+              "r2": 0.08201334602318955,
+              "pearson": 0.2911644704090801,
+              "bias": 0.014565663941118134,
+              "mean_prediction": 0.6389391920615252,
+              "mean_observed": 0.6243735281204069
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 5163,
+              "mse": 0.1721927958482402,
+              "rmse": 0.41496119800318704,
+              "mae": 0.3696129815626744,
+              "r2": 0.11764977091745232,
+              "pearson": 0.34305960737078006,
+              "bias": 0.0013241679141997242,
+              "mean_prediction": 0.6492102486773601,
+              "mean_observed": 0.6478860807631605
+            },
+            "unseen": {
+              "pairs": 677,
+              "mse": 0.19442375547579352,
+              "rmse": 0.4409350921346514,
+              "mae": 0.4145621712101942,
+              "r2": -0.024558504995807917,
+              "pearson": 0.03559807007594579,
+              "bias": -0.02533621043459363,
+              "mean_prediction": 0.62795773433824,
+              "mean_observed": 0.6532939447728336
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 5710,
+              "mse": 0.17516348369873175,
+              "rmse": 0.4185253680468267,
+              "mae": 0.37496606711226366,
+              "r2": 0.10230128525083881,
+              "pearson": 0.32016752734341797,
+              "bias": 0.000683237489910589,
+              "mean_prediction": 0.6474741018470123,
+              "mean_observed": 0.6467908643571018
+            },
+            "unseen": {
+              "pairs": 130,
+              "mse": 0.15748304232167815,
+              "rmse": 0.3968413314180847,
+              "mae": 0.36857054235664616,
+              "r2": 0.031320989358309514,
+              "pearson": 0.3241347922375883,
+              "bias": -0.10936324300458601,
+              "mean_prediction": 0.6147906040135275,
+              "mean_observed": 0.7241538470181135
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 1378,
+              "mse": 0.17746807005855111,
+              "rmse": 0.42126959308565237,
+              "mae": 0.37319697774625565,
+              "r2": 0.062183300667747576,
+              "pearson": 0.25673510925748383,
+              "bias": 0.00886603980261716,
+              "mean_prediction": 0.6631330940599125,
+              "mean_observed": 0.6542670542572954
+            },
+            "new_to_context": {
+              "pairs": 4462,
+              "mse": 0.17393663982090832,
+              "rmse": 0.41705711817556634,
+              "mae": 0.3753260821118443,
+              "r2": 0.11325901637674884,
+              "pearson": 0.3367446039114779,
+              "bias": -0.0050500534225040705,
+              "mean_prediction": 0.6416859023876377,
+              "mean_observed": 0.6467359558101418
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 4,
+            "mean_prediction": 0.17457728969460024,
+            "mean_observed": 0.6024999991059303
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 103,
+            "mean_prediction": 0.2632647005378851,
+            "mean_observed": 0.3214563104025658
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 270,
+            "mean_prediction": 0.3537590364014499,
+            "mean_observed": 0.3706111110470913
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 645,
+            "mean_prediction": 0.45480180404560266,
+            "mean_observed": 0.4631395350203149
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 1009,
+            "mean_prediction": 0.5543366194729492,
+            "mean_observed": 0.5650247772814054
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 1434,
+            "mean_prediction": 0.6513025593957481,
+            "mean_observed": 0.6500575316841279
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 1389,
+            "mean_prediction": 0.7479708349290503,
+            "mean_observed": 0.723444924854772
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 986,
+            "mean_prediction": 0.8398562011947805,
+            "mean_observed": 0.8578583511333104
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          }
+        ]
+      },
+      "hybrid": {
+        "metrics": {
+          "pairs": 5840,
+          "mse": 0.169323683623916,
+          "rmse": 0.41148959114893296,
+          "mae": 0.36248581839224825,
+          "r2": 0.1295786745402524,
+          "pearson": 0.3604925806841596,
+          "bias": 0.0008458417153832857,
+          "mean_prediction": 0.6493588272618569,
+          "mean_observed": 0.6485129855464735
+        },
+        "users": 734,
+        "user_macro_mse": 0.16860903838553717,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 2271,
+              "mse": 0.1644683306858457,
+              "rmse": 0.40554695250469547,
+              "mae": 0.3546838893905589,
+              "r2": 0.11874461853103957,
+              "pearson": 0.3478291004743033,
+              "bias": -0.010836185095520331,
+              "mean_prediction": 0.6585979856877576,
+              "mean_observed": 0.6694341707832779
+            },
+            "medium": {
+              "pairs": 1941,
+              "mse": 0.1682501793659414,
+              "rmse": 0.41018310468124036,
+              "mae": 0.3623472405484125,
+              "r2": 0.13997480501734905,
+              "pearson": 0.37416854931889126,
+              "bias": 0.0023090208657654894,
+              "mean_prediction": 0.6502675476729352,
+              "mean_observed": 0.6479585268071698
+            },
+            "long": {
+              "pairs": 1628,
+              "mse": 0.17737661868969387,
+              "rmse": 0.4211610365284209,
+              "mae": 0.3735344426906032,
+              "r2": 0.1254160423486127,
+              "pearson": 0.35626111453708614,
+              "bias": 0.015397347954124226,
+              "mean_prediction": 0.6353871103680462,
+              "mean_observed": 0.6199897624139219
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 2585,
+              "mse": 0.15667571234443087,
+              "rmse": 0.39582282948868786,
+              "mae": 0.34696725183312643,
+              "r2": 0.15718939214516225,
+              "pearson": 0.3984426723883011,
+              "bias": -0.016807927201480166,
+              "mean_prediction": 0.6621011643108915,
+              "mean_observed": 0.6789090915123718
+            },
+            "organic": {
+              "pairs": 3255,
+              "mse": 0.17936823224372214,
+              "rmse": 0.4235188688166351,
+              "mae": 0.3748100870728411,
+              "r2": 0.10347741822500856,
+              "pearson": 0.3263981057897093,
+              "bias": 0.014865808735380837,
+              "mean_prediction": 0.6392393368557878,
+              "mean_observed": 0.6243735281204069
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 5163,
+              "mse": 0.16659170469524984,
+              "rmse": 0.40815647084819057,
+              "mae": 0.3559971065848124,
+              "r2": 0.1463508791003345,
+              "pearson": 0.3830664351447994,
+              "bias": 0.002409144687086211,
+              "mean_prediction": 0.6502952254502467,
+              "mean_observed": 0.6478860807631605
+            },
+            "unseen": {
+              "pairs": 677,
+              "mse": 0.1901585539469638,
+              "rmse": 0.4360717302772146,
+              "mae": 0.4119706323683065,
+              "r2": -0.002082092629482224,
+              "pearson": 0.035598070075945745,
+              "bias": -0.011076363960986308,
+              "mean_prediction": 0.6422175808118473,
+              "mean_observed": 0.6532939447728336
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 5710,
+              "mse": 0.1699410708139542,
+              "rmse": 0.4122390942328908,
+              "mae": 0.3629030909376242,
+              "r2": 0.1290657297318446,
+              "pearson": 0.3598866331524445,
+              "bias": 0.0030088044985769765,
+              "mean_prediction": 0.6497996688556786,
+              "mean_observed": 0.6467908643571018
+            },
+            "unseen": {
+              "pairs": 130,
+              "mse": 0.14220613858454542,
+              "rmse": 0.3771022919375397,
+              "mae": 0.3441579242838143,
+              "r2": 0.12528930353099688,
+              "pearson": 0.4279566893326293,
+              "bias": -0.0941581389925858,
+              "mean_prediction": 0.6299957080255277,
+              "mean_observed": 0.7241538470181135
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 1378,
+              "mse": 0.17331784265656042,
+              "rmse": 0.4163145957765118,
+              "mae": 0.364112945483321,
+              "r2": 0.08411486594779527,
+              "pearson": 0.2977597835782085,
+              "bias": 0.0010228419286269447,
+              "mean_prediction": 0.6552898961859224,
+              "mean_observed": 0.6542670542572954
+            },
+            "new_to_context": {
+              "pairs": 4462,
+              "mse": 0.16809016700648347,
+              "rmse": 0.40998800836912713,
+              "mae": 0.3619833125357942,
+              "r2": 0.14306473792873264,
+              "pearson": 0.3782859150505964,
+              "bias": 0.0007911787181063343,
+              "mean_prediction": 0.6475271345282482,
+              "mean_observed": 0.6467359558101418
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 7,
+            "mean_prediction": 0.17503291171989768,
+            "mean_observed": 0.2928571426974876
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 147,
+            "mean_prediction": 0.2651861910618834,
+            "mean_observed": 0.256870748247115
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 350,
+            "mean_prediction": 0.35220179182329153,
+            "mean_observed": 0.37707142877259425
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 619,
+            "mean_prediction": 0.45389171543896484,
+            "mean_observed": 0.44067043610224094
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 1006,
+            "mean_prediction": 0.5547889577074417,
+            "mean_observed": 0.5969383700400828
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 1422,
+            "mean_prediction": 0.647075016844457,
+            "mean_observed": 0.6281030245292958
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 1001,
+            "mean_prediction": 0.7528360972890424,
+            "mean_observed": 0.7421528473301054
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 990,
+            "mean_prediction": 0.8501457586813705,
+            "mean_observed": 0.8460437714808968
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 298,
+            "mean_prediction": 0.9205595699961215,
+            "mean_observed": 0.901325505026835
+          }
+        ]
+      },
+      "global_mean": {
+        "metrics": {
+          "pairs": 5840,
+          "mse": 0.19457260867422965,
+          "rmse": 0.4411038524817366,
+          "mae": 0.41477801171929934,
+          "r2": -0.00021535272377337655,
+          "pearson": null,
+          "bias": 0.006472458538950586,
+          "mean_prediction": 0.6549854440854243,
+          "mean_observed": 0.6485129855464735
+        },
+        "users": 734,
+        "user_macro_mse": 0.19259830333149205,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 2271,
+              "mse": 0.18683835588134426,
+              "rmse": 0.4322480258848434,
+              "mae": 0.40738832945501835,
+              "r2": -0.0011186098784763399,
+              "pearson": null,
+              "bias": -0.014448726697853844,
+              "mean_prediction": 0.6549854440854244,
+              "mean_observed": 0.6694341707832779
+            },
+            "medium": {
+              "pairs": 1941,
+              "mse": 0.195683389625042,
+              "rmse": 0.442361152933937,
+              "mae": 0.4163029104346455,
+              "r2": -0.00025239765782991697,
+              "pearson": null,
+              "bias": 0.00702691727825439,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6479585268071698
+            },
+            "long": {
+              "pairs": 1628,
+              "mse": 0.20403726608646308,
+              "rmse": 0.45170484399269295,
+              "mae": 0.4232682697141984,
+              "r2": -0.006038569234697144,
+              "pearson": null,
+              "bias": 0.034995681671502285,
+              "mean_prediction": 0.6549854440854244,
+              "mean_observed": 0.6199897624139219
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 2585,
+              "mse": 0.1864690428274263,
+              "rmse": 0.4318206141761024,
+              "mae": 0.40792490317155744,
+              "r2": -0.0030788115135651495,
+              "pearson": null,
+              "bias": -0.023923647426947622,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6789090915123718
+            },
+            "organic": {
+              "pairs": 3255,
+              "mse": 0.20100815943121478,
+              "rmse": 0.44833933513714225,
+              "mae": 0.4202204957733433,
+              "r2": -0.004683782612341814,
+              "pearson": null,
+              "bias": 0.030611915965017212,
+              "mean_prediction": 0.6549854440854244,
+              "mean_observed": 0.6243735281204069
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 5163,
+              "mse": 0.19520283609555156,
+              "rmse": 0.44181765027616493,
+              "mae": 0.415424424276258,
+              "r2": -0.0002582645691631136,
+              "pearson": null,
+              "bias": 0.0070993633222637305,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6478860807631605
+            },
+            "unseen": {
+              "pairs": 677,
+              "mse": 0.1897663100386536,
+              "rmse": 0.4356217511082907,
+              "mae": 0.4098482805057433,
+              "r2": -1.50775607292708e-05,
+              "pearson": null,
+              "bias": 0.0016914993125905075,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6532939447728336
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 5710,
+              "mse": 0.19519217562543129,
+              "rmse": 0.44180558577889356,
+              "mae": 0.4154470909919418,
+              "r2": -0.0003441441562908043,
+              "pearson": null,
+              "bias": 0.00819457972832242,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6467908643571018
+            },
+            "unseen": {
+              "pairs": 130,
+              "mse": 0.16735932181760424,
+              "rmse": 0.4090957367384855,
+              "mae": 0.3853899913593898,
+              "r2": -0.029428057078022762,
+              "pearson": null,
+              "bias": -0.06916840293268936,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.7241538470181135
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 1378,
+              "mse": 0.18923586472394335,
+              "rmse": 0.43501248800918735,
+              "mae": 0.4060919999623199,
+              "r2": -2.727206882324751e-06,
+              "pearson": null,
+              "bias": 0.0007183898281288016,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6542670542572954
+            },
+            "new_to_context": {
+              "pairs": 4462,
+              "mse": 0.1962207559542598,
+              "rmse": 0.4429681206974829,
+              "mae": 0.41746051378140553,
+              "r2": -0.00034694427426029684,
+              "pearson": null,
+              "bias": 0.008249488275282366,
+              "mean_prediction": 0.6549854440854244,
+              "mean_observed": 0.6467359558101418
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 5840,
+            "mean_prediction": 0.6549854440854243,
+            "mean_observed": 0.6485129855464735
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 0,
+            "mean_prediction": null,
+            "mean_observed": null
+          }
+        ]
+      },
+      "item_mean": {
+        "metrics": {
+          "pairs": 5840,
+          "mse": 0.19481802080885943,
+          "rmse": 0.4413819443620904,
+          "mae": 0.4008489254448535,
+          "r2": -0.0014769125418481188,
+          "pearson": 0.12925602112683335,
+          "bias": 0.012743001601043073,
+          "mean_prediction": 0.6612559871475167,
+          "mean_observed": 0.6485129855464735
+        },
+        "users": 734,
+        "user_macro_mse": 0.19375698622993334,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 2271,
+              "mse": 0.18543029328689503,
+              "rmse": 0.4306161786172171,
+              "mae": 0.38302714315017744,
+              "r2": 0.006426081148841911,
+              "pearson": 0.14694044108879095,
+              "bias": 0.024306223597050224,
+              "mean_prediction": 0.6937403943803283,
+              "mean_observed": 0.6694341707832779
+            },
+            "medium": {
+              "pairs": 1941,
+              "mse": 0.19767569987184702,
+              "rmse": 0.4446073547208222,
+              "mae": 0.40617131993392713,
+              "r2": -0.01043626203724135,
+              "pearson": 0.10483236652872642,
+              "bias": 0.01081930161803766,
+              "mean_prediction": 0.6587778284252074,
+              "mean_observed": 0.6479585268071698
+            },
+            "long": {
+              "pairs": 1628,
+              "mse": 0.20450645701348003,
+              "rmse": 0.452223901417738,
+              "mae": 0.4193639745160559,
+              "r2": -0.00835199059133318,
+              "pearson": 0.1081499046864117,
+              "bias": -0.0010937155278996412,
+              "mean_prediction": 0.6188960468860222,
+              "mean_observed": 0.6199897624139219
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 2585,
+              "mse": 0.18562519107412634,
+              "rmse": 0.4308424202352019,
+              "mae": 0.3904787577597244,
+              "r2": 0.0014605468751467399,
+              "pearson": 0.13418903167453933,
+              "bias": -0.007230873669536713,
+              "mean_prediction": 0.6716782178428351,
+              "mean_observed": 0.6789090915123718
+            },
+            "organic": {
+              "pairs": 3255,
+              "mse": 0.2021186244538011,
+              "rmse": 0.44957604968881637,
+              "mae": 0.4090845271241341,
+              "r2": -0.01023413540651541,
+              "pearson": 0.1180708209897778,
+              "bias": 0.02860551084050505,
+              "mean_prediction": 0.6529790389609121,
+              "mean_observed": 0.6243735281204069
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 5163,
+              "mse": 0.1954203716645893,
+              "rmse": 0.44206376425193383,
+              "mae": 0.401454049358798,
+              "r2": -0.0013729602115011286,
+              "pearson": 0.13044432182247445,
+              "bias": 0.013001082758362563,
+              "mean_prediction": 0.660887163521523,
+              "mean_observed": 0.6478860807631605
+            },
+            "unseen": {
+              "pairs": 677,
+              "mse": 0.19022431701545725,
+              "rmse": 0.43614712771661956,
+              "mae": 0.3962340734984794,
+              "r2": -0.002428645502996485,
+              "pearson": 0.11928222801759056,
+              "bias": 0.01077479921516342,
+              "mean_prediction": 0.6640687439879971,
+              "mean_observed": 0.6532939447728336
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 5710,
+              "mse": 0.19544317507661133,
+              "rmse": 0.4420895554936933,
+              "mae": 0.40120088016133515,
+              "r2": -0.001630496082897892,
+              "pearson": 0.1307391139284594,
+              "bias": 0.014607884716522098,
+              "mean_prediction": 0.6613987490736238,
+              "mean_observed": 0.6467908643571018
+            },
+            "unseen": {
+              "pairs": 130,
+              "mse": 0.16735932181760424,
+              "rmse": 0.4090957367384855,
+              "mae": 0.3853899913593898,
+              "r2": -0.029428057078022762,
+              "pearson": null,
+              "bias": -0.06916840293268936,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.7241538470181135
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 1378,
+              "mse": 0.18343225781056796,
+              "rmse": 0.42828992261150384,
+              "mae": 0.3810448414557488,
+              "r2": 0.0306659980343843,
+              "pearson": 0.19971364260113983,
+              "bias": 0.014547562655105676,
+              "mean_prediction": 0.6688146169124011,
+              "mean_observed": 0.6542670542572954
+            },
+            "new_to_context": {
+              "pairs": 4462,
+              "mse": 0.1983342873735492,
+              "rmse": 0.4453473783166902,
+              "mae": 0.4069650230999378,
+              "r2": -0.011121873188542075,
+              "pearson": 0.10517252066532871,
+              "bias": 0.0121856987923254,
+              "mean_prediction": 0.6589216546024672,
+              "mean_observed": 0.6467359558101418
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 1,
+            "mean_prediction": 0.0983333329980572,
+            "mean_observed": 1.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 3,
+            "mean_prediction": 0.18058823388727271,
+            "mean_observed": 0.950000007947286
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 3,
+            "mean_prediction": 0.27533333353284334,
+            "mean_observed": 0.3600000000248353
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 59,
+            "mean_prediction": 0.36685933843042157,
+            "mean_observed": 0.516864407491886
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 374,
+            "mean_prediction": 0.4599308474647061,
+            "mean_observed": 0.5753609625582787
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 1217,
+            "mean_prediction": 0.558437925594779,
+            "mean_observed": 0.5955053412622558
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 2179,
+            "mean_prediction": 0.6514360325166713,
+            "mean_observed": 0.6393406765698744
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 1368,
+            "mean_prediction": 0.7419742055636913,
+            "mean_observed": 0.6742068715019108
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 453,
+            "mean_prediction": 0.8351325709598532,
+            "mean_observed": 0.7483443712926661
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 183,
+            "mean_prediction": 0.9517824635433226,
+            "mean_observed": 0.8608606587790075
+          }
+        ]
+      },
+      "user_mean": {
+        "metrics": {
+          "pairs": 5840,
+          "mse": 0.1740696648424457,
+          "rmse": 0.4172165682741347,
+          "mae": 0.35287171616011154,
+          "r2": 0.10518159567670116,
+          "pearson": 0.3474202951535885,
+          "bias": 0.0031847935325258706,
+          "mean_prediction": 0.6516977790789994,
+          "mean_observed": 0.6485129855464735
+        },
+        "users": 734,
+        "user_macro_mse": 0.17588884774665978,
+        "duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "slices": {
+          "duration": {
+            "short": {
+              "pairs": 2271,
+              "mse": 0.17115019510783078,
+              "rmse": 0.4137030276754459,
+              "mae": 0.3485913124307244,
+              "r2": 0.08294180497073211,
+              "pearson": 0.33087694717560995,
+              "bias": -0.017380299638165755,
+              "mean_prediction": 0.6520538711451122,
+              "mean_observed": 0.6694341707832779
+            },
+            "medium": {
+              "pairs": 1941,
+              "mse": 0.17124285143784132,
+              "rmse": 0.41381499663236143,
+              "mae": 0.3512195056293997,
+              "r2": 0.12467750553241386,
+              "pearson": 0.36707647669719934,
+              "bias": 0.0036526935987840022,
+              "mean_prediction": 0.6516112204059538,
+              "mean_observed": 0.6479585268071698
+            },
+            "long": {
+              "pairs": 1628,
+              "mse": 0.18151251532503027,
+              "rmse": 0.4260428562070138,
+              "mae": 0.36081258686622336,
+              "r2": 0.10502333853854884,
+              "pearson": 0.3485627023788039,
+              "bias": 0.03131448183844334,
+              "mean_prediction": 0.6513042442523653,
+              "mean_observed": 0.6199897624139219
+            },
+            "unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "organic": {
+            "recommendation_driven": {
+              "pairs": 2585,
+              "mse": 0.1600677298117872,
+              "rmse": 0.40008465330700604,
+              "mae": 0.3342037481143323,
+              "r2": 0.13894260544964643,
+              "pearson": 0.3874816556746024,
+              "bias": -0.011862191753349544,
+              "mean_prediction": 0.6670468997590223,
+              "mean_observed": 0.6789090915123718
+            },
+            "organic": {
+              "pairs": 3255,
+              "mse": 0.18518948114175515,
+              "rmse": 0.4303364743334629,
+              "mae": 0.36769712242688257,
+              "r2": 0.0743815129694555,
+              "pearson": 0.3114239646502043,
+              "bias": 0.015134549896270251,
+              "mean_prediction": 0.6395080780166771,
+              "mean_observed": 0.6243735281204069
+            },
+            "mixed_or_unknown": {
+              "pairs": 0,
+              "mse": null,
+              "rmse": null,
+              "mae": null,
+              "r2": null,
+              "pearson": null,
+              "bias": null,
+              "mean_prediction": null,
+              "mean_observed": null
+            }
+          },
+          "user": {
+            "seen": {
+              "pairs": 5163,
+              "mse": 0.1720114373007388,
+              "rmse": 0.41474261572780147,
+              "mae": 0.34540064622751565,
+              "r2": 0.11857908828607766,
+              "pearson": 0.3688898327270546,
+              "bias": 0.0033806022071135615,
+              "mean_prediction": 0.651266682970274,
+              "mean_observed": 0.6478860807631605
+            },
+            "unseen": {
+              "pairs": 677,
+              "mse": 0.1897663100386536,
+              "rmse": 0.4356217511082907,
+              "mae": 0.4098482805057433,
+              "r2": -1.50775607292708e-05,
+              "pearson": null,
+              "bias": 0.0016914993125905075,
+              "mean_prediction": 0.6549854440854243,
+              "mean_observed": 0.6532939447728336
+            }
+          },
+          "item": {
+            "seen": {
+              "pairs": 5710,
+              "mse": 0.1748969484121322,
+              "rmse": 0.41820682492294675,
+              "mae": 0.3535548234117825,
+              "r2": 0.1036672570799172,
+              "pearson": 0.34599734125092607,
+              "bias": 0.005091051432662105,
+              "mean_prediction": 0.6518819157897638,
+              "mean_observed": 0.6467908643571018
+            },
+            "unseen": {
+              "pairs": 130,
+              "mse": 0.13773282497390751,
+              "rmse": 0.37112373270097876,
+              "mae": 0.3228675437982573,
+              "r2": 0.1528046787660754,
+              "pearson": 0.4394956244828772,
+              "bias": -0.08054391885038098,
+              "mean_prediction": 0.6436099281677325,
+              "mean_observed": 0.7241538470181135
+            }
+          },
+          "context_repeat": {
+            "repeat": {
+              "pairs": 1378,
+              "mse": 0.17982236410536837,
+              "rmse": 0.4240546711278728,
+              "mae": 0.35815504515805036,
+              "r2": 0.04974221043943061,
+              "pearson": 0.2868065799629171,
+              "bias": -0.0059997356473701,
+              "mean_prediction": 0.6482673186099253,
+              "mean_observed": 0.6542670542572954
+            },
+            "new_to_context": {
+              "pairs": 4462,
+              "mse": 0.17229305803287434,
+              "rmse": 0.41508198953083275,
+              "mae": 0.3512400650262793,
+              "r2": 0.1216381096654724,
+              "pearson": 0.3653480462183449,
+              "bias": 0.0060212527906829015,
+              "mean_prediction": 0.6527572086008246,
+              "mean_observed": 0.6467359558101418
+            }
+          }
+        },
+        "calibration": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "pairs": 48,
+            "mean_prediction": 0.06881375355736452,
+            "mean_observed": 0.28072916658129543
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "pairs": 92,
+            "mean_prediction": 0.17484527396199456,
+            "mean_observed": 0.3880434778276021
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "pairs": 192,
+            "mean_prediction": 0.25042727409730164,
+            "mean_observed": 0.3550520841672551
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "pairs": 422,
+            "mean_prediction": 0.35140563150451415,
+            "mean_observed": 0.37646919424685327
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "pairs": 580,
+            "mean_prediction": 0.45229247643530907,
+            "mean_observed": 0.5306810346688947
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "pairs": 893,
+            "mean_prediction": 0.5587440035066045,
+            "mean_observed": 0.5754451289207728
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "pairs": 1252,
+            "mean_prediction": 0.6503892909026254,
+            "mean_observed": 0.6414536747563714
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "pairs": 769,
+            "mean_prediction": 0.7526022631476393,
+            "mean_observed": 0.6959926313775142
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "pairs": 754,
+            "mean_prediction": 0.8481389774499769,
+            "mean_observed": 0.7938859421409054
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "pairs": 838,
+            "mean_prediction": 0.9502716447407297,
+            "mean_observed": 0.8980011939980214
+          }
+        ]
+      }
+    },
+    "mse_difference_vs_personal": {
+      "raw": {
+        "estimate": 0.004573584887090825,
+        "ci95": [
+          -0.0006122383424508506,
+          0.009811062583848567
+        ],
+        "clusters": 734,
+        "observations": 5840,
+        "bootstrap_repeats": 2000,
+        "bootstrap_seed": 42,
+        "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+      },
+      "calibrated": {
+        "estimate": 0.000700247387276273,
+        "ci95": [
+          -0.004379572212747422,
+          0.005550298431153633
+        ],
+        "clusters": 734,
+        "observations": 5840,
+        "bootstrap_repeats": 2000,
+        "bootstrap_seed": 42,
+        "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+      },
+      "hybrid": {
+        "estimate": -0.004745981218529711,
+        "ci95": [
+          -0.0073886117973934245,
+          -0.0021969368606516797
+        ],
+        "clusters": 734,
+        "observations": 5840,
+        "bootstrap_repeats": 2000,
+        "bootstrap_seed": 42,
+        "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+      }
+    },
+    "same_query_candidate_accuracy": {
+      "unequal_labels": {
+        "comparisons": 879,
+        "queries": 247,
+        "users": 151,
+        "accuracy": {
+          "raw": {
+            "estimate": 0.5164960182025028,
+            "ci95": [
+              0.4681741425790026,
+              0.5633787767594298
+            ],
+            "clusters": 151,
+            "observations": 879,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "calibrated": {
+            "estimate": 0.5164960182025028,
+            "ci95": [
+              0.4681741425790026,
+              0.5633787767594298
+            ],
+            "clusters": 151,
+            "observations": 879,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "hybrid": {
+            "estimate": 0.5164960182025028,
+            "ci95": [
+              0.4681741425790026,
+              0.5633787767594298
+            ],
+            "clusters": 151,
+            "observations": 879,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "global_mean": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 151,
+            "observations": 879,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "item_mean": {
+            "estimate": 0.5494880546075085,
+            "ci95": [
+              0.4956821305256463,
+              0.5929264049618032
+            ],
+            "clusters": 151,
+            "observations": 879,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "user_mean": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 151,
+            "observations": 879,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "shorter_first": {
+            "estimate": 0.5756541524459613,
+            "ci95": [
+              0.5399840098400984,
+              0.6181711694541066
+            ],
+            "clusters": 151,
+            "observations": 879,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "query_macro_accuracy": {
+          "raw": 0.5223243788938462,
+          "calibrated": 0.5223243788938462,
+          "hybrid": 0.5223243788938462,
+          "global_mean": 0.5,
+          "item_mean": 0.5143788574955622,
+          "user_mean": 0.5,
+          "shorter_first": 0.5716697930497827
+        },
+        "raw_minus_item_mean": {
+          "estimate": -0.03299203640500569,
+          "ci95": [
+            -0.08395095068689376,
+            0.021774366755348575
+          ],
+          "clusters": 151,
+          "observations": 879,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+        }
+      },
+      "gap_at_least_0_10": {
+        "comparisons": 594,
+        "queries": 153,
+        "users": 100,
+        "accuracy": {
+          "raw": {
+            "estimate": 0.5050505050505051,
+            "ci95": [
+              0.4456066945606695,
+              0.5660660748012534
+            ],
+            "clusters": 100,
+            "observations": 594,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "calibrated": {
+            "estimate": 0.5050505050505051,
+            "ci95": [
+              0.4456066945606695,
+              0.5660660748012534
+            ],
+            "clusters": 100,
+            "observations": 594,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "hybrid": {
+            "estimate": 0.5050505050505051,
+            "ci95": [
+              0.4456066945606695,
+              0.5660660748012534
+            ],
+            "clusters": 100,
+            "observations": 594,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "global_mean": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 100,
+            "observations": 594,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "item_mean": {
+            "estimate": 0.5538720538720538,
+            "ci95": [
+              0.48275529223805086,
+              0.6032600174216027
+            ],
+            "clusters": 100,
+            "observations": 594,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "user_mean": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 100,
+            "observations": 594,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          },
+          "shorter_first": {
+            "estimate": 0.5563973063973064,
+            "ci95": [
+              0.5168806946619656,
+              0.6062054299529848
+            ],
+            "clusters": 100,
+            "observations": 594,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "query_macro_accuracy": {
+          "raw": 0.49784383182250125,
+          "calibrated": 0.49784383182250125,
+          "hybrid": 0.49784383182250125,
+          "global_mean": 0.5,
+          "item_mean": 0.4794736449798297,
+          "user_mean": 0.5,
+          "shorter_first": 0.5873163155522869
+        },
+        "raw_minus_item_mean": {
+          "estimate": -0.04882154882154882,
+          "ci95": [
+            -0.11699220983419097,
+            0.03839327865365553
+          ],
+          "clusters": 100,
+          "observations": 594,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+        }
+      }
+    },
+    "candidate_permutations": {
+      "user": [
+        {
+          "seed": 42,
+          "changed_pairs": 4968,
+          "changed_fraction": 0.8506849315068493,
+          "raw_metrics": {
+            "pairs": 5840,
+            "mse": 0.18047719955585007,
+            "rmse": 0.4248260815390812,
+            "mae": 0.35831962778577453,
+            "r2": 0.07224317419422044,
+            "pearson": 0.30757978533407565,
+            "bias": 0.02785817542917108,
+            "mean_prediction": 0.6763711609756446,
+            "mean_observed": 0.6485129855464735
+          },
+          "mse_change": 0.001833949826313519,
+          "original_changed_pairs": {
+            "pairs": 4968,
+            "mse": 0.1800452163770013,
+            "rmse": 0.42431735337716425,
+            "mae": 0.3576240301913553,
+            "r2": 0.07902641815382139,
+            "pearson": 0.3151209718800642,
+            "bias": 0.030256166362058187,
+            "mean_prediction": 0.6765163988354893,
+            "mean_observed": 0.6462602324734311
+          },
+          "permuted_changed_pairs": {
+            "pairs": 4968,
+            "mse": 0.18220106721952764,
+            "rmse": 0.426850169520322,
+            "mae": 0.3614911953532459,
+            "r2": 0.06799873459565275,
+            "pearson": 0.30150884046531456,
+            "bias": 0.027225274999435518,
+            "mean_prediction": 0.6734855074728666,
+            "mean_observed": 0.6462602324734311
+          }
+        },
+        {
+          "seed": 43,
+          "changed_pairs": 4981,
+          "changed_fraction": 0.8529109589041096,
+          "raw_metrics": {
+            "pairs": 5840,
+            "mse": 0.18169613782962454,
+            "rmse": 0.4262582994260927,
+            "mae": 0.3590094371450019,
+            "r2": 0.06597712891806784,
+            "pearson": 0.3009720546590485,
+            "bias": 0.028326576904151333,
+            "mean_prediction": 0.6768395624506249,
+            "mean_observed": 0.6485129855464735
+          },
+          "mse_change": 0.003052888100087997,
+          "original_changed_pairs": {
+            "pairs": 4981,
+            "mse": 0.18137595959971187,
+            "rmse": 0.4258825655033461,
+            "mae": 0.35918250984028566,
+            "r2": 0.07442176055136407,
+            "pearson": 0.310961786833251,
+            "bias": 0.03216914712067913,
+            "mean_prediction": 0.6759868212918534,
+            "mean_observed": 0.6438176741711743
+          },
+          "permuted_changed_pairs": {
+            "pairs": 4981,
+            "mse": 0.18495533452533194,
+            "rmse": 0.43006433765813684,
+            "mae": 0.36384835267950677,
+            "r2": 0.05615588039120589,
+            "pearson": 0.2896979543342483,
+            "bias": 0.029695345941071673,
+            "mean_prediction": 0.673513020112246,
+            "mean_observed": 0.6438176741711743
+          }
+        },
+        {
+          "seed": 44,
+          "changed_pairs": 5011,
+          "changed_fraction": 0.8580479452054794,
+          "raw_metrics": {
+            "pairs": 5840,
+            "mse": 0.1799332391835595,
+            "rmse": 0.4241853830385478,
+            "mae": 0.3569349599121878,
+            "r2": 0.07503944402554752,
+            "pearson": 0.3112840373667832,
+            "bias": 0.027335695514123733,
+            "mean_prediction": 0.6758486810605973,
+            "mean_observed": 0.6485129855464735
+          },
+          "mse_change": 0.0012899894540229495,
+          "original_changed_pairs": {
+            "pairs": 5011,
+            "mse": 0.18115144286267854,
+            "rmse": 0.4256188939211681,
+            "mae": 0.35855912948980695,
+            "r2": 0.07709391913746044,
+            "pearson": 0.31412288171146246,
+            "bias": 0.033531262919401915,
+            "mean_prediction": 0.6768783995771278,
+            "mean_observed": 0.6433471366577259
+          },
+          "permuted_changed_pairs": {
+            "pairs": 5011,
+            "mse": 0.18265484306453328,
+            "rmse": 0.42738137893985656,
+            "mae": 0.3607793681931648,
+            "r2": 0.06943459737697355,
+            "pearson": 0.3048853281924749,
+            "bias": 0.0299174630803706,
+            "mean_prediction": 0.6732645997380965,
+            "mean_observed": 0.6433471366577259
+          }
+        }
+      ],
+      "user_duration": [
+        {
+          "seed": 42,
+          "changed_pairs": 4028,
+          "changed_fraction": 0.6897260273972603,
+          "raw_metrics": {
+            "pairs": 5840,
+            "mse": 0.18052975318284104,
+            "rmse": 0.42488793014492776,
+            "mae": 0.35771560258525487,
+            "r2": 0.07197301826160563,
+            "pearson": 0.30782338735858866,
+            "bias": 0.028799982710856282,
+            "mean_prediction": 0.6773129682573299,
+            "mean_observed": 0.6485129855464735
+          },
+          "mse_change": 0.0018865034533044889,
+          "original_changed_pairs": {
+            "pairs": 4028,
+            "mse": 0.17722267869281588,
+            "rmse": 0.4209782401654697,
+            "mae": 0.3534606550815548,
+            "r2": 0.09919416579037066,
+            "pearson": 0.34057777330970845,
+            "bias": 0.035902071324322285,
+            "mean_prediction": 0.6772168266721987,
+            "mean_observed": 0.6413147553478764
+          },
+          "permuted_changed_pairs": {
+            "pairs": 4028,
+            "mse": 0.17995782769164867,
+            "rmse": 0.42421436525847245,
+            "mae": 0.357354540223868,
+            "r2": 0.08529166643896524,
+            "pearson": 0.324141470678827,
+            "bias": 0.033529351919042286,
+            "mean_prediction": 0.6748441072669187,
+            "mean_observed": 0.6413147553478764
+          }
+        },
+        {
+          "seed": 43,
+          "changed_pairs": 4084,
+          "changed_fraction": 0.6993150684931507,
+          "raw_metrics": {
+            "pairs": 5840,
+            "mse": 0.1805252704356871,
+            "rmse": 0.42488265490095867,
+            "mae": 0.3572232956200685,
+            "r2": 0.07199606216565912,
+            "pearson": 0.3082509151796496,
+            "bias": 0.028572709276021957,
+            "mean_prediction": 0.6770856948224955,
+            "mean_observed": 0.6485129855464735
+          },
+          "mse_change": 0.0018820207061505667,
+          "original_changed_pairs": {
+            "pairs": 4084,
+            "mse": 0.17913561882560217,
+            "rmse": 0.4232441598245653,
+            "mae": 0.3564264588621258,
+            "r2": 0.08166920593311366,
+            "pearson": 0.31832995248313434,
+            "bias": 0.03115284913009713,
+            "mean_prediction": 0.6766590932958798,
+            "mean_observed": 0.6455062441657827
+          },
+          "permuted_changed_pairs": {
+            "pairs": 4084,
+            "mse": 0.1818268531360624,
+            "rmse": 0.4264116006115012,
+            "mae": 0.35956296637352375,
+            "r2": 0.06787271276471107,
+            "pearson": 0.3026906428997769,
+            "bias": 0.028487670231003032,
+            "mean_prediction": 0.6739939143967858,
+            "mean_observed": 0.6455062441657827
+          }
+        },
+        {
+          "seed": 44,
+          "changed_pairs": 3987,
+          "changed_fraction": 0.6827054794520548,
+          "raw_metrics": {
+            "pairs": 5840,
+            "mse": 0.18045249926924045,
+            "rmse": 0.42479700948716725,
+            "mae": 0.35769944299293094,
+            "r2": 0.07237014790368523,
+            "pearson": 0.3079854090875411,
+            "bias": 0.028727211061967153,
+            "mean_prediction": 0.6772401966084407,
+            "mean_observed": 0.6485129855464735
+          },
+          "mse_change": 0.0018092495397039055,
+          "original_changed_pairs": {
+            "pairs": 3987,
+            "mse": 0.1796033229128575,
+            "rmse": 0.42379632243904325,
+            "mae": 0.3578440975907051,
+            "r2": 0.08697386265081197,
+            "pearson": 0.32520177689731944,
+            "bias": 0.03508172715879306,
+            "mean_prediction": 0.675150910614781,
+            "mean_observed": 0.6400691834559881
+          },
+          "permuted_changed_pairs": {
+            "pairs": 3987,
+            "mse": 0.18225344012175415,
+            "rmse": 0.42691151322230014,
+            "mae": 0.36175435526165217,
+            "r2": 0.07350180523272343,
+            "pearson": 0.30869416068394023,
+            "bias": 0.03257801504593117,
+            "mean_prediction": 0.6726471985019192,
+            "mean_observed": 0.6400691834559881
+          }
+        }
+      ]
+    }
+  },
+  "analysis_seconds": 1.5075391249993118,
+  "artifacts": {
+    "calibration.json": {
+      "sha256": "baafc96d102127b9335fb3fef3451ddd50bd8b73ace96d69dc38c1f33316441a",
+      "bytes": 204
+    },
+    "selection-predictions.npz": {
+      "sha256": "9db31934c782df2c426c02ee85306aa8ba85ef9cc6c1324411ace97e6630774e",
+      "bytes": 865836
+    },
+    "validation-predictions.npz": {
+      "sha256": "0d1be93b30ed7890ebc257862adf59bd141efc515631c7372fee07d68125a68d",
+      "bytes": 371764
+    }
+  },
+  "audit": {
+    "saved_metrics_recalculated": true,
+    "permutations_reproduced": true,
+    "original_reward_artifacts_unchanged": true,
+    "policy_data_unchanged": true
+  },
+  "limits": [
+    "Adaptive continuation on an already inspected validation; final test is held out.",
+    "Calibration and personal mixing can improve MSE without improving candidate ordering.",
+    "Same-query comparisons are observational, conditional on multiple listened items and rounded timestamps.",
+    "Permuted candidate inputs retain the original item's label; this is an input ablation, not a counterfactual response estimate.",
+    "User-cluster bootstrap does not remove adaptive selection bias or uncertainty from training a single reward model."
+  ],
+  "reward_model_retrained": false,
+  "test_evaluated": false,
+  "rl_trained": false
+}

@@ -1,0 +1,53 @@
+{
+  "experiment": "policy-rl-pilot-v1",
+  "status": "planned_not_implemented",
+  "policy_report": "../experiments/small-tuning-result.json",
+  "policy_config": "baseline-selected.json",
+  "reward_report": "../experiments/reward-result.json",
+  "signal_report": "../experiments/reward-signal-result.json",
+  "data_seed": 42,
+  "training_seed": 42,
+  "confirmation_seeds": [42, 43, 44],
+  "data": {
+    "train_contexts": 4000,
+    "train_period": "reward_selection_inside_policy_train",
+    "validation": "all_5000_policy_validation_queries"
+  },
+  "training": {
+    "method": "exact_expected_reward_contextual_bandit",
+    "epochs": 5,
+    "batch_size": 64,
+    "learning_rate": 0.00005,
+    "weight_decay": 0.0,
+    "gradient_clip": 1.0,
+    "dropout_enabled": false,
+    "checkpoint": "final_epoch"
+  },
+  "variants": [
+    {"name": "raw-stress", "reward": "raw_completion", "kl_beta_base": 0.0, "match_affine_scale": false},
+    {"name": "raw-kl", "reward": "raw_completion", "kl_beta_base": 0.1, "match_affine_scale": false},
+    {"name": "raw-strong-kl", "reward": "raw_completion", "kl_beta_base": 1.0, "match_affine_scale": false},
+    {"name": "hybrid-matched-kl", "reward": "hybrid_completion", "kl_beta_base": 0.1, "match_affine_scale": true},
+    {"name": "time-kl", "reward": "capped_time", "kl_beta_base": 0.1, "match_affine_scale": false},
+    {"name": "time-strong-kl", "reward": "capped_time", "kl_beta_base": 1.0, "match_affine_scale": false}
+  ],
+  "reward": {
+    "duration_cap_catalog_quantile": 0.95,
+    "unknown_duration_fallback": "catalog_median",
+    "matched_policy_tolerance": 0.00001
+  },
+  "rollout": {
+    "validation_contexts": 1000,
+    "steps": 5,
+    "modes": ["greedy", "sampled"],
+    "sampling_seed": 42,
+    "append_generated_item_as_synthetic_listen": true
+  },
+  "selection": {
+    "minimum_relative_ndcg_at_10": 0.95,
+    "criterion": "highest_hybrid_top10_proxy_reward",
+    "exclude_variants": ["raw-stress"],
+    "require_proxy_reward_above_baseline": true,
+    "checkpoint_training_seed": 42
+  }
+}
