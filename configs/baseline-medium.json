@@ -1,0 +1,17 @@
+{
+  "experiment": "baseline-capacity-medium-v1",
+  "seed": 42,
+  "data": {
+    "max_users": 1000,
+    "catalog_size": 2000,
+    "history_length": 64,
+    "minimum_history": 5,
+    "minimum_train_events": 50,
+    "train_quantile": 0.70,
+    "validation_quantile": 0.85,
+    "max_queries": {"train": 60000, "validation": 5000, "test": 5000}
+  },
+  "model": {"embedding_size": 256, "layers": 4, "heads": 4, "dropout": 0.1},
+  "training": {"epochs": 15, "early_stopping_patience": 3, "batch_size": 128, "learning_rate": 0.0005, "weight_decay": 0.01, "gradient_clip": 1.0},
+  "evaluation": {"top_k": [5, 10, 20], "checkpoint_metric": "ndcg@10"}
+}
