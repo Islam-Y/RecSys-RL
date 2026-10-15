@@ -1,0 +1,12 @@
+{
+  "dataset": "yandex/yambda",
+  "revision": "dd6f3a19eef5866e346c3270e098baa641a44948",
+  "path": "flat/500m/multi_event.parquet",
+  "url": "https://huggingface.co/datasets/yandex/yambda/resolve/dd6f3a19eef5866e346c3270e098baa641a44948/flat/500m/multi_event.parquet",
+  "expected_bytes": 3843474075,
+  "expected_sha256": "bf30497a2b11a50f568cb0bb3efb9ca23786c76b82de4170025c1a9614e1b9cd",
+  "metadata_url": "https://huggingface.co/api/datasets/yandex/yambda/tree/dd6f3a19eef5866e346c3270e098baa641a44948/flat/500m?expand=false",
+  "dataset_card": "https://huggingface.co/datasets/yandex/yambda",
+  "paper": "https://arxiv.org/abs/2505.22238",
+  "scope": "New users in a larger subsample of the same service and observation period, not a new domain."
+}
