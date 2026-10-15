@@ -1,0 +1,22 @@
+{
+  "experiment": "recency-v1",
+  "data_dir": "../data/processed/mvp",
+  "baseline_config": "baseline-selected.json",
+  "baseline_checkpoint": "../outputs/small-tuning-v1/runs/lr-low/seed-42/baseline.pt",
+  "historical_report": "../experiments/mixed-objective-result.json",
+  "previous_holdout": "../data/processed/mixed-holdout-v1",
+  "training": {"epochs": 20, "patience": 4, "batch_size": 512, "learning_rate": 0.001, "weight_decay": 0.01, "gradient_clip": 1.0, "seed": 42, "confirmation_seeds": [43, 44]},
+  "variants": [
+    {"name": "global-1", "gate": "global", "tau": 1.0},
+    {"name": "context-1", "gate": "context", "tau": 1.0},
+    {"name": "global-4", "gate": "global", "tau": 4.0},
+    {"name": "context-4", "gate": "context", "tau": 4.0},
+    {"name": "global-16", "gate": "global", "tau": 16.0},
+    {"name": "context-16", "gate": "context", "tau": 16.0}
+  ],
+  "selection": {"minimum_relative_ndcg": 1.01, "minimum_relative_recall": 1.0, "metric": "ndcg@10", "tie_break": "configuration_order"},
+  "holdout": {"users": 1000, "minimum_train_events": 50, "sampling_seed": 20261016, "max_queries": 5000},
+  "evaluation": {"top_k": [5, 10, 20], "bootstrap_repeats": 2000, "bootstrap_seed": 42, "forward_tolerance": 0.000002},
+  "rollout": {"contexts": 1000, "steps": 5, "seed": 42},
+  "execution": {"inference_batch_size": 128, "head_device": "cpu", "threads": 4}
+}
