@@ -1,0 +1,69 @@
+{
+  "kind": "documentation_finalization",
+  "recorded_at_utc": "2026-10-15T13:57:41.045702+00:00",
+  "base_commit": "783ca71900d54e3803ad67f19914bc469720bd8b",
+  "markdown": {
+    "path": "Сводный-отчёт.md",
+    "sha256": "65324d62b3a6315e47bcb7009c4783749c95bf656c0154d7744e8361e6493258"
+  },
+  "pdf": {
+    "path": "output/pdf/recsys-rl-summary.pdf",
+    "sha256": "a5ca2aaf317a1b5ddcea885a25edf3ebef222e23e3aafaf3d4a36031a85082e4",
+    "pages": 8
+  },
+  "documentation": {
+    "README.md": "fd42acd1318b936a7474729005bdff773b18372193691aca675a665ce699d80f",
+    "Воспроизведение.md": "a846819dff640a17666f780e40a583cb152afc2a2c58926dd3e1a86d95771c5a",
+    "История-исследования.md": "3cc3e07adf1a1917a03b940fa65463c172eb290c4389da333c3b814a68cf97ed",
+    "Решение.md": "2cce0f00964b21928f4dbb61c3e8fac150fa0692467442ca0d6e0b18c2d32e89"
+  },
+  "validation": {
+    "all_pages_rendered_and_visually_reviewed": true,
+    "render_dpi": 110,
+    "text_outside_page_margins": 0,
+    "replacement_or_null_glyphs": 0,
+    "numbering_checked": true,
+    "metric_values_checked_in_markdown_and_pdf": 65,
+    "local_markdown_links_checked": 182,
+    "pdf_uri_annotations_checked": 37,
+    "source_commits_checked": 8,
+    "historical_pdfs_unchanged": [
+      {
+        "path": "output/pdf/recsys-rl-final.pdf",
+        "sha256": "face178b3a3af68df522a97c0888802f852571abd5352a9304d820dd134994e2"
+      },
+      {
+        "path": "output/pdf/recsys-rl-mixed-objective.pdf",
+        "sha256": "28e8c6253db0c2d52b1f35dfb794483bd7419f787394653f27e3a8209f54ba90"
+      },
+      {
+        "path": "output/pdf/recsys-rl-ranking-policy.pdf",
+        "sha256": "409204d2b5f4ba2b5cb4a087a98db4f54908a525d71ccdf82e354f4cdaf1c560"
+      },
+      {
+        "path": "output/pdf/recsys-rl-recency.pdf",
+        "sha256": "c9af8bc326c60b4203bd2111a0f8079f5926c3033b7e325f2ce258379bec5988"
+      },
+      {
+        "path": "output/pdf/recsys-rl-report.pdf",
+        "sha256": "bdb97f914f10cd942ab73a60e7e7b97135c739212cd207063cfc025195fefef7"
+      }
+    ],
+    "code_configs_and_existing_experiment_artifacts_unchanged": true
+  },
+  "readme_lines": {
+    "before": 304,
+    "after": 91
+  },
+  "builder": {
+    "path": "/Users/islam/Documents/Codex/Tools/recsys-report/scripts/build_report.py",
+    "sha256": "eec59e7acd3a9808910342621c220a7a184019f3abcaaaf4dc6775179636b798"
+  },
+  "experiments_rerun": false,
+  "training_performed": false,
+  "automated_tests_run": false,
+  "notes": [
+    "This record describes document publication checks; experimental audit evidence remains in per-stage execution JSON.",
+    "Historical flags about PDF updates describe their original stages; the canonical PDF is recsys-rl-summary.pdf."
+  ]
+}
