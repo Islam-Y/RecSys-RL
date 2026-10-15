@@ -9,6 +9,22 @@
 - [Final test: результат](experiments/final-evaluation-result.json), [протокол](experiments/final-evaluation-protocol.md), [аудит и ресурсы](experiments/final-evaluation-execution.json).
 - [RL-пилот: результат](experiments/rl-pilot-result.json), [протокол](experiments/rl-pilot-protocol.md), [ресурсы](experiments/rl-pilot-execution.json).
 
+## Дополнительная серия: смешанная цель - 15 октября
+
+После завершения первой серии проверено смешивание RL с next-item loss: шесть обучений и 14 rollout. **Новый смешанный вариант не принят:** NDCG снизился на 3.19-3.60%, превысив заранее заданный допуск 1%. Повторы sampled-пятёрки уменьшились, но критерий релевантности не выполнен.
+
+Для итоговой проверки подготовлены 1 000 новых пользователей, полностью исключённых из первоначальной популяции; 5 000 запросов, 751 пользователь в запросах, 5 694 цели. После фиксации решения оценены заранее заданные контроли. Сильный KL дал hybrid reward +0.36% и NDCG +0.44% по точечной оценке; интервал NDCG включает ноль. Недавние треки снова выше нейросетевых политик. Смешанные варианты на новом holdout не оценивались, поскольку не прошли validation-отбор.
+
+Первая серия и её PDF сохранены. [Описание дополнения](Дополнение.md), [PDF, 3 страницы](output/pdf/recsys-rl-mixed-objective.pdf), [протокол](experiments/mixed-objective-protocol.md), [результат](experiments/mixed-objective-result.json), [новая популяция](experiments/mixed-objective-holdout-result.json), [подготовка holdout](experiments/mixed-holdout-preparation.json), [аудит и ресурсы](experiments/mixed-objective-execution.json).
+
+```bash
+python -m recsys_rl.mixed_experiment --device auto --prepare-only
+python -m recsys_rl.mixed_experiment --device auto --resume
+python -m recsys_rl.mixed_experiment --device auto --audit
+```
+
+Команды используют локальные артефакты первой серии. Старый test не переоценивался; новая выборка теперь также открыта и не может служить независимым подтверждением последующего подбора.
+
 ## Основной результат
 
 5 000 test-запросов, 755 пользователей, 5 793 цели; одинаковый каталог из 2 000 треков. Hybrid reward - средний прогноз top-10 с равными весами позиций.

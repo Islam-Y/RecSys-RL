@@ -1,0 +1,62 @@
+{
+  "experiment": "mixed-objective-v1",
+  "source_commit": "101920acd117358b0105980bdcb62a85cb1a473d",
+  "result_sha256": "5faebec1b2cab5200e9d203320477b3ed1cc4e04e5f91228e63b11d143d354fa",
+  "holdout_result_sha256": "81902dfaa342eede004705ae405506737cad14c4262188ac41187ca597eec0d4",
+  "public_results_are_exact_copies": true,
+  "phases": {
+    "prepare": {
+      "real_seconds": 3.54,
+      "user_seconds": 4.42,
+      "sys_seconds": 0.6,
+      "maximum_resident_set_size_bytes": 1097777152,
+      "peak_memory_footprint_bytes": 1057310256,
+      "log_path": "outputs/mixed-objective-v1-prepare.log",
+      "log_sha256": "2c985832a9af3d88e32000375b6a675b8b31440e76ac0d5c250ffbb6cfba7719"
+    },
+    "series": {
+      "real_seconds": 164.5,
+      "user_seconds": 67.04,
+      "sys_seconds": 6.66,
+      "maximum_resident_set_size_bytes": 1639120896,
+      "peak_memory_footprint_bytes": 2962852120,
+      "log_path": "outputs/mixed-objective-v1.log",
+      "log_sha256": "fabb1db7f1fad6b66d29bf4f3e5dc853f2e9330592e397b85de99f9b9a81a1ba"
+    },
+    "audit": {
+      "real_seconds": 41.38,
+      "user_seconds": 22.79,
+      "sys_seconds": 2.0,
+      "maximum_resident_set_size_bytes": 1461420032,
+      "peak_memory_footprint_bytes": 2814871856,
+      "log_path": "outputs/mixed-objective-v1-audit.log",
+      "log_sha256": "85b3d7dd4d7501059285aa507d9dbe9843faccb6eadb2905aafa3a709fd4c004"
+    }
+  },
+  "audit": {
+    "stage": "mixed_audit_complete",
+    "runs_checked": 6,
+    "rollouts_replayed": 14,
+    "selection_recalculated": true,
+    "fresh_population_disjoint": true,
+    "fresh_labels_rejoined": true,
+    "all_validation_and_fresh_forwards_checked": true,
+    "all_metrics_recalculated": true,
+    "historical_test_reevaluated": false,
+    "selected_variant": "baseline"
+  },
+  "diagnostics": {
+    "validation_next_item_ce": {
+      "baseline": 6.569838545093333,
+      "rl-only/seed-42": 6.629452954766591,
+      "strong-kl/seed-42": 6.570773887532231,
+      "next-item-only/seed-42": 6.674390658710485,
+      "mixed-001/seed-42": 6.629023277508179,
+      "mixed-01/seed-42": 6.620148868159954,
+      "mixed-1/seed-42": 6.631521542017443
+    },
+    "scope": "Post-run descriptive diagnostic; not used for checkpoint or variant selection."
+  },
+  "memory_scope": "macOS process accounting; separate MPS and system peaks were not measured.",
+  "historical_test_reevaluated": false
+}
