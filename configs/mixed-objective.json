@@ -1,0 +1,51 @@
+{
+  "experiment": "mixed-objective-v1",
+  "pilot_report": "../experiments/rl-pilot-result.json",
+  "final_report": "../experiments/final-evaluation-result.json",
+  "pilot_output_dir": "../outputs/policy-rl-pilot-v1",
+  "training_seed": 42,
+  "confirmation_seeds": [42, 43, 44],
+  "training": {
+    "epochs": 5,
+    "batch_size": 64,
+    "learning_rate": 0.00005,
+    "weight_decay": 0.0,
+    "gradient_clip": 1.0,
+    "dropout_enabled": false,
+    "checkpoint": "final_epoch"
+  },
+  "variants": [
+    {"name": "rl-only", "reward": "raw_completion", "reward_weight": 1.0, "ce_weight": 0.0, "kl_beta_base": 0.1},
+    {"name": "strong-kl", "reward": "raw_completion", "reward_weight": 1.0, "ce_weight": 0.0, "kl_beta_base": 1.0},
+    {"name": "next-item-only", "reward": "raw_completion", "reward_weight": 0.0, "ce_weight": 1.0, "kl_beta_base": 0.0},
+    {"name": "mixed-001", "reward": "raw_completion", "reward_weight": 1.0, "ce_weight": 0.001, "kl_beta_base": 0.1},
+    {"name": "mixed-01", "reward": "raw_completion", "reward_weight": 1.0, "ce_weight": 0.01, "kl_beta_base": 0.1},
+    {"name": "mixed-1", "reward": "raw_completion", "reward_weight": 1.0, "ce_weight": 0.1, "kl_beta_base": 0.1}
+  ],
+  "execution": {"inference_batch_size": 128, "reward_cache_batch_size": 32, "forward_tolerance": 0.000002},
+  "evaluation": {"low_support_threshold": 10, "bootstrap_repeats": 2000, "bootstrap_seed": 42},
+  "rollout": {"validation_contexts": 1000, "steps": 5, "modes": ["greedy", "sampled"]},
+  "selection": {
+    "candidate_names": ["mixed-001", "mixed-01", "mixed-1"],
+    "minimum_relative_ndcg": 0.99,
+    "minimum_relative_catalog_coverage": 0.95,
+    "maximum_relative_top10_concentration": 1.25,
+    "maximum_sampled_repeat_increase": 0.03,
+    "maximum_unique_items_decrease": 0.15,
+    "criterion": "maximum_hybrid_top10_above_baseline_strong_kl_and_next_item_control",
+    "tie_break": "configuration_order",
+    "checkpoint_seed": 42
+  },
+  "fresh_holdout": {
+    "policy_controls": ["rl-only", "strong-kl", "next-item-only"],
+    "users": 1000,
+    "minimum_train_events": 50,
+    "sampling_seed": 20261015,
+    "max_queries": 5000,
+    "population_rule": "exclude_all_original_population_users",
+    "period": "original_test_timestamps_on_disjoint_users",
+    "catalog": "original_frozen_2000_items",
+    "primary_relative_noninferiority_margin": 0.01,
+    "primary_reward_ci_lower_bound": 0.0
+  }
+}
