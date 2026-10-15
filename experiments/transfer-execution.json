@@ -1,0 +1,106 @@
+{
+  "source_commit": "5081646de3c023e043aeb19429a416ed850742ff",
+  "result_sha256": "dee9db7521ae04494859a264f7afc4d3befe2137e66d4f3e64b54b76d98a38f0",
+  "primary_result_sha256": "303789d2eade5787236442c0c54eb4fe2daee3dc6de2741328c0cf89e0ad6792",
+  "secondary_result_sha256": "07fd12d3dbc4bef93a8f1f8a966db504f85a52ca5718064929b2934451d523cd",
+  "preparation_sha256": "5eab3e311a60aa284732fd58526eb0e600c7cd4dc0e0035f81602e33fdb5b4a3",
+  "source_metadata_sha256": "3881e06aac19ef0f70fb75f21c2bd5ef3c6cf11bd2de186c882d2be4c93e8a09",
+  "execution": {
+    "prepare": {
+      "wall_seconds": 22.99,
+      "maximum_rss_bytes": 2614116352,
+      "peak_memory_footprint_bytes": 2350616152,
+      "final_record": {
+        "stage": "transfer_prepared",
+        "compatibility": {
+          "old_source_users": 10000,
+          "new_source_users": 100000,
+          "shared_users": 10000,
+          "sample_users": 64,
+          "sample_events": 338211,
+          "multiset_differences": 0
+        },
+        "cohorts": {
+          "primary": {
+            "selected_users": 5000,
+            "queries": 50000,
+            "query_users": 4141,
+            "targets": 57171,
+            "test_listens": 3961513,
+            "test_catalog_listens": 791955,
+            "test_catalog_coverage": 0.1999122557467311,
+            "history_unknown_fraction": 0.6863427882675773
+          },
+          "secondary": {
+            "selected_users": 1000,
+            "queries": 9973,
+            "query_users": 701,
+            "targets": 11761,
+            "test_listens": 682123,
+            "test_catalog_listens": 184413,
+            "test_catalog_coverage": 0.2703515348404906,
+            "history_unknown_fraction": 0.6122102693314885
+          }
+        },
+        "responses_opened": false
+      },
+      "log_sha256": "1953639087e51fbe2e5c07851da911f67f39cc24fd6dd776d218628cf4abda0c"
+    },
+    "series": {
+      "wall_seconds": 242.43,
+      "maximum_rss_bytes": 2326183936,
+      "peak_memory_footprint_bytes": 3050933608,
+      "final_record": {
+        "stage": "transfer_complete",
+        "primary": {
+          "reward_improvement": true,
+          "ndcg_noninferiority": false,
+          "ndcg_strict_improvement": false,
+          "sampled_point_guards_passed": true,
+          "absolute_ndcg_margin": 0.0010142277000753236,
+          "all_passed": false
+        },
+        "cohorts": 2,
+        "new_training_runs": 0
+      },
+      "log_sha256": "55beed76ecac46beba18c89900864aca78bf293d3570bb78ff5458d9751d50f0"
+    },
+    "audit": {
+      "wall_seconds": 203.61,
+      "maximum_rss_bytes": 2579021824,
+      "peak_memory_footprint_bytes": 3309621136,
+      "final_record": {
+        "stage": "transfer_audit_complete",
+        "cohorts_checked": 2,
+        "chunks_checked": 12,
+        "raw_preparation_reproduced": true,
+        "response_fingerprints_match": true,
+        "maximum_forward_difference": 0.0,
+        "mass_and_identity_checks_passed": true,
+        "rollouts_replayed": 24,
+        "decisions_recalculated": true
+      },
+      "log_sha256": "edfd6fd259d0bf9f8420b197c80610fb1d7687a6510567fbead2b4e340cba5cc"
+    }
+  },
+  "new_training_runs": 0,
+  "tuning_performed": false,
+  "experimental_work_complete": true,
+  "commands": {
+    "prepare": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.transfer_experiment --device auto --prepare-only",
+    "series": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.transfer_experiment --device auto --resume",
+    "audit": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.transfer_experiment --device auto --audit"
+  },
+  "primary_confirmation_passed": false,
+  "secondary_used_for_selection": false,
+  "automated_tests_run": false,
+  "pdf_changed": false,
+  "notes": [
+    "All 10000 original raw user IDs excluded; same service and period, not cross-domain transfer.",
+    "Primary cohort and fixed rule specified before new-user preparation/inference. No setting was changed after evaluation.",
+    "Sampled behavior intervals condition on fixed models and three sampling seeds; causal user benefit is not measured.",
+    "NDCG noninferiority within 1% was not established on either cohort. Failure is not proof of a loss exceeding 1%.",
+    "Source download time is not included in preparation/series/audit process accounting.",
+    "False opening flags in preparation artifacts describe the historical preparation stage."
+  ]
+}
