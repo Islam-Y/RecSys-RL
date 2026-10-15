@@ -1,0 +1,9 @@
+{
+  "started_at_utc": "2026-10-15T09:23:07.141070+00:00",
+  "observed_pairs_checked": 5840,
+  "maximum_direct_reward_difference": 2.979590485452377e-08,
+  "artifacts": {
+    "train.npz": "d6b24123983127510ae2f39d999ac2f116539468e3fb2f555ce961cdb096f43a",
+    "validation.npz": "5c48451b8f5b249f7325491b6ef338bc6c7e2d168eb381228bd3b4feafbadc71"
+  }
+}

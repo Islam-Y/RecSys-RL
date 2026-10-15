@@ -1,0 +1,61 @@
+{
+  "source_commit": "3de7c53254f8968e177b9b752012d5daa717ea9b",
+  "result_sha256": "12c355b7a05ba73453cdf4abd6fe9b44469b74b8038de8cfe28ce5c1f89e7cc9",
+  "final_result_sha256": "2150f36357d76ae1f29f5f66cd2618852335f501f8476a267d140af733ad1ec9",
+  "execution": {
+    "prepare": {
+      "wall_seconds": 14.67,
+      "maximum_rss_bytes": 1306918912,
+      "peak_memory_footprint_bytes": 2188183760,
+      "final_record": {
+        "stage": "ranked_policy_prepared",
+        "direct_reward_difference": 2.979590485452377e-08,
+        "final_reserve_opened": false
+      },
+      "log_sha256": "36bce0fb0d7e43a2dd6bc652b53d3516db766d16ae85947bf508ac942f3d7503"
+    },
+    "series": {
+      "wall_seconds": 127.74,
+      "maximum_rss_bytes": 1534164992,
+      "peak_memory_footprint_bytes": 2896464512,
+      "final_record": {
+        "stage": "ranked_policy_complete",
+        "runs": 6,
+        "selected": "repeat-kl-01",
+        "final_reserve_opened": true,
+        "primary": {
+          "reward_improvement": true,
+          "ndcg_noninferiority": false,
+          "absolute_ndcg_margin": 0.0009570429385849623,
+          "both_passed": false
+        }
+      },
+      "log_sha256": "2fb6bc5c679d389fb44dcfc13354fca7fe08aa3cf39918c835de09264ec1b2b7"
+    },
+    "audit": {
+      "wall_seconds": 47.88,
+      "maximum_rss_bytes": 1714257920,
+      "peak_memory_footprint_bytes": 3012086520,
+      "final_record": {
+        "stage": "ranked_policy_audit_complete",
+        "runs_checked": 6,
+        "maximum_policy_forward_difference": 0.0,
+        "catalog_rewards_and_controls_recalculated": true,
+        "rollouts_replayed": 16,
+        "selection_recalculated": true,
+        "final_recalculated": true
+      },
+      "log_sha256": "56b65b3ce8f8eaea336202315977ceb27f8467c5199140b4ce87daba24ef083d"
+    }
+  },
+  "training_seconds_sum": 93.91255804099637,
+  "commands": {
+    "prepare": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.ranked_policy_experiment --device auto --prepare-only",
+    "series": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.ranked_policy_experiment --device auto --resume",
+    "audit": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.ranked_policy_experiment --device auto --audit"
+  },
+  "final_reserve_opened": true,
+  "final_used_for_selection": false,
+  "automated_tests_run": false,
+  "note": "Historical preparation/opening flags describe their recorded stage. Final reserve is now opened; it is unavailable for independent confirmation of future tuning."
+}

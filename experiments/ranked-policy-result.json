@@ -1,0 +1,2151 @@
+{
+  "experiment": "ranked-policy-v1",
+  "provenance": {
+    "config": {
+      "experiment": "ranked-policy-v1",
+      "ranking_report": "../experiments/ranking-result.json",
+      "ranking_execution": "../experiments/ranking-execution.json",
+      "ranking_data_dir": "../data/processed/candidate-ranking-v1",
+      "final_data_dir": "../data/processed/reward-history-v1",
+      "recency_execution": "../experiments/recency-execution.json",
+      "training": {
+        "epochs": 5,
+        "batch_size": 64,
+        "learning_rate": 5e-05,
+        "weight_decay": 0.0,
+        "gradient_clip": 1.0,
+        "seed": 42,
+        "confirmation_seeds": [
+          43,
+          44
+        ],
+        "log_floor": 1e-30
+      },
+      "variants": [
+        {
+          "name": "reward-kl-01",
+          "beta": 0.1,
+          "repeat_penalty": 0.0
+        },
+        {
+          "name": "repeat-kl-01",
+          "beta": 0.1,
+          "repeat_penalty": 0.1
+        },
+        {
+          "name": "reward-kl-1",
+          "beta": 1.0,
+          "repeat_penalty": 0.0
+        },
+        {
+          "name": "repeat-kl-1",
+          "beta": 1.0,
+          "repeat_penalty": 0.1
+        }
+      ],
+      "selection": {
+        "minimum_relative_ndcg": 0.99,
+        "minimum_relative_coverage": 0.95,
+        "maximum_relative_concentration": 1.25,
+        "maximum_sampled_repeat_increase": 0.01,
+        "maximum_unique_decrease": 0.05,
+        "criterion": "maximum_top10_calibrated_reward_above_reference",
+        "tie_break": "configuration_order"
+      },
+      "evaluation": {
+        "bootstrap_repeats": 2000,
+        "bootstrap_seed": 42,
+        "forward_tolerance": 2e-06,
+        "ndcg_noninferiority_margin": 0.01
+      },
+      "rollout": {
+        "contexts": 1000,
+        "steps": 5,
+        "seed": 42,
+        "modes": [
+          "greedy",
+          "sampled"
+        ],
+        "reward_history": "frozen_observed_response_history"
+      },
+      "execution": {
+        "inference_batch_size": 128,
+        "reward_batch_size": 32,
+        "threads": 4
+      }
+    },
+    "frozen": {
+      "inputs": {
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/rl-pilot.json": "122df4ca04dfcaa587445b493e663a5d958b23236fb37cbaa8e1aa8deed17aa8",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-protocol.md": "3922c3310c56bca6745748a6199bbed6901e34b69aff479aca3eed07dc33b447",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/baseline-selected.json": "f9bfcf3170557b0b048514683bc031c5368de47c43c1198e9a61a3bc4753dcf4",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/small-tuning-v1/runs/lr-low/seed-42/baseline.pt": "bc9467e3137a14b8399cfba2e4705f80f0996d4bea5b43f19b38457516208faf",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/manifest.json": "6017fed06393bd416ecbe08b98080c6ddd2628a7fc4cab600b7fb4223eea33db",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/catalog.json": "9c055d1a0b3928153acda8a16c4e290d930fdedd94778d46ac61801da0fbe514",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/manifest.json": "4874171cddc788a8337f9993a25d2921ba41c083b1ff6441ec453ca18e4d7629",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/raw/yambda-50m-multi_event.parquet": "b92f6c97277a554c8a7d6cfea900eca51639fd53a3e6c4fa58b82e35fd35804d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/small-tuning-result.json": "6852f95801e4c66bc9ff29349720136778aa80ed553808013f3e5881a4b9fc38",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-result.json": "3dc91c1bba581102ac740cd30aed17f5ee5b55d7df0f454a9fccb990c2685598",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-signal-result.json": "27033b07541583a54ce3373a33e2c3e854ad29b9e61e4e1f29bad605ae208fe5",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/train.npz": "488ebafffb924b9bed034039cd5a1ccb9946cc652b8f75e32e1d27bfbeedad3d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/validation.npz": "ceb777e8445d7343411ecb039486dff74d2f9b8aeb89021d23f206294d780d86",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/test.npz": "ba0fdfaa56cf69692dd48e8b5de5ead5052ac619db6d046e15600423fa4d13af",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/train.npz": "6bc6be670c18c03ef5ae2fd509e73e4cf7414543218100728219835dbae55596",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/selection.npz": "5b2a2a4aa609f0ffa7939f894882a510a65a70bace81b3bcaf76d829c8147bfe",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/validation.npz": "d29a755db2a0df1dd3eb249a23edc8f671f82e3ce03c1fc68786ae2f43009d0b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/reward.pt": "2a4a9019eab2d7cbfc9ae397d13cbb6d7d5b8884f1570f3a941ff386f770f894",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/selection-predictions.npz": "72f47f4aea1f12a0a6bf3bcb85ba50da77aa32d9e1e9a4213d035e8730f1fe76",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/validation-predictions.npz": "658585a4c93c69aa74ac4ef2ccf16e593456ed9d5326ea7b63d9da71656ae36e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/training-history.json": "1f1860e86c9975d6d65f387f173662da489f35dc2dc3d1a0be2dd108d9c5a385",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/final-evaluation.json": "77ff356b5476f972e9e6b8d5cc672af4a843150b3e51f77c7505002496117f88",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-protocol.md": "cf560f30a73ecaf3f22179de54eb87d93ac2bae7142a58ba120a9f1f090ada03",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-result.json": "c9878601e476d53dc0532d896c4534e11c5f3d676e95b7d0c18d8d7246e31468",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-execution.json": "8f759eb5d88c4d6e58f37867d5c48322fd0a3eb88a88cfae88803dec9cbc8d00",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward-signal.json": "c70b2b8a065fb1d26ae14d7150bfe90bec0d931853763bcaa9a7c9aec097522e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-kl/seed-42/policy.pt": "47612400c5a0768c85f80693844b513746c33c7eb145b8e8d65dbd4a9a1471ac",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-strong-kl/seed-42/policy.pt": "7d0f719af8b3a0e93ffc9861831cc00e8d544b41d1c8eeedbab7eed110e43724",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/mixed-objective.json": "306698737d9f2021c89617a49be7b0b619f6b136da79ece928c8ce15704948de",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-protocol.md": "67fd1c59a43e4aca77fcfa05e66c22ac788bc73a2b3249e142420d0d35531799",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-result.json": "0df23f5ec2ef57f68cee2f1be0ce1bfd60c220db81457e074c5a188eaa810165",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/manifest.json": "a38620e8dad5eaeed1c4e16cf98534e807be217412256a942931e429fe0e18c2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/listen-events.parquet": "51a3dcd08b8d2a6f9d5d8d1222fb1ce9cc365a8fda2d71fa45a3b2a4f62868c7",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/train.npz": "b30ef61422f40bf48b167a62bb4d58c4dd87e86111c62ba683a381a5d2abf7e2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/validation.npz": "ba01bbd6e1674edda9a61546551729b6e205ee619d892ae54d37004684ada107",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/rollout-inputs.npz": "09b9a6fc05efc1011f941f58051ba98636930c6857863b6d3f87f2733edecb4e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/recency.json": "c4ddab23e0f5a654405e0e24f9d86e44fe8899e11680b4e889c0827ddea43161",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-protocol.md": "a6da50be4088ab01665fe96c748851394be238856341ba1a35e660ba16ddf775",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-result.json": "5faebec1b2cab5200e9d203320477b3ed1cc4e04e5f91228e63b11d143d354fa",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/users.npz": "bf99ca9850574a384796d7a6d71640016c057424fd0573e5377fbf0339371e1a",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/manifest.json": "e511619304fa12d58b39fae3f7e11ac10b6535e740c6a75f687cc1286889fb0c",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward-history.json": "fab6eceb3adf8649f9a1fcdabca09aabc0bb2d4efe03ba31d02541b45c0197d0",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-history-protocol.md": "240a915fe88776bc9bbae0556370e240f2af878c1447bb2f3f944b51ffb367ec",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-result.json": "f451e3fe3ac8012fccdcb6cacfe5753dd614f8c93553e9a47cd8eac16618b329",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-execution.json": "cb14b423391f3498c5d6cab6fec72fe4d23c8021ddf76d6f8faca5639479363b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1/manifest.json": "fa37d69dd1d2f85834917bd8fb5db7090c272065df90b4b005506c3e84e6bb05",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1/users.npz": "e25ae4f24d35d4190256067dff94089153ec4530c05d6f20ae1b6fe0008489a2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward.json": "1b39504dae6a20453ea862baf129a67cb842546162cbb72fe63fc0507895f8d7",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/cache/validation.npy": "58f1c8902c6884d6fae796a956af96ac0f495d2bb02d76e8f55b040e8c753581",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/holdout/baseline.npy": "e8ef1e2a65996f9cfc7fab8c0e80ea8a687b9b09c6e3511711ca86e099ca7149",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1/queries.npz": "3b3a015cd473b43097c344c69fe9ddb12d28a6e678e8c97349aea260759f502b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/global-16/seed-42/gate.pt": "55525559eaf885c9761f751e35abab5e7430e1ee9fda60cbe1583d4918e17e08",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/ranking.json": "a90cc540f18c6e97cbb4a9d5320ab91eb38f916fc83f06e60239c74df43446a2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-protocol.md": "358d2db8e7e56256d2d39607d567fa8b71d41880c76c224f58901a5276107695",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-history-result.json": "9fc47dfc93b88494a91adb21c958c89d9c5addf6cb4d74aebddb2f07cc2c7d21",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-history-execution.json": "06ea496bfd15e11dd02fd85fb26323948d51178302a44d1751f4ee60dbd3ea25",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/requirements-ranking-lock.txt": "17714fd27f6e01aae1f63616a39fea0cb72320a4115f5cb7701dd3a58b97fe47",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/requirements-ranking.txt": "6329cf41fc45752021b68005d72661cec09f3e70c62b6245ad0d0947ec9e10fa",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-dependencies.json": "8af009d98f0d37230d89436616222af5d26c4a94b9400d248d257f8eb3ec866b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/manifest.json": "a9cb200ea21dcf2130278d68cad5ed15025b9116fac78ca5112ca7924ed23d51",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/development-users.npz": "2304b4dc55243a6c4f5b03254353e64e3c32b676e62a0ae0ebb5d39341212f6f",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/final-users.npz": "9e3165f090ce6fa723fc072570bbdc26e968cb13155de8abded6fbf9d4b26d67",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/ranked-policy.json": "d0370933ccfc3ecce0d3c9f43d352d2b6a1eb7b219bf6d585cba8bac10460321",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranked-policy-protocol.md": "ffdeac8b1abf2797cd753e6f258f4d07c09319e60b073cfcb7c987624a65b09c",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-result.json": "4f0dfa37f58ba1df422e78fa016d1a0b5bffd8eb13c879ffbec7820447e81f66",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-execution.json": "789436c83fd2ac1e482202e186db3a9b0e39f318eba5af60dc9c55cd47a6e250",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-ranking-v1/runs/boosting-expanded/seed-42/ranker.cbm": "9c6c31084c6103f5857962dfc30f67ac41f280c64dc26bac0dace1090b10e118",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-ranking-v1/manifest.json": "a4a351a4b764f9b4faf9c7bb8ab631afae78246990a5b5302ccec819563babc3",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-ranking-v1/priors.npz": "56ce7b1ef7a2e25e263cae5cc84172af347601526101e899fa552601ab640ef8",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-ranking-v1/populations.npz": "a848738bd4b61d4e47bcefec44ed068a740f1de94a789b66e45d87d468ae0b43",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/final.npz": "1c3f53b6219d496ad6ea5a323501ffefe4d77d5616898bf6bc04b4942291952c"
+      },
+      "source_files": {
+        "__init__.py": "cd4e71abac041d54337132310fc423b22aadf8a403a1c07d3c0985b6f9dcfa6d",
+        "__main__.py": "b2ac0f5a590badd7e0a10aaf0637f8233b35a65c9233d607d3b982ac39a7eaea",
+        "cli.py": "b281b6682e6e1f531b565ef4db719784d82ef561050fcd4ec8e9fc73077d8111",
+        "data.py": "8b6d7a36cc7069e922e0972f114cce1b781b6fe402628ae0d7d296255f896c38",
+        "evaluation.py": "8e62b5bed9ca85d35904118a584549353796d843d01e707bbbd9c15a7ee58c84",
+        "final_evaluation.py": "c87a51bce8b186e9f205bf12e0f5762dc78c072fa07cad4608d3ae358a6517ea",
+        "history_reward_data.py": "511aa9a74ee212ea4f9352e08108818b8d36096255d555cdc27c493081652173",
+        "history_reward_experiment.py": "8f9f9917bf357dd729ec908d9f82f0d73e4ac8f6fa2b7f9b161fee39b537d8f3",
+        "history_reward_model.py": "766f17ff77fa3691c99dd5af9f4c134e5fbcb611f5b8e611992145d3a224a9f1",
+        "mixed_data.py": "0f903a7b2826067cb5908a211bd309cbc5dc0f2736f994d1b0874554f9c9fdac",
+        "mixed_experiment.py": "3bda41e0fb81dc1283c8630f038ec9d2bf2787ca65df00d83034373e7b5fe6bf",
+        "mixed_training.py": "6f0742e1cc7fdb693017f98256680f58ca3f7ecbdf9d668e8b491055adc7e13b",
+        "model.py": "7e38b843500e5f7d348287f91f4090e9938aadb1474a512f0f02b940b4672cfe",
+        "policy_data.py": "0e14dab3d068b171ffeb1a65cacb164dffad49900418ddde3f9ec2f8627be1ae",
+        "policy_evaluation.py": "be276122fb8de4ff07d34f5eb3a7eb547261d2ccf542531abe5e3c91563385d0",
+        "policy_optimization.py": "bd99d53159476ae23ee994f640ca86de42983a7076c9a21a5150d8c65eb399e1",
+        "policy_rollout.py": "0ce38ab6c7f60ebe42f4a92662c79fa2ba3c47bc18fee348136bab7bab18b853",
+        "ranked_policy_data.py": "59474a1b5611a9b73c134c4467c3cfa8f9e10a75201312b02febf576eb392eb7",
+        "ranked_policy_experiment.py": "35baed483fd5ba724b897f8f0da101d9b1099a821446b5c57d684ef4143a300e",
+        "ranked_policy_training.py": "f8e6aaa5d69006abc21a644cf90f29a36966d3c1886bddda18be68c391eb9e46",
+        "ranking_data.py": "bd99fb6aac9025de57acbb8de904c1b4f829caaa70024d8dbbb53c2042ddd4f5",
+        "ranking_experiment.py": "39074cfc1469881affdbd751fed0aa30873faf3dd4200dc65594cf3396e03618",
+        "ranking_model.py": "26d800ea1031900936ec6228e07f1528d1f1c16ddc0ee611b54d6dcf348da636",
+        "recency_data.py": "f4533c02140c9c6d0b4dd475130e99b861b628efa0c8cb659211f595cb3dfcef",
+        "recency_experiment.py": "19423b4688a9b5b3d832aad6580d3ee004d72f115363f7f8ba22567bead0daa9",
+        "recency_model.py": "78709ff2a61ba2cd3a0ce8c47d7f070cb24a86a28941429b667b956fd35ab759",
+        "reward.py": "b32e6a8e310e5a50e47768c6ced5bbed11fbedd242b97f9aa9bbeca007d2d978",
+        "reward_catalog.py": "638572c17286bb6b73856309b64ddb1b1ed131c84ddac56242e56e36c7c22896",
+        "reward_data.py": "0b122902a0fa43d86f720253e06c452119dcfc3f16b03c507e2a07004f9c6125",
+        "reward_evaluation.py": "775d93b97cf03fe805868d983debf1d332110e9e6b26a20767bc7eacf0573d6b",
+        "reward_model.py": "6c106e96b142a9b5a4de0bca13131c43956ce97a548413add1e272a31df0ae1f",
+        "reward_signal.py": "b16ea89ca644552ab52fcc91dcc00abe039ad22ab1d54dc49a17c1d319d4f265",
+        "status.py": "a47c35327f5c1eaecc199ab9c3d956f14f59b4773a2565e4875cc05292d3657d",
+        "train.py": "abcdb42f938f3767d6296ec47dfc3d5132e4635aaad1d029d9ef1ecefee6ad2e",
+        "tuning.py": "e9f2a846d4fc1e4b87d01935469b748e23092d94f9edcb2b7dccb29e52538a44"
+      }
+    },
+    "paths": {
+      "config": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/ranked-policy.json",
+      "protocol": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranked-policy-protocol.md",
+      "output": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1"
+    },
+    "source_commit": "3de7c53254f8968e177b9b752012d5daa717ea9b",
+    "recorded_at_utc": "2026-10-15T09:23:06.728842+00:00"
+  },
+  "cache": {
+    "started_at_utc": "2026-10-15T09:23:07.141070+00:00",
+    "observed_pairs_checked": 5840,
+    "maximum_direct_reward_difference": 2.979590485452377e-08,
+    "artifacts": {
+      "train.npz": "d6b24123983127510ae2f39d999ac2f116539468e3fb2f555ce961cdb096f43a",
+      "validation.npz": "5c48451b8f5b249f7325491b6ef338bc6c7e2d168eb381228bd3b4feafbadc71"
+    }
+  },
+  "controls": {
+    "reference": {
+      "ranking": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.13481963924963924,
+          "ndcg@5": 0.102477924166782,
+          "recall@10": 0.17486608225108224,
+          "ndcg@10": 0.11571241085348777,
+          "recall@20": 0.2294572388722389,
+          "ndcg@20": 0.1300240615788741
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9945,
+          "top_10_items_share": 0.0687,
+          "context_repeat_fraction": 0.52946,
+          "mean_duration_seconds": 191.5698,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.17724321133412044,
+            "ndcg@10": 0.12257214539767938
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.168733681462141,
+            "ndcg@10": 0.10499415506745616
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.1790165420348969,
+            "ndcg@10": 0.11458841298086174
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.17243260040289743,
+            "ndcg@10": 0.1370106894573581
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "top10_reward": 0.6542597863823175,
+      "distribution": {
+        "expected_reward": 0.6498088454961652,
+        "entropy": 5.546008404912028,
+        "kl_to_reference": 6.098851273782545e-10
+      }
+    },
+    "hard-repeat": {
+      "ranking": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.1016790836940837,
+          "ndcg@5": 0.07322364765827229,
+          "recall@10": 0.13963552669552667,
+          "ndcg@10": 0.08579969888225243,
+          "recall@20": 0.19285723887223888,
+          "ndcg@20": 0.09972861554583312
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9935,
+          "top_10_items_share": 0.06888,
+          "context_repeat_fraction": 0.5017,
+          "mean_duration_seconds": 191.398,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.12795159386068478,
+            "ndcg@10": 0.07633415719036468
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.1429503916449086,
+            "ndcg@10": 0.08590218940323756
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.14570586902334012,
+            "ndcg@10": 0.08893257643901357
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.15872706318250873,
+            "ndcg@10": 0.12299161063774079
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "top10_reward": 0.6543396207362413,
+      "distribution": {
+        "expected_reward": 0.648397716928611,
+        "entropy": 5.746378105691803,
+        "kl_to_reference": 0.10177958407348232
+      }
+    },
+    "train_popularity": {
+      "ranking": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.01774595238095238,
+          "ndcg@5": 0.009467517062368444,
+          "recall@10": 0.03227928571428572,
+          "ndcg@10": 0.014268360773271434,
+          "recall@20": 0.05479492784992785,
+          "ndcg@20": 0.02020052509396926
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.005,
+          "top_10_items_share": 1.0,
+          "context_repeat_fraction": 0.0591,
+          "mean_duration_seconds": 168.5,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.03955135773317592,
+            "ndcg@10": 0.018827454563443615
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.041829852045256743,
+            "ndcg@10": 0.018217948681483725
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.01495581237253569,
+            "ndcg@10": 0.004570838934371053
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.027435957881502437,
+            "ndcg@10": 0.01588942040723039
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "top10_reward": 0.6516078654408455,
+      "distribution": null
+    },
+    "recent_items": {
+      "ranking": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.12016298701298701,
+          "ndcg@5": 0.09416977535620447,
+          "recall@10": 0.16142466089466087,
+          "ndcg@10": 0.10775509399008554,
+          "recall@20": 0.20823098845598847,
+          "ndcg@20": 0.12036574349926364
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9935,
+          "top_10_items_share": 0.13156,
+          "context_repeat_fraction": 0.89752,
+          "mean_duration_seconds": 190.2685,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.15422077922077923,
+            "ndcg@10": 0.10897915749613017
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.15823542210617927,
+            "ndcg@10": 0.1002116244099754
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.17471108089734874,
+            "ndcg@10": 0.11143259671985607
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.1533222369856033,
+            "ndcg@10": 0.1211987418514608
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "top10_reward": 0.659309951403737,
+      "distribution": null
+    },
+    "analytic-reward-kl-01": {
+      "ranking": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.13794266955266957,
+          "ndcg@5": 0.10543488750645899,
+          "recall@10": 0.17858887445887447,
+          "ndcg@10": 0.1187432080630562,
+          "recall@20": 0.23503306637806637,
+          "ndcg@20": 0.13349554210631678
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.993,
+          "top_10_items_share": 0.07612,
+          "context_repeat_fraction": 0.57836,
+          "mean_duration_seconds": 185.7692,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.18875442739079104,
+            "ndcg@10": 0.1308880335778012
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.1738468233246301,
+            "ndcg@10": 0.11107347074401004
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.1722184455019261,
+            "ndcg@10": 0.10825667369149657
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.17665909448087666,
+            "ndcg@10": 0.14053329126888123
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "top10_reward": 0.6659937777474523,
+      "distribution": {
+        "expected_reward": 0.6615443781228473,
+        "entropy": 5.2962872210349055,
+        "kl_to_reference": 0.06106754043992688
+      }
+    },
+    "analytic-repeat-kl-01": {
+      "ranking": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.1352441847041847,
+          "ndcg@5": 0.10290058504991408,
+          "recall@10": 0.17748887445887443,
+          "ndcg@10": 0.11681521076256227,
+          "recall@20": 0.23473306637806635,
+          "ndcg@20": 0.1317717146127757
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.992,
+          "top_10_items_share": 0.07652,
+          "context_repeat_fraction": 0.57406,
+          "mean_duration_seconds": 185.6471,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.18757378984651712,
+            "ndcg@10": 0.13037870654989267
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.1731940818102698,
+            "ndcg@10": 0.10928581182201494
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.17085882619533196,
+            "ndcg@10": 0.10479952623663827
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.17500892946437502,
+            "ndcg@10": 0.13738798056723253
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "top10_reward": 0.6664557681083679,
+      "distribution": {
+        "expected_reward": 0.6610338710436953,
+        "entropy": 5.3953018957539225,
+        "kl_to_reference": 0.06825226484364537
+      }
+    },
+    "analytic-reward-kl-1": {
+      "ranking": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.1347763059163059,
+          "ndcg@5": 0.10333685317830771,
+          "recall@10": 0.17472259740259743,
+          "ndcg@10": 0.11661278917244454,
+          "recall@20": 0.2300905722055722,
+          "ndcg@20": 0.13109767529448924
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.994,
+          "top_10_items_share": 0.06948,
+          "context_repeat_fraction": 0.53506,
+          "mean_duration_seconds": 191.0409,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.17694805194805194,
+            "ndcg@10": 0.12408330946769308
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.16960400348128807,
+            "ndcg@10": 0.10645933171690518
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.1773170179016542,
+            "ndcg@10": 0.11377916626908624
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.17556541368422557,
+            "ndcg@10": 0.13994049456048174
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "top10_reward": 0.6555444726899267,
+      "distribution": {
+        "expected_reward": 0.6508452880407238,
+        "entropy": 5.529693850693746,
+        "kl_to_reference": 0.0005209916462231005
+      }
+    },
+    "analytic-repeat-kl-1": {
+      "ranking": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.13437630591630592,
+          "ndcg@5": 0.10307934858592348,
+          "recall@10": 0.17472259740259743,
+          "ndcg@10": 0.11649658679746322,
+          "recall@20": 0.2300905722055722,
+          "ndcg@20": 0.13097947486771222
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.994,
+          "top_10_items_share": 0.06956,
+          "context_repeat_fraction": 0.53488,
+          "mean_duration_seconds": 191.0367,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.17694805194805194,
+            "ndcg@10": 0.1245085502776406
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.16960400348128807,
+            "ndcg@10": 0.10582487494878504
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.1773170179016542,
+            "ndcg@10": 0.11372189163294122
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.17556541368422557,
+            "ndcg@10": 0.13913148119933244
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "top10_reward": 0.6555507087811827,
+      "distribution": {
+        "expected_reward": 0.6508086070648649,
+        "entropy": 5.543864588188981,
+        "kl_to_reference": 0.0006624095221569202
+      }
+    }
+  },
+  "runs": {
+    "reward-kl-01/42": {
+      "variant": {
+        "name": "reward-kl-01",
+        "beta": 0.1,
+        "repeat_penalty": 0.0
+      },
+      "seed": 42,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6418869924545288
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6429515476226807
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.6434287090301514
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6437383174896241
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6439892044067382
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 5000,
+          "users": 734,
+          "metrics": {
+            "recall@5": 0.1314377344877345,
+            "ndcg@5": 0.10056902463077184,
+            "recall@10": 0.17785155844155842,
+            "ndcg@10": 0.11589902358557386,
+            "recall@20": 0.2310905722055722,
+            "ndcg@20": 0.129808722662504
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.994,
+            "top_10_items_share": 0.08118,
+            "context_repeat_fraction": 0.53006,
+            "mean_duration_seconds": 187.6382,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1694,
+              "recall@10": 0.18226092089728455,
+              "ndcg@10": 0.1256923599709853
+            },
+            "medium": {
+              "queries": 1532,
+              "recall@10": 0.1722149695387293,
+              "ndcg@10": 0.10642261666045374
+            },
+            "long": {
+              "queries": 1471,
+              "recall@10": 0.1783367323815998,
+              "ndcg@10": 0.11004073094661893
+            },
+            "mixed": {
+              "queries": 303,
+              "recall@10": 0.17934364865057933,
+              "ndcg@10": 0.13750130756016068
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6563484037935734,
+        "distribution": {
+          "expected_reward": 0.6522024284689867,
+          "entropy": 5.4310283996370625,
+          "kl_to_reference": 0.01749687563425956
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/runs/reward-kl-01/seed-42/policy.pt",
+      "seconds": 15.97343970899965,
+      "artifacts": {
+        "policy.pt": "c2719c86c7c9fb59c4bf082e3c9c0374f225cbe84cfce4a3a27a1a3ca6173204",
+        "validation.npz": "bd51bae4dc97245941231aa28cbd24b02ae3cb3fddfbecd73e1369d1724b3571",
+        "training-history.json": "30ee7e3ab54fceb51d759932b272f44f3fff784f5076aa36df555e9231de6222"
+      }
+    },
+    "repeat-kl-01/42": {
+      "variant": {
+        "name": "repeat-kl-01",
+        "beta": 0.1,
+        "repeat_penalty": 0.1
+      },
+      "seed": 42,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6364825196266174
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6377987127304077
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.6383473634719848
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6386917748451233
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6389684572219848
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 5000,
+          "users": 734,
+          "metrics": {
+            "recall@5": 0.1318911544011544,
+            "ndcg@5": 0.10063535118308378,
+            "recall@10": 0.17515044733044732,
+            "ndcg@10": 0.11485595352174864,
+            "recall@20": 0.23202747696747697,
+            "ndcg@20": 0.12971418196628975
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9935,
+            "top_10_items_share": 0.08098,
+            "context_repeat_fraction": 0.52862,
+            "mean_duration_seconds": 187.5397,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1694,
+              "recall@10": 0.18167060212514757,
+              "ndcg@10": 0.12457531462497255
+            },
+            "medium": {
+              "queries": 1532,
+              "recall@10": 0.16895126196692775,
+              "ndcg@10": 0.10549167642069268
+            },
+            "long": {
+              "queries": 1471,
+              "recall@10": 0.17380466802628597,
+              "ndcg@10": 0.10898706369504328
+            },
+            "mixed": {
+              "queries": 303,
+              "recall@10": 0.17657503845622657,
+              "ndcg@10": 0.13635632231726016
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6563250766858458,
+        "distribution": {
+          "expected_reward": 0.6520048190970142,
+          "entropy": 5.49663177115594,
+          "kl_to_reference": 0.01996840756667316
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/runs/repeat-kl-01/seed-42/policy.pt",
+      "seconds": 15.756848749995697,
+      "artifacts": {
+        "policy.pt": "b44851f3f5f0406f97f1aa58fc80f2f77615a25ced41e9918dfc27d05e1f40e0",
+        "validation.npz": "7358bdc6bc6cb0bb9e468272ede160b95d2c2e5fcc2c87dc7b544de1981188e2",
+        "training-history.json": "3aab1b04081f22847409d5f44e5f89f97730891b226e65400c5370d4c5d8db59"
+      }
+    },
+    "reward-kl-1/42": {
+      "variant": {
+        "name": "reward-kl-1",
+        "beta": 1.0,
+        "repeat_penalty": 0.0
+      },
+      "seed": 42,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6407566165924072
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6407442355155945
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.6405173869132995
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6402599868774415
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6403768887519836
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 5000,
+          "users": 734,
+          "metrics": {
+            "recall@5": 0.13463479076479076,
+            "ndcg@5": 0.10272158117214551,
+            "recall@10": 0.17506441558441557,
+            "ndcg@10": 0.11609604698347405,
+            "recall@20": 0.23012390553890555,
+            "ndcg@20": 0.13052358920549528
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.994,
+            "top_10_items_share": 0.06988,
+            "context_repeat_fraction": 0.52908,
+            "mean_duration_seconds": 191.0543,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1694,
+              "recall@10": 0.1775383707201889,
+              "ndcg@10": 0.12323851783115884
+            },
+            "medium": {
+              "queries": 1532,
+              "recall@10": 0.1693864229765013,
+              "ndcg@10": 0.10633616308965925
+            },
+            "long": {
+              "queries": 1471,
+              "recall@10": 0.17912984364377973,
+              "ndcg@10": 0.11380419869736016
+            },
+            "mixed": {
+              "queries": 303,
+              "recall@10": 0.1702048776306202,
+              "ndcg@10": 0.13663764875977677
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6544893819719553,
+        "distribution": {
+          "expected_reward": 0.6500879718879778,
+          "entropy": 5.534999527473507,
+          "kl_to_reference": 0.0009023069555281935
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/runs/reward-kl-1/seed-42/policy.pt",
+      "seconds": 14.593312875003903,
+      "artifacts": {
+        "policy.pt": "57f8481c9ebe2e718bfd208289169615a8f806a269acbf70ad56e7c7c8c547dc",
+        "validation.npz": "071c5414f4408bebd7031e57e7a9526a1d08425ffd35d2f1d5d28e7e08a18c6d",
+        "training-history.json": "520edb25dafd2c05c23976c6ba192051192d3cb5c2e4a0ab03e141c7e7c621a8"
+      }
+    },
+    "repeat-kl-1/42": {
+      "variant": {
+        "name": "repeat-kl-1",
+        "beta": 1.0,
+        "repeat_penalty": 0.1
+      },
+      "seed": 42,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6351775951385498
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6352033023834228
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.635032527923584
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.634773572921753
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6348469028472901
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 5000,
+          "users": 734,
+          "metrics": {
+            "recall@5": 0.13333479076479077,
+            "ndcg@5": 0.10229941753494176,
+            "recall@10": 0.175007987012987,
+            "ndcg@10": 0.11614506043333718,
+            "recall@20": 0.2306572388722389,
+            "ndcg@20": 0.1306670112949887
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9945,
+            "top_10_items_share": 0.07076,
+            "context_repeat_fraction": 0.52934,
+            "mean_duration_seconds": 191.0631,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1694,
+              "recall@10": 0.1775383707201889,
+              "ndcg@10": 0.12381051059255674
+            },
+            "medium": {
+              "queries": 1532,
+              "recall@10": 0.16808093994778067,
+              "ndcg@10": 0.1053274227067809
+            },
+            "long": {
+              "queries": 1471,
+              "recall@10": 0.17969635168819395,
+              "ndcg@10": 0.11415746453620026
+            },
+            "mixed": {
+              "queries": 303,
+              "recall@10": 0.17312409812409812,
+              "ndcg@10": 0.1376338458856624
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6545245622500777,
+        "distribution": {
+          "expected_reward": 0.6500966471275611,
+          "entropy": 5.54523493705484,
+          "kl_to_reference": 0.001056531630427287
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/runs/repeat-kl-1/seed-42/policy.pt",
+      "seconds": 15.829872832997353,
+      "artifacts": {
+        "policy.pt": "2cc15fd12a5734a68880b012e74bf861fd5637c5e644f957bb032a9efa5f23b6",
+        "validation.npz": "73fd92dbfc042c287faf2a6b1001b7f8af5f742b08fbd185c1e9a9665e744ddc",
+        "training-history.json": "2495481e105b98f9ef895ab46521593f9dbb44ab6d89b02fc9b45779acce5815"
+      }
+    },
+    "repeat-kl-01/43": {
+      "variant": {
+        "name": "repeat-kl-01",
+        "beta": 0.1,
+        "repeat_penalty": 0.1
+      },
+      "seed": 43,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6364833784103393
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6378021054267883
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.6383347387313842
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6387044830322266
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.638969856262207
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 5000,
+          "users": 734,
+          "metrics": {
+            "recall@5": 0.13256782106782106,
+            "ndcg@5": 0.10154952619252612,
+            "recall@10": 0.1753282251082251,
+            "ndcg@10": 0.11562749052434056,
+            "recall@20": 0.23090723887223885,
+            "ndcg@20": 0.13012354487533678
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.994,
+            "top_10_items_share": 0.08086,
+            "context_repeat_fraction": 0.52944,
+            "mean_duration_seconds": 187.5674,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1694,
+              "recall@10": 0.1828512396694215,
+              "ndcg@10": 0.12587645758906577
+            },
+            "medium": {
+              "queries": 1532,
+              "recall@10": 0.16808093994778067,
+              "ndcg@10": 0.10610038784726046
+            },
+            "long": {
+              "queries": 1471,
+              "recall@10": 0.1741445728529345,
+              "ndcg@10": 0.10960419859878275
+            },
+            "mixed": {
+              "queries": 303,
+              "recall@10": 0.17565828011372567,
+              "ndcg@10": 0.13573981235977878
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.656338074092567,
+        "distribution": {
+          "expected_reward": 0.6519973419183751,
+          "entropy": 5.493964616695793,
+          "kl_to_reference": 0.019863482875018455
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/runs/repeat-kl-01/seed-43/policy.pt",
+      "seconds": 15.66246291599964,
+      "artifacts": {
+        "policy.pt": "c3cf617d552a45a10af9e178c87cef473e697ab5a49e8bf00b30dd9caa3ee417",
+        "validation.npz": "ce9f9d999d8f6093cee2e33312f4afb6a984ae3029d151341c5831092cae0a42",
+        "training-history.json": "c897f4d3054fb16f128d34d392cc9fefbde7022025e8092fe8b0b39d4c202f6c"
+      }
+    },
+    "repeat-kl-01/44": {
+      "variant": {
+        "name": "repeat-kl-01",
+        "beta": 0.1,
+        "repeat_penalty": 0.1
+      },
+      "seed": 44,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.636495262145996
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6378003568649292
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.638353099822998
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6387083835601807
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6389634399414063
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 5000,
+          "users": 734,
+          "metrics": {
+            "recall@5": 0.1315511544011544,
+            "ndcg@5": 0.10111889454852464,
+            "recall@10": 0.17538012987012985,
+            "ndcg@10": 0.11552264065863764,
+            "recall@20": 0.23136914363414363,
+            "ndcg@20": 0.13018010547373796
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9935,
+            "top_10_items_share": 0.0782,
+            "context_repeat_fraction": 0.52916,
+            "mean_duration_seconds": 187.7748,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1694,
+              "recall@10": 0.18226092089728455,
+              "ndcg@10": 0.12538609549295135
+            },
+            "medium": {
+              "queries": 1532,
+              "recall@10": 0.16829852045256743,
+              "ndcg@10": 0.10561189327023457
+            },
+            "long": {
+              "queries": 1471,
+              "recall@10": 0.17516428733288011,
+              "ndcg@10": 0.11013766883221669
+            },
+            "mixed": {
+              "queries": 303,
+              "recall@10": 0.17376451930907377,
+              "ndcg@10": 0.13663110952454993
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6561907070353628,
+        "distribution": {
+          "expected_reward": 0.6519653961941835,
+          "entropy": 5.498816811537198,
+          "kl_to_reference": 0.01934303258764989
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/runs/repeat-kl-01/seed-44/policy.pt",
+      "seconds": 16.09662095800013,
+      "artifacts": {
+        "policy.pt": "a12239be6de873c6e121a071274e7ff77233f43516435b7c52b866ea5ca6c31e",
+        "validation.npz": "8ea5258cb6736a4d7568a45c6f57ddbc73891116de95fc25e8bc02b51b50297a",
+        "training-history.json": "19eee82461f269da488b8d4fca8788dab07e9fba5c6664fdc47efe1bed514781"
+      }
+    }
+  },
+  "rollouts": {
+    "reference/42": {
+      "greedy": {
+        "mean_unique": 1.021,
+        "repeat_step5": 0.999,
+        "repeat_by_step": [
+          null,
+          0.99,
+          0.994,
+          0.996,
+          0.999
+        ],
+        "reward_by_step": [
+          0.6667273154705763,
+          0.6665635685473681,
+          0.6665776459723711,
+          0.6665916316062211,
+          0.6665927076488734
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/reference-seed-42-greedy.npz",
+        "sha256": "cfacf125e7c08f38acbb7ad259a7ff942de804e687801d6a3462452bc18c70f2"
+      },
+      "sampled": {
+        "mean_unique": 4.121,
+        "repeat_step5": 0.171,
+        "repeat_by_step": [
+          null,
+          0.159,
+          0.183,
+          0.18,
+          0.171
+        ],
+        "reward_by_step": [
+          0.6548129060044885,
+          0.6527504445351661,
+          0.6536315251737833,
+          0.6531583890169859,
+          0.6523894260488451
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/reference-seed-42-sampled.npz",
+        "sha256": "5435216188a17fd19e37568fadfddbd812f46b8fce9f68a024d306b902252a12"
+      }
+    },
+    "hard-repeat/42": {
+      "greedy": {
+        "mean_unique": 2.129,
+        "repeat_step5": 0.0,
+        "repeat_by_step": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reward_by_step": [
+          0.6698713645935058,
+          0.6607206690534949,
+          0.6697100093066692,
+          0.660431740872562,
+          0.6696908401325345
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/hard-repeat-seed-42-greedy.npz",
+        "sha256": "ab656afbe0fb84fdbd4950c1659d3caedd0a8c732dbd4c6c6e8942344d67e72a"
+      },
+      "sampled": {
+        "mean_unique": 4.737,
+        "repeat_step5": 0.0,
+        "repeat_by_step": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reward_by_step": [
+          0.6535653285980224,
+          0.6518498026952148,
+          0.6525012247860432,
+          0.6524698110334575,
+          0.6510496965944766
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/hard-repeat-seed-42-sampled.npz",
+        "sha256": "0f10cfd1f0fc4918a5ee255b6ee99b51465b8ca8933ae13bb71d888d70e367f5"
+      }
+    },
+    "reward-kl-01/42": {
+      "greedy": {
+        "mean_unique": 1.02,
+        "repeat_step5": 0.999,
+        "repeat_by_step": [
+          null,
+          0.99,
+          0.995,
+          0.996,
+          0.999
+        ],
+        "reward_by_step": [
+          0.66968630361557,
+          0.6696294754445553,
+          0.6696336670219898,
+          0.6696476526558399,
+          0.669648728698492
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/reward-kl-01-seed-42-greedy.npz",
+        "sha256": "e799671c6ebdc87873eaf9e06923923310172f32e5dba5c76ca19a07ac37bc75"
+      },
+      "sampled": {
+        "mean_unique": 4.055,
+        "repeat_step5": 0.204,
+        "repeat_by_step": [
+          null,
+          0.155,
+          0.192,
+          0.2,
+          0.204
+        ],
+        "reward_by_step": [
+          0.6570581335648894,
+          0.655417105998844,
+          0.6574053664281965,
+          0.6560211919024587,
+          0.6562957724109292
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/reward-kl-01-seed-42-sampled.npz",
+        "sha256": "f736061515fad6184a97deaf4bcf0ba4238c65b488cda434768ba0497433656e"
+      }
+    },
+    "repeat-kl-01/42": {
+      "greedy": {
+        "mean_unique": 1.038,
+        "repeat_step5": 0.997,
+        "repeat_by_step": [
+          null,
+          0.974,
+          0.991,
+          0.994,
+          0.997
+        ],
+        "reward_by_step": [
+          0.6712251621559262,
+          0.6712102503404022,
+          0.6712526904717088,
+          0.6712172987088562,
+          0.671267752148211
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/repeat-kl-01-seed-42-greedy.npz",
+        "sha256": "427139be3f660a597e70ed1c39f70034f05f0a52412f050147f1bb6877342883"
+      },
+      "sampled": {
+        "mean_unique": 4.203,
+        "repeat_step5": 0.173,
+        "repeat_by_step": [
+          null,
+          0.123,
+          0.151,
+          0.147,
+          0.173
+        ],
+        "reward_by_step": [
+          0.6569533336646854,
+          0.6567472982630134,
+          0.6554939922466874,
+          0.6550717246979475,
+          0.6561491473019123
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/repeat-kl-01-seed-42-sampled.npz",
+        "sha256": "47f353cfd09a0a6d23e6df4fb1c2dd0cb802985fe29f0dd65c2fe737cc3f92d6"
+      }
+    },
+    "reward-kl-1/42": {
+      "greedy": {
+        "mean_unique": 1.019,
+        "repeat_step5": 0.999,
+        "repeat_by_step": [
+          null,
+          0.991,
+          0.995,
+          0.996,
+          0.999
+        ],
+        "reward_by_step": [
+          0.666884534407407,
+          0.6668040586300195,
+          0.6668082502074539,
+          0.6668222358413041,
+          0.6668233118839562
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/reward-kl-1-seed-42-greedy.npz",
+        "sha256": "eaf9b1b0ad9c4232434609ed1cc35c357ea0a192c3568dcbde93ed33f50a2765"
+      },
+      "sampled": {
+        "mean_unique": 4.132,
+        "repeat_step5": 0.182,
+        "repeat_by_step": [
+          null,
+          0.155,
+          0.193,
+          0.176,
+          0.182
+        ],
+        "reward_by_step": [
+          0.6552537137493492,
+          0.6543588637076319,
+          0.6532968906238675,
+          0.6531795488297939,
+          0.6530912027731538
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/reward-kl-1-seed-42-sampled.npz",
+        "sha256": "4542fe27eab821dc26055cecb5bc419e9527deeb2fcffd09e3a992d090774329"
+      }
+    },
+    "repeat-kl-1/42": {
+      "greedy": {
+        "mean_unique": 1.023,
+        "repeat_step5": 0.999,
+        "repeat_by_step": [
+          null,
+          0.988,
+          0.994,
+          0.996,
+          0.999
+        ],
+        "reward_by_step": [
+          0.6672822055108846,
+          0.667259286750108,
+          0.6672733641751111,
+          0.6672873498089612,
+          0.6672884258516133
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/repeat-kl-1-seed-42-greedy.npz",
+        "sha256": "4862be861945a10f715f2ea92333962e7afe5324528c9c5f32a9d0d1e2348e6e"
+      },
+      "sampled": {
+        "mean_unique": 4.151,
+        "repeat_step5": 0.165,
+        "repeat_by_step": [
+          null,
+          0.15,
+          0.178,
+          0.175,
+          0.165
+        ],
+        "reward_by_step": [
+          0.6548372442498803,
+          0.6529577352516354,
+          0.653420779697597,
+          0.6524428095445037,
+          0.6535698730647564
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/repeat-kl-1-seed-42-sampled.npz",
+        "sha256": "5cc18972ef6752acdcaa481b38f376def94692746c65b9a079020ac60bf2b55e"
+      }
+    },
+    "repeat-kl-01/43": {
+      "greedy": {
+        "mean_unique": 1.04,
+        "repeat_step5": 0.997,
+        "repeat_by_step": [
+          null,
+          0.973,
+          0.99,
+          0.994,
+          0.997
+        ],
+        "reward_by_step": [
+          0.6710835945308209,
+          0.6711369183659553,
+          0.6712365543842316,
+          0.6712183686494827,
+          0.6712516160607338
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/repeat-kl-01-seed-43-greedy.npz",
+        "sha256": "49009a4c5ee70452b77825a38535af84e58af07e7469fc30f8c7ffd026d01ef4"
+      },
+      "sampled": {
+        "mean_unique": 4.191,
+        "repeat_step5": 0.162,
+        "repeat_by_step": [
+          null,
+          0.128,
+          0.157,
+          0.138,
+          0.162
+        ],
+        "reward_by_step": [
+          0.6560379069000483,
+          0.6567283807322383,
+          0.6555727325230837,
+          0.6559278211891651,
+          0.6577959876805544
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/repeat-kl-01-seed-43-sampled.npz",
+        "sha256": "6a1daf40f7dee4d3dcc4663bd55dd4d87bae8ebd607945e8f39d9ef3d5149276"
+      }
+    },
+    "repeat-kl-01/44": {
+      "greedy": {
+        "mean_unique": 1.038,
+        "repeat_step5": 0.998,
+        "repeat_by_step": [
+          null,
+          0.973,
+          0.991,
+          0.995,
+          0.998
+        ],
+        "reward_by_step": [
+          0.6713793876841664,
+          0.6715026875659823,
+          0.671547567255795,
+          0.6715057339146733,
+          0.6715626289322972
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/repeat-kl-01-seed-44-greedy.npz",
+        "sha256": "89df68f40cb39134f5bcd9640ac79d8ffb6163849f21f85f46528c781cc40585"
+      },
+      "sampled": {
+        "mean_unique": 4.244,
+        "repeat_step5": 0.159,
+        "repeat_by_step": [
+          null,
+          0.114,
+          0.148,
+          0.135,
+          0.159
+        ],
+        "reward_by_step": [
+          0.6570486709252,
+          0.656153084564954,
+          0.6572327064275741,
+          0.6559880383461714,
+          0.6555039910040796
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/rollouts/repeat-kl-01-seed-44-sampled.npz",
+        "sha256": "e3388624ea6bdb1ba240531c9823bdd897d1350d40942dc1f12133adf7b995b1"
+      }
+    }
+  },
+  "selection": {
+    "screening_challenger": "repeat-kl-01",
+    "confirmation": [
+      {
+        "seed": 42,
+        "passed": true
+      },
+      {
+        "seed": 43,
+        "passed": true
+      },
+      {
+        "seed": 44,
+        "passed": true
+      }
+    ],
+    "accepted_on_development": true,
+    "selected_variant": "repeat-kl-01",
+    "checkpoint": {
+      "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/runs/repeat-kl-01/seed-42/policy.pt",
+      "sha256": "b44851f3f5f0406f97f1aa58fc80f2f77615a25ced41e9918dfc27d05e1f40e0"
+    },
+    "final_used_for_selection": false,
+    "recorded_at_utc": "2026-10-15T09:26:32.981081+00:00"
+  },
+  "final": {
+    "policies": {
+      "reference": {
+        "ranking": {
+          "queries": 5000,
+          "users": 739,
+          "metrics": {
+            "recall@5": 0.11147174603174603,
+            "ndcg@5": 0.08225554815603178,
+            "recall@10": 0.1524607215007215,
+            "ndcg@10": 0.09570429385849623,
+            "recall@20": 0.1980337693707259,
+            "ndcg@20": 0.10750849287133755
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.983,
+            "top_10_items_share": 0.07024,
+            "context_repeat_fraction": 0.50666,
+            "mean_duration_seconds": 189.4723,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1834,
+              "recall@10": 0.15648854961832062,
+              "ndcg@10": 0.10187652877347288
+            },
+            "medium": {
+              "queries": 1508,
+              "recall@10": 0.14859637488947833,
+              "ndcg@10": 0.09318599745445715
+            },
+            "long": {
+              "queries": 1404,
+              "recall@10": 0.14814814814814814,
+              "ndcg@10": 0.08452567679301404
+            },
+            "mixed": {
+              "queries": 254,
+              "recall@10": 0.17015855972548885,
+              "ndcg@10": 0.12787945331975906
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6654779539167881,
+        "distribution": {
+          "expected_reward": 0.6601337724020274,
+          "entropy": 5.68196810536097,
+          "kl_to_reference": -4.2595619369362746e-10
+        }
+      },
+      "selected": {
+        "ranking": {
+          "queries": 5000,
+          "users": 739,
+          "metrics": {
+            "recall@5": 0.11304285714285714,
+            "ndcg@5": 0.08267803501402907,
+            "recall@10": 0.15100405483405485,
+            "ndcg@10": 0.0951682144347471,
+            "recall@20": 0.2002256468410816,
+            "ndcg@20": 0.10794730120574081
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.985,
+            "top_10_items_share": 0.08332,
+            "context_repeat_fraction": 0.5039,
+            "mean_duration_seconds": 185.3964,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1834,
+              "recall@10": 0.15948745910577972,
+              "ndcg@10": 0.1033562120991338
+            },
+            "medium": {
+              "queries": 1508,
+              "recall@10": 0.1492595048629531,
+              "ndcg@10": 0.09348151141564152
+            },
+            "long": {
+              "queries": 1404,
+              "recall@10": 0.13782051282051283,
+              "ndcg@10": 0.08011926667217162
+            },
+            "mixed": {
+              "queries": 254,
+              "recall@10": 0.17298008203520013,
+              "ndcg@10": 0.12924491953310124
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6674687873527407,
+        "distribution": {
+          "expected_reward": 0.6621365819526596,
+          "entropy": 5.6269595270821515,
+          "kl_to_reference": 0.020153010914820146
+        }
+      },
+      "hard-repeat": {
+        "ranking": {
+          "queries": 5000,
+          "users": 739,
+          "metrics": {
+            "recall@5": 0.09552730158730158,
+            "ndcg@5": 0.06905815723192539,
+            "recall@10": 0.1338607215007215,
+            "ndcg@10": 0.08165572382221112,
+            "recall@20": 0.17947265825961475,
+            "ndcg@20": 0.09347637169593176
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.981,
+            "top_10_items_share": 0.07146,
+            "context_repeat_fraction": 0.48196,
+            "mean_duration_seconds": 189.4018,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1834,
+              "recall@10": 0.13249727371864775,
+              "ndcg@10": 0.08311401327528228
+            },
+            "medium": {
+              "queries": 1508,
+              "recall@10": 0.13268125552608312,
+              "ndcg@10": 0.0814465540456479
+            },
+            "long": {
+              "queries": 1404,
+              "recall@10": 0.13283475783475784,
+              "ndcg@10": 0.07292811588142983
+            },
+            "mixed": {
+              "queries": 254,
+              "recall@10": 0.15637903216643373,
+              "ndcg@10": 0.12061039592843853
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6658834390625358,
+        "distribution": {
+          "expected_reward": 0.6600252834728028,
+          "entropy": 5.804511736684567,
+          "kl_to_reference": 0.05020281858971303
+        }
+      },
+      "train_popularity": {
+        "ranking": {
+          "queries": 5000,
+          "users": 739,
+          "metrics": {
+            "recall@5": 0.013433350900307423,
+            "ndcg@5": 0.007879187949901448,
+            "recall@10": 0.023479548591505115,
+            "ndcg@10": 0.011243255715652534,
+            "recall@20": 0.044978345253780035,
+            "ndcg@20": 0.016870322476136575
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.005,
+            "top_10_items_share": 1.0,
+            "context_repeat_fraction": 0.05496,
+            "mean_duration_seconds": 168.5,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1834,
+              "recall@10": 0.02808069792802617,
+              "ndcg@10": 0.014328277342484201
+            },
+            "medium": {
+              "queries": 1508,
+              "recall@10": 0.025254199823165336,
+              "ndcg@10": 0.011389240936970451
+            },
+            "long": {
+              "queries": 1404,
+              "recall@10": 0.012464387464387465,
+              "ndcg@10": 0.0038689455506858805
+            },
+            "mixed": {
+              "queries": 254,
+              "recall@10": 0.04060791190626863,
+              "ndcg@10": 0.02886316159855209
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6632561957463622,
+        "distribution": null
+      },
+      "recent_items": {
+        "ranking": {
+          "queries": 5000,
+          "users": 739,
+          "metrics": {
+            "recall@5": 0.11090857142857141,
+            "ndcg@5": 0.08145110615200513,
+            "recall@10": 0.1541624603174603,
+            "ndcg@10": 0.09582601373897619,
+            "recall@20": 0.2016616321601104,
+            "ndcg@20": 0.10821312514593166
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9795,
+            "top_10_items_share": 0.15664,
+            "context_repeat_fraction": 0.87226,
+            "mean_duration_seconds": 187.3689,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 1834,
+              "recall@10": 0.15430752453653218,
+              "ndcg@10": 0.0997108552742413
+            },
+            "medium": {
+              "queries": 1508,
+              "recall@10": 0.16285366931918654,
+              "ndcg@10": 0.09575721133073428
+            },
+            "long": {
+              "queries": 1404,
+              "recall@10": 0.13829534662867995,
+              "ndcg@10": 0.0825290601155881
+            },
+            "mixed": {
+              "queries": 254,
+              "recall@10": 0.18922165979252595,
+              "ndcg@10": 0.14168379934208394
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6710171192646026,
+        "distribution": null
+      }
+    },
+    "intervals_vs_reference": {
+      "selected": {
+        "ndcg@10": {
+          "estimate": -0.0005360794237491305,
+          "ci95": [
+            -0.0018958811138314183,
+            0.0008102860399482975
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "recall@10": {
+          "estimate": -0.0014566666666666667,
+          "ci95": [
+            -0.0044830192442440395,
+            0.0014354436795310024
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "reward": {
+          "estimate": 0.0019908334359526633,
+          "ci95": [
+            0.001836901019004417,
+            0.0021559581750407106
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        }
+      },
+      "hard-repeat": {
+        "ndcg@10": {
+          "estimate": -0.014048570036285108,
+          "ci95": [
+            -0.018585609135159754,
+            -0.010160054851613037
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "recall@10": {
+          "estimate": -0.0186,
+          "ci95": [
+            -0.02351366306974402,
+            -0.014318644976991883
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "reward": {
+          "estimate": 0.0004054851457476616,
+          "ci95": [
+            0.00023857240198888987,
+            0.0005656164524987734
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        }
+      },
+      "train_popularity": {
+        "ndcg@10": {
+          "estimate": -0.0844610381428437,
+          "ci95": [
+            -0.09625953050994783,
+            -0.0730822519690926
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "recall@10": {
+          "estimate": -0.12898117290921637,
+          "ci95": [
+            -0.14602584839598673,
+            -0.11276825865575928
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "reward": {
+          "estimate": -0.002221758170425892,
+          "ci95": [
+            -0.0029489219830263007,
+            -0.0014881276571379984
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        }
+      },
+      "recent_items": {
+        "ndcg@10": {
+          "estimate": 0.00012171988047994517,
+          "ci95": [
+            -0.00381536859773168,
+            0.0037511346682651357
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "recall@10": {
+          "estimate": 0.0017017388167388159,
+          "ci95": [
+            -0.006523124269499682,
+            0.009783839063559271
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "reward": {
+          "estimate": 0.00553916534781456,
+          "ci95": [
+            0.00503892124996918,
+            0.006065660488149998
+          ],
+          "clusters": 739,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        }
+      }
+    },
+    "primary_confirmation": {
+      "reward_improvement": true,
+      "ndcg_noninferiority": false,
+      "absolute_ndcg_margin": 0.0009570429385849623,
+      "both_passed": false
+    },
+    "reward_model": {
+      "metrics": {
+        "calibrated": {
+          "pairs": 5641,
+          "mse": 0.14170530858791222,
+          "rmse": 0.37643765564554277,
+          "mae": 0.308606290887824,
+          "r2": 0.28181964535446846,
+          "pearson": 0.5315763514567114,
+          "bias": 0.011933208284069146,
+          "mean_prediction": 0.6523685630175149,
+          "mean_observed": 0.6404353547334457
+        },
+        "history_user": {
+          "pairs": 5641,
+          "mse": 0.14314262616329115,
+          "rmse": 0.37834194343647803,
+          "mae": 0.30582375561894753,
+          "r2": 0.2745351388224955,
+          "pearson": 0.5249951763321431,
+          "bias": 0.007672941982330075,
+          "mean_prediction": 0.6481082967157757,
+          "mean_observed": 0.6404353547334457
+        },
+        "history_candidate": {
+          "pairs": 5641,
+          "mse": 0.14114187568867592,
+          "rmse": 0.37568853547676423,
+          "mae": 0.3019880362000647,
+          "r2": 0.284675194263855,
+          "pearson": 0.5345014644835723,
+          "bias": 0.008802653454109416,
+          "mean_prediction": 0.6492380081875552,
+          "mean_observed": 0.6404353547334457
+        },
+        "item_prior": {
+          "pairs": 5641,
+          "mse": 0.19495960157910447,
+          "rmse": 0.4415422987428322,
+          "mae": 0.4087996249942532,
+          "r2": 0.011920179992632507,
+          "pearson": 0.12276564214145388,
+          "bias": 0.020832297193410496,
+          "mean_prediction": 0.6612676519268562,
+          "mean_observed": 0.6404353547334457
+        }
+      },
+      "maximum_direct_difference": 2.9799085421444715e-08
+    },
+    "opening": {
+      "opened_at_utc": "2026-10-15T09:26:32.981708+00:00",
+      "selection_sha256": "3a91b1744990466d6b721b741c117218226017a3a8625cf01b98fe0472e77801"
+    },
+    "queries": 5000,
+    "users": 739,
+    "observed_pairs": 5641,
+    "artifacts": {
+      "opening.json": "f44247f8baa65da8f091dee20458c12455b479019c74866f2baaf8c8f0b00325",
+      "cache.npz": "cc113e4ba12e467edd1ae68b57a2acde2aa2af04a867a960156400e4454ad6f9",
+      "rankings.npz": "ee13b140bbe046478c8cc851966369cacefce3c83bb71f43e3c8c6d8459cd5df",
+      "observed.npz": "8e9f3e08a70176a4770604c69c29ed6a8bbed8bb19dbfaeed4c835eeca6f1a1b"
+    },
+    "final_used_for_selection": false,
+    "causal_user_effect_measured": false
+  },
+  "series_seconds": 123.69026654100162,
+  "final_reserve_opened": true,
+  "rl_trained": true,
+  "reward_history_during_rollout": "Fixed original observed response history, no synthetic response labels."
+}
