@@ -1,0 +1,1882 @@
+{
+  "experiment": "recency-v1",
+  "provenance": {
+    "config": {
+      "experiment": "recency-v1",
+      "data_dir": "../data/processed/mvp",
+      "baseline_config": "baseline-selected.json",
+      "baseline_checkpoint": "../outputs/small-tuning-v1/runs/lr-low/seed-42/baseline.pt",
+      "historical_report": "../experiments/mixed-objective-result.json",
+      "previous_holdout": "../data/processed/mixed-holdout-v1",
+      "training": {
+        "epochs": 20,
+        "patience": 4,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "weight_decay": 0.01,
+        "gradient_clip": 1.0,
+        "seed": 42,
+        "confirmation_seeds": [
+          43,
+          44
+        ]
+      },
+      "variants": [
+        {
+          "name": "global-1",
+          "gate": "global",
+          "tau": 1.0
+        },
+        {
+          "name": "context-1",
+          "gate": "context",
+          "tau": 1.0
+        },
+        {
+          "name": "global-4",
+          "gate": "global",
+          "tau": 4.0
+        },
+        {
+          "name": "context-4",
+          "gate": "context",
+          "tau": 4.0
+        },
+        {
+          "name": "global-16",
+          "gate": "global",
+          "tau": 16.0
+        },
+        {
+          "name": "context-16",
+          "gate": "context",
+          "tau": 16.0
+        }
+      ],
+      "selection": {
+        "minimum_relative_ndcg": 1.01,
+        "minimum_relative_recall": 1.0,
+        "metric": "ndcg@10",
+        "tie_break": "configuration_order"
+      },
+      "holdout": {
+        "users": 1000,
+        "minimum_train_events": 50,
+        "sampling_seed": 20261016,
+        "max_queries": 5000
+      },
+      "evaluation": {
+        "top_k": [
+          5,
+          10,
+          20
+        ],
+        "bootstrap_repeats": 2000,
+        "bootstrap_seed": 42,
+        "forward_tolerance": 2e-06
+      },
+      "rollout": {
+        "contexts": 1000,
+        "steps": 5,
+        "seed": 42
+      },
+      "execution": {
+        "inference_batch_size": 128,
+        "head_device": "cpu",
+        "threads": 4
+      }
+    },
+    "frozen": {
+      "inputs": {
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/rl-pilot.json": "122df4ca04dfcaa587445b493e663a5d958b23236fb37cbaa8e1aa8deed17aa8",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-protocol.md": "3922c3310c56bca6745748a6199bbed6901e34b69aff479aca3eed07dc33b447",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/baseline-selected.json": "f9bfcf3170557b0b048514683bc031c5368de47c43c1198e9a61a3bc4753dcf4",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/small-tuning-v1/runs/lr-low/seed-42/baseline.pt": "bc9467e3137a14b8399cfba2e4705f80f0996d4bea5b43f19b38457516208faf",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/manifest.json": "6017fed06393bd416ecbe08b98080c6ddd2628a7fc4cab600b7fb4223eea33db",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/catalog.json": "9c055d1a0b3928153acda8a16c4e290d930fdedd94778d46ac61801da0fbe514",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/manifest.json": "4874171cddc788a8337f9993a25d2921ba41c083b1ff6441ec453ca18e4d7629",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/raw/yambda-50m-multi_event.parquet": "b92f6c97277a554c8a7d6cfea900eca51639fd53a3e6c4fa58b82e35fd35804d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/small-tuning-result.json": "6852f95801e4c66bc9ff29349720136778aa80ed553808013f3e5881a4b9fc38",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-result.json": "3dc91c1bba581102ac740cd30aed17f5ee5b55d7df0f454a9fccb990c2685598",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-signal-result.json": "27033b07541583a54ce3373a33e2c3e854ad29b9e61e4e1f29bad605ae208fe5",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/train.npz": "488ebafffb924b9bed034039cd5a1ccb9946cc652b8f75e32e1d27bfbeedad3d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/validation.npz": "ceb777e8445d7343411ecb039486dff74d2f9b8aeb89021d23f206294d780d86",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/test.npz": "ba0fdfaa56cf69692dd48e8b5de5ead5052ac619db6d046e15600423fa4d13af",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/train.npz": "6bc6be670c18c03ef5ae2fd509e73e4cf7414543218100728219835dbae55596",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/selection.npz": "5b2a2a4aa609f0ffa7939f894882a510a65a70bace81b3bcaf76d829c8147bfe",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/validation.npz": "d29a755db2a0df1dd3eb249a23edc8f671f82e3ce03c1fc68786ae2f43009d0b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/reward.pt": "2a4a9019eab2d7cbfc9ae397d13cbb6d7d5b8884f1570f3a941ff386f770f894",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/selection-predictions.npz": "72f47f4aea1f12a0a6bf3bcb85ba50da77aa32d9e1e9a4213d035e8730f1fe76",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/validation-predictions.npz": "658585a4c93c69aa74ac4ef2ccf16e593456ed9d5326ea7b63d9da71656ae36e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/training-history.json": "1f1860e86c9975d6d65f387f173662da489f35dc2dc3d1a0be2dd108d9c5a385",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/final-evaluation.json": "77ff356b5476f972e9e6b8d5cc672af4a843150b3e51f77c7505002496117f88",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-protocol.md": "cf560f30a73ecaf3f22179de54eb87d93ac2bae7142a58ba120a9f1f090ada03",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-result.json": "c9878601e476d53dc0532d896c4534e11c5f3d676e95b7d0c18d8d7246e31468",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-execution.json": "8f759eb5d88c4d6e58f37867d5c48322fd0a3eb88a88cfae88803dec9cbc8d00",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward-signal.json": "c70b2b8a065fb1d26ae14d7150bfe90bec0d931853763bcaa9a7c9aec097522e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-kl/seed-42/policy.pt": "47612400c5a0768c85f80693844b513746c33c7eb145b8e8d65dbd4a9a1471ac",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-strong-kl/seed-42/policy.pt": "7d0f719af8b3a0e93ffc9861831cc00e8d544b41d1c8eeedbab7eed110e43724",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/mixed-objective.json": "306698737d9f2021c89617a49be7b0b619f6b136da79ece928c8ce15704948de",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-protocol.md": "67fd1c59a43e4aca77fcfa05e66c22ac788bc73a2b3249e142420d0d35531799",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-result.json": "0df23f5ec2ef57f68cee2f1be0ce1bfd60c220db81457e074c5a188eaa810165",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/manifest.json": "a38620e8dad5eaeed1c4e16cf98534e807be217412256a942931e429fe0e18c2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/listen-events.parquet": "51a3dcd08b8d2a6f9d5d8d1222fb1ce9cc365a8fda2d71fa45a3b2a4f62868c7",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/train.npz": "b30ef61422f40bf48b167a62bb4d58c4dd87e86111c62ba683a381a5d2abf7e2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/validation.npz": "ba01bbd6e1674edda9a61546551729b6e205ee619d892ae54d37004684ada107",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/rollout-inputs.npz": "09b9a6fc05efc1011f941f58051ba98636930c6857863b6d3f87f2733edecb4e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/recency.json": "c4ddab23e0f5a654405e0e24f9d86e44fe8899e11680b4e889c0827ddea43161",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-protocol.md": "a6da50be4088ab01665fe96c748851394be238856341ba1a35e660ba16ddf775",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-result.json": "5faebec1b2cab5200e9d203320477b3ed1cc4e04e5f91228e63b11d143d354fa",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/users.npz": "bf99ca9850574a384796d7a6d71640016c057424fd0573e5377fbf0339371e1a",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/manifest.json": "e511619304fa12d58b39fae3f7e11ac10b6535e740c6a75f687cc1286889fb0c"
+      },
+      "source_files": {
+        "__init__.py": "cd4e71abac041d54337132310fc423b22aadf8a403a1c07d3c0985b6f9dcfa6d",
+        "__main__.py": "b2ac0f5a590badd7e0a10aaf0637f8233b35a65c9233d607d3b982ac39a7eaea",
+        "cli.py": "b281b6682e6e1f531b565ef4db719784d82ef561050fcd4ec8e9fc73077d8111",
+        "data.py": "8b6d7a36cc7069e922e0972f114cce1b781b6fe402628ae0d7d296255f896c38",
+        "evaluation.py": "8e62b5bed9ca85d35904118a584549353796d843d01e707bbbd9c15a7ee58c84",
+        "final_evaluation.py": "c87a51bce8b186e9f205bf12e0f5762dc78c072fa07cad4608d3ae358a6517ea",
+        "mixed_data.py": "0f903a7b2826067cb5908a211bd309cbc5dc0f2736f994d1b0874554f9c9fdac",
+        "mixed_experiment.py": "3bda41e0fb81dc1283c8630f038ec9d2bf2787ca65df00d83034373e7b5fe6bf",
+        "mixed_training.py": "6f0742e1cc7fdb693017f98256680f58ca3f7ecbdf9d668e8b491055adc7e13b",
+        "model.py": "7e38b843500e5f7d348287f91f4090e9938aadb1474a512f0f02b940b4672cfe",
+        "policy_data.py": "0e14dab3d068b171ffeb1a65cacb164dffad49900418ddde3f9ec2f8627be1ae",
+        "policy_evaluation.py": "be276122fb8de4ff07d34f5eb3a7eb547261d2ccf542531abe5e3c91563385d0",
+        "policy_optimization.py": "bd99d53159476ae23ee994f640ca86de42983a7076c9a21a5150d8c65eb399e1",
+        "policy_rollout.py": "0ce38ab6c7f60ebe42f4a92662c79fa2ba3c47bc18fee348136bab7bab18b853",
+        "recency_data.py": "f4533c02140c9c6d0b4dd475130e99b861b628efa0c8cb659211f595cb3dfcef",
+        "recency_experiment.py": "19423b4688a9b5b3d832aad6580d3ee004d72f115363f7f8ba22567bead0daa9",
+        "recency_model.py": "78709ff2a61ba2cd3a0ce8c47d7f070cb24a86a28941429b667b956fd35ab759",
+        "reward.py": "b32e6a8e310e5a50e47768c6ced5bbed11fbedd242b97f9aa9bbeca007d2d978",
+        "reward_catalog.py": "638572c17286bb6b73856309b64ddb1b1ed131c84ddac56242e56e36c7c22896",
+        "reward_data.py": "0b122902a0fa43d86f720253e06c452119dcfc3f16b03c507e2a07004f9c6125",
+        "reward_evaluation.py": "775d93b97cf03fe805868d983debf1d332110e9e6b26a20767bc7eacf0573d6b",
+        "reward_model.py": "6c106e96b142a9b5a4de0bca13131c43956ce97a548413add1e272a31df0ae1f",
+        "reward_signal.py": "b16ea89ca644552ab52fcc91dcc00abe039ad22ab1d54dc49a17c1d319d4f265",
+        "status.py": "a47c35327f5c1eaecc199ab9c3d956f14f59b4773a2565e4875cc05292d3657d",
+        "train.py": "abcdb42f938f3767d6296ec47dfc3d5132e4635aaad1d029d9ef1ecefee6ad2e",
+        "tuning.py": "e9f2a846d4fc1e4b87d01935469b748e23092d94f9edcb2b7dccb29e52538a44"
+      }
+    },
+    "paths": {
+      "config": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/recency.json",
+      "protocol": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-protocol.md",
+      "holdout": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1"
+    },
+    "source_commit": "5c8158e4d9f300168951fb2c8d719c59c4249584",
+    "recorded_at_utc": "2026-10-15T07:38:21.908415+00:00"
+  },
+  "preparation": {
+    "selected_users": 1000,
+    "excluded_users": 2000,
+    "user_overlap": 0,
+    "queries": 5000,
+    "query_users": 753,
+    "targets": 5694,
+    "skipped_short_histories": 0,
+    "response_labels_read": false,
+    "evaluated": false,
+    "frozen": {
+      "inputs": {
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/rl-pilot.json": "122df4ca04dfcaa587445b493e663a5d958b23236fb37cbaa8e1aa8deed17aa8",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-protocol.md": "3922c3310c56bca6745748a6199bbed6901e34b69aff479aca3eed07dc33b447",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/baseline-selected.json": "f9bfcf3170557b0b048514683bc031c5368de47c43c1198e9a61a3bc4753dcf4",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/small-tuning-v1/runs/lr-low/seed-42/baseline.pt": "bc9467e3137a14b8399cfba2e4705f80f0996d4bea5b43f19b38457516208faf",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/manifest.json": "6017fed06393bd416ecbe08b98080c6ddd2628a7fc4cab600b7fb4223eea33db",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/catalog.json": "9c055d1a0b3928153acda8a16c4e290d930fdedd94778d46ac61801da0fbe514",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/manifest.json": "4874171cddc788a8337f9993a25d2921ba41c083b1ff6441ec453ca18e4d7629",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/raw/yambda-50m-multi_event.parquet": "b92f6c97277a554c8a7d6cfea900eca51639fd53a3e6c4fa58b82e35fd35804d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/small-tuning-result.json": "6852f95801e4c66bc9ff29349720136778aa80ed553808013f3e5881a4b9fc38",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-result.json": "3dc91c1bba581102ac740cd30aed17f5ee5b55d7df0f454a9fccb990c2685598",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-signal-result.json": "27033b07541583a54ce3373a33e2c3e854ad29b9e61e4e1f29bad605ae208fe5",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/train.npz": "488ebafffb924b9bed034039cd5a1ccb9946cc652b8f75e32e1d27bfbeedad3d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/validation.npz": "ceb777e8445d7343411ecb039486dff74d2f9b8aeb89021d23f206294d780d86",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/test.npz": "ba0fdfaa56cf69692dd48e8b5de5ead5052ac619db6d046e15600423fa4d13af",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/train.npz": "6bc6be670c18c03ef5ae2fd509e73e4cf7414543218100728219835dbae55596",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/selection.npz": "5b2a2a4aa609f0ffa7939f894882a510a65a70bace81b3bcaf76d829c8147bfe",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/validation.npz": "d29a755db2a0df1dd3eb249a23edc8f671f82e3ce03c1fc68786ae2f43009d0b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/reward.pt": "2a4a9019eab2d7cbfc9ae397d13cbb6d7d5b8884f1570f3a941ff386f770f894",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/selection-predictions.npz": "72f47f4aea1f12a0a6bf3bcb85ba50da77aa32d9e1e9a4213d035e8730f1fe76",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/validation-predictions.npz": "658585a4c93c69aa74ac4ef2ccf16e593456ed9d5326ea7b63d9da71656ae36e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/training-history.json": "1f1860e86c9975d6d65f387f173662da489f35dc2dc3d1a0be2dd108d9c5a385",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/final-evaluation.json": "77ff356b5476f972e9e6b8d5cc672af4a843150b3e51f77c7505002496117f88",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-protocol.md": "cf560f30a73ecaf3f22179de54eb87d93ac2bae7142a58ba120a9f1f090ada03",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-result.json": "c9878601e476d53dc0532d896c4534e11c5f3d676e95b7d0c18d8d7246e31468",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-execution.json": "8f759eb5d88c4d6e58f37867d5c48322fd0a3eb88a88cfae88803dec9cbc8d00",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward-signal.json": "c70b2b8a065fb1d26ae14d7150bfe90bec0d931853763bcaa9a7c9aec097522e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-kl/seed-42/policy.pt": "47612400c5a0768c85f80693844b513746c33c7eb145b8e8d65dbd4a9a1471ac",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-strong-kl/seed-42/policy.pt": "7d0f719af8b3a0e93ffc9861831cc00e8d544b41d1c8eeedbab7eed110e43724",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/mixed-objective.json": "306698737d9f2021c89617a49be7b0b619f6b136da79ece928c8ce15704948de",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-protocol.md": "67fd1c59a43e4aca77fcfa05e66c22ac788bc73a2b3249e142420d0d35531799",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-result.json": "0df23f5ec2ef57f68cee2f1be0ce1bfd60c220db81457e074c5a188eaa810165",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/manifest.json": "a38620e8dad5eaeed1c4e16cf98534e807be217412256a942931e429fe0e18c2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/listen-events.parquet": "51a3dcd08b8d2a6f9d5d8d1222fb1ce9cc365a8fda2d71fa45a3b2a4f62868c7",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/train.npz": "b30ef61422f40bf48b167a62bb4d58c4dd87e86111c62ba683a381a5d2abf7e2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/validation.npz": "ba01bbd6e1674edda9a61546551729b6e205ee619d892ae54d37004684ada107",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/rollout-inputs.npz": "09b9a6fc05efc1011f941f58051ba98636930c6857863b6d3f87f2733edecb4e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/recency.json": "c4ddab23e0f5a654405e0e24f9d86e44fe8899e11680b4e889c0827ddea43161",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-protocol.md": "a6da50be4088ab01665fe96c748851394be238856341ba1a35e660ba16ddf775",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-result.json": "5faebec1b2cab5200e9d203320477b3ed1cc4e04e5f91228e63b11d143d354fa",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/users.npz": "bf99ca9850574a384796d7a6d71640016c057424fd0573e5377fbf0339371e1a",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/manifest.json": "e511619304fa12d58b39fae3f7e11ac10b6535e740c6a75f687cc1286889fb0c"
+      },
+      "source_files": {
+        "__init__.py": "cd4e71abac041d54337132310fc423b22aadf8a403a1c07d3c0985b6f9dcfa6d",
+        "__main__.py": "b2ac0f5a590badd7e0a10aaf0637f8233b35a65c9233d607d3b982ac39a7eaea",
+        "cli.py": "b281b6682e6e1f531b565ef4db719784d82ef561050fcd4ec8e9fc73077d8111",
+        "data.py": "8b6d7a36cc7069e922e0972f114cce1b781b6fe402628ae0d7d296255f896c38",
+        "evaluation.py": "8e62b5bed9ca85d35904118a584549353796d843d01e707bbbd9c15a7ee58c84",
+        "final_evaluation.py": "c87a51bce8b186e9f205bf12e0f5762dc78c072fa07cad4608d3ae358a6517ea",
+        "mixed_data.py": "0f903a7b2826067cb5908a211bd309cbc5dc0f2736f994d1b0874554f9c9fdac",
+        "mixed_experiment.py": "3bda41e0fb81dc1283c8630f038ec9d2bf2787ca65df00d83034373e7b5fe6bf",
+        "mixed_training.py": "6f0742e1cc7fdb693017f98256680f58ca3f7ecbdf9d668e8b491055adc7e13b",
+        "model.py": "7e38b843500e5f7d348287f91f4090e9938aadb1474a512f0f02b940b4672cfe",
+        "policy_data.py": "0e14dab3d068b171ffeb1a65cacb164dffad49900418ddde3f9ec2f8627be1ae",
+        "policy_evaluation.py": "be276122fb8de4ff07d34f5eb3a7eb547261d2ccf542531abe5e3c91563385d0",
+        "policy_optimization.py": "bd99d53159476ae23ee994f640ca86de42983a7076c9a21a5150d8c65eb399e1",
+        "policy_rollout.py": "0ce38ab6c7f60ebe42f4a92662c79fa2ba3c47bc18fee348136bab7bab18b853",
+        "recency_data.py": "f4533c02140c9c6d0b4dd475130e99b861b628efa0c8cb659211f595cb3dfcef",
+        "recency_experiment.py": "19423b4688a9b5b3d832aad6580d3ee004d72f115363f7f8ba22567bead0daa9",
+        "recency_model.py": "78709ff2a61ba2cd3a0ce8c47d7f070cb24a86a28941429b667b956fd35ab759",
+        "reward.py": "b32e6a8e310e5a50e47768c6ced5bbed11fbedd242b97f9aa9bbeca007d2d978",
+        "reward_catalog.py": "638572c17286bb6b73856309b64ddb1b1ed131c84ddac56242e56e36c7c22896",
+        "reward_data.py": "0b122902a0fa43d86f720253e06c452119dcfc3f16b03c507e2a07004f9c6125",
+        "reward_evaluation.py": "775d93b97cf03fe805868d983debf1d332110e9e6b26a20767bc7eacf0573d6b",
+        "reward_model.py": "6c106e96b142a9b5a4de0bca13131c43956ce97a548413add1e272a31df0ae1f",
+        "reward_signal.py": "b16ea89ca644552ab52fcc91dcc00abe039ad22ab1d54dc49a17c1d319d4f265",
+        "status.py": "a47c35327f5c1eaecc199ab9c3d956f14f59b4773a2565e4875cc05292d3657d",
+        "train.py": "abcdb42f938f3767d6296ec47dfc3d5132e4635aaad1d029d9ef1ecefee6ad2e",
+        "tuning.py": "e9f2a846d4fc1e4b87d01935469b748e23092d94f9edcb2b7dccb29e52538a44"
+      }
+    },
+    "source_commit": "5c8158e4d9f300168951fb2c8d719c59c4249584",
+    "recorded_at_utc": "2026-10-15T07:38:22.802043+00:00",
+    "artifacts": {
+      "queries.npz": "3b3a015cd473b43097c344c69fe9ddb12d28a6e678e8c97349aea260759f502b",
+      "users.npz": "e25ae4f24d35d4190256067dff94089153ec4530c05d6f20ae1b6fe0008489a2"
+    }
+  },
+  "cache": {
+    "artifacts": {
+      "train.npy": "27c5845e4aed90a372b0440b6254596031bcf605bf65cc8097c546b4bedf474c",
+      "validation.npy": "58f1c8902c6884d6fae796a956af96ac0f495d2bb02d76e8f55b040e8c753581"
+    },
+    "seconds": 11.851906500000041,
+    "train_queries": 59888
+  },
+  "validation_controls": {
+    "baseline": {
+      "queries": 5000,
+      "users": 734,
+      "metrics": {
+        "recall@5": 0.11608390331890332,
+        "ndcg@5": 0.09092410480845706,
+        "recall@10": 0.15214771284271283,
+        "ndcg@10": 0.10274854282061716,
+        "recall@20": 0.20146153901653902,
+        "ndcg@20": 0.11556128235356128
+      },
+      "behavior_at_10": {
+        "catalog_coverage": 0.9385,
+        "top_10_items_share": 0.0734,
+        "context_repeat_fraction": 0.27798,
+        "mean_duration_seconds": 190.9996,
+        "duration_known_fraction": 1.0
+      },
+      "target_duration_tertiles_seconds": [
+        175.0,
+        215.0
+      ],
+      "target_duration_slices": {
+        "short": {
+          "queries": 1694,
+          "recall@10": 0.15968122786304603,
+          "ndcg@10": 0.1127855202273907
+        },
+        "medium": {
+          "queries": 1532,
+          "recall@10": 0.14926022628372498,
+          "ndcg@10": 0.09396057262850532
+        },
+        "long": {
+          "queries": 1471,
+          "recall@10": 0.14865171085429413,
+          "ndcg@10": 0.09796071783922443
+        },
+        "mixed": {
+          "queries": 303,
+          "recall@10": 0.1416014220469666,
+          "ndcg@10": 0.11431098887629246
+        },
+        "unknown": {
+          "queries": 0,
+          "recall@10": null,
+          "ndcg@10": null
+        }
+      }
+    },
+    "train_popularity": {
+      "queries": 5000,
+      "users": 734,
+      "metrics": {
+        "recall@5": 0.01774595238095238,
+        "ndcg@5": 0.009467517062368444,
+        "recall@10": 0.03227928571428572,
+        "ndcg@10": 0.014268360773271434,
+        "recall@20": 0.05479492784992785,
+        "ndcg@20": 0.02020052509396926
+      },
+      "behavior_at_10": {
+        "catalog_coverage": 0.005,
+        "top_10_items_share": 1.0,
+        "context_repeat_fraction": 0.0591,
+        "mean_duration_seconds": 168.5,
+        "duration_known_fraction": 1.0
+      },
+      "target_duration_tertiles_seconds": [
+        175.0,
+        215.0
+      ],
+      "target_duration_slices": {
+        "short": {
+          "queries": 1694,
+          "recall@10": 0.03955135773317592,
+          "ndcg@10": 0.018827454563443615
+        },
+        "medium": {
+          "queries": 1532,
+          "recall@10": 0.041829852045256743,
+          "ndcg@10": 0.018217948681483725
+        },
+        "long": {
+          "queries": 1471,
+          "recall@10": 0.01495581237253569,
+          "ndcg@10": 0.004570838934371053
+        },
+        "mixed": {
+          "queries": 303,
+          "recall@10": 0.027435957881502437,
+          "ndcg@10": 0.01588942040723039
+        },
+        "unknown": {
+          "queries": 0,
+          "recall@10": null,
+          "ndcg@10": null
+        }
+      }
+    },
+    "recent_items": {
+      "queries": 5000,
+      "users": 734,
+      "metrics": {
+        "recall@5": 0.12016298701298701,
+        "ndcg@5": 0.09416977535620447,
+        "recall@10": 0.16142466089466087,
+        "ndcg@10": 0.10775509399008554,
+        "recall@20": 0.20823098845598847,
+        "ndcg@20": 0.12036574349926364
+      },
+      "behavior_at_10": {
+        "catalog_coverage": 0.9935,
+        "top_10_items_share": 0.13156,
+        "context_repeat_fraction": 0.89752,
+        "mean_duration_seconds": 190.2685,
+        "duration_known_fraction": 1.0
+      },
+      "target_duration_tertiles_seconds": [
+        175.0,
+        215.0
+      ],
+      "target_duration_slices": {
+        "short": {
+          "queries": 1694,
+          "recall@10": 0.15422077922077923,
+          "ndcg@10": 0.10897915749613017
+        },
+        "medium": {
+          "queries": 1532,
+          "recall@10": 0.15823542210617927,
+          "ndcg@10": 0.1002116244099754
+        },
+        "long": {
+          "queries": 1471,
+          "recall@10": 0.17471108089734874,
+          "ndcg@10": 0.11143259671985607
+        },
+        "mixed": {
+          "queries": 303,
+          "recall@10": 0.1533222369856033,
+          "ndcg@10": 0.1211987418514608
+        },
+        "unknown": {
+          "queries": 0,
+          "recall@10": null,
+          "ndcg@10": null
+        }
+      }
+    }
+  },
+  "runs": {
+    "global-1/42": {
+      "variant": {
+        "name": "global-1",
+        "gate": "global",
+        "tau": 1.0
+      },
+      "seed": 42,
+      "parameters": 1,
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/global-1/seed-42/gate.pt",
+      "checkpoint_sha256": "15f46b7580f3b2d03a9cc235d0a32d719c93c74b9d8bdb1a14932194ad4ca706",
+      "validation_sha256": "2dbb61c6e59b1c1b9d0876ee14ed7d4e04b0e3405ca7faa437a1a8d4409bec2d",
+      "history_sha256": "b677920a8e035631be57c8ffab3ceab843902b802483f4d61ea66c4902e63676",
+      "selected_epoch": 1,
+      "epochs_completed": 5,
+      "training_history": [
+        {
+          "epoch": 1,
+          "train_ce": 4.929168325613247,
+          "validation_ce": 6.59508822556166,
+          "recall@10": 0.16510907647907647,
+          "ndcg@10": 0.11124228223395503,
+          "mean_gate": 0.10749029368162155
+        },
+        {
+          "epoch": 2,
+          "train_ce": 4.920087154045992,
+          "validation_ce": 6.5887160704875365,
+          "recall@10": 0.16430907647907647,
+          "ndcg@10": 0.11104501296629328,
+          "mean_gate": 0.0977349579334259
+        },
+        {
+          "epoch": 3,
+          "train_ce": 4.912354661410039,
+          "validation_ce": 6.583434878472145,
+          "recall@10": 0.16350907647907648,
+          "ndcg@10": 0.11072714007035128,
+          "mean_gate": 0.08921448886394501
+        },
+        {
+          "epoch": 4,
+          "train_ce": 4.9057351503976045,
+          "validation_ce": 6.579052812663652,
+          "recall@10": 0.16348407647907648,
+          "ndcg@10": 0.11077727798374233,
+          "mean_gate": 0.08175944536924362
+        },
+        {
+          "epoch": 5,
+          "train_ce": 4.900034362671689,
+          "validation_ce": 6.57538812755365,
+          "recall@10": 0.16348407647907648,
+          "ndcg@10": 0.11056228162309557,
+          "mean_gate": 0.07517854869365692
+        }
+      ],
+      "seconds": 3.0003421250003157,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.1289569336219336,
+          "ndcg@5": 0.09951698038759393,
+          "recall@10": 0.16510907647907647,
+          "ndcg@10": 0.11124228223395503,
+          "recall@20": 0.21153177711177715,
+          "ndcg@20": 0.12336444847550174
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9865,
+          "top_10_items_share": 0.07038,
+          "context_repeat_fraction": 0.34746,
+          "mean_duration_seconds": 191.2438,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.16942148760330578,
+            "ndcg@10": 0.11700928988095284
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.16231505657093123,
+            "ndcg@10": 0.10367492535405241
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.16564695218672104,
+            "ndcg@10": 0.1095890401291267
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.15251501340610252,
+            "ndcg@10": 0.12528782323131155
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "gate_mean": 0.10749029368162155,
+      "gate_quantiles": [
+        0.0,
+        0.10796532779932022,
+        0.10796532779932022,
+        0.10796532779932022,
+        0.10796532779932022
+      ],
+      "validation_ce": 6.59508822556166
+    },
+    "context-1/42": {
+      "variant": {
+        "name": "context-1",
+        "gate": "context",
+        "tau": 1.0
+      },
+      "seed": 42,
+      "parameters": 161,
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/context-1/seed-42/gate.pt",
+      "checkpoint_sha256": "817822ccd381e598d0ff280ffd572f18f415ee4f05aeb7ce8a718d62b5bc1b8e",
+      "validation_sha256": "775d14991f90792500b6c2be9c652e81f288736b60c985fd4595089f3ec1f4ae",
+      "history_sha256": "02f309354022297f91511f7423ed29a289e41f973148b16aceb47706d675fa0d",
+      "selected_epoch": 1,
+      "epochs_completed": 5,
+      "training_history": [
+        {
+          "epoch": 1,
+          "train_ce": 4.9073696671531,
+          "validation_ce": 6.5627789163151755,
+          "recall@10": 0.162349227994228,
+          "ndcg@10": 0.10926994509926599,
+          "mean_gate": 0.048610325902700424
+        },
+        {
+          "epoch": 2,
+          "train_ce": 4.862088135146789,
+          "validation_ce": 6.557252793998924,
+          "recall@10": 0.1574944660894661,
+          "ndcg@10": 0.10582172921625174,
+          "mean_gate": 0.01371820829808712
+        },
+        {
+          "epoch": 3,
+          "train_ce": 4.8518806873334785,
+          "validation_ce": 6.560482165197935,
+          "recall@10": 0.15586589466089468,
+          "ndcg@10": 0.10439136880862127,
+          "mean_gate": 0.0063279843889176846
+        },
+        {
+          "epoch": 4,
+          "train_ce": 4.849903991188622,
+          "validation_ce": 6.562685067395214,
+          "recall@10": 0.15486589466089468,
+          "ndcg@10": 0.10368022071057417,
+          "mean_gate": 0.0038436134345829487
+        },
+        {
+          "epoch": 5,
+          "train_ce": 4.849255278758305,
+          "validation_ce": 6.564080028179288,
+          "recall@10": 0.15366589466089467,
+          "ndcg@10": 0.10335954035310235,
+          "mean_gate": 0.002693691523745656
+        }
+      ],
+      "seconds": 3.0441189170014695,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.12517875180375182,
+          "ndcg@5": 0.09718892236657861,
+          "recall@10": 0.162349227994228,
+          "ndcg@10": 0.10926994509926599,
+          "recall@20": 0.20985677711177714,
+          "ndcg@20": 0.12168952977700465
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9835,
+          "top_10_items_share": 0.07108,
+          "context_repeat_fraction": 0.32942,
+          "mean_duration_seconds": 191.2096,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.16646989374262103,
+            "ndcg@10": 0.11593409657292149
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.16035683202785028,
+            "ndcg@10": 0.10063891169569589
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.16224790392023566,
+            "ndcg@10": 0.10737979692161459
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.14987724962972487,
+            "ndcg@10": 0.1248279601066002
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "gate_mean": 0.048610325902700424,
+      "gate_quantiles": [
+        0.0,
+        0.045655199140310285,
+        0.04893264174461365,
+        0.05167374536395073,
+        0.058111608028411865
+      ],
+      "validation_ce": 6.5627789163151755
+    },
+    "global-4/42": {
+      "variant": {
+        "name": "global-4",
+        "gate": "global",
+        "tau": 4.0
+      },
+      "seed": 42,
+      "parameters": 1,
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/global-4/seed-42/gate.pt",
+      "checkpoint_sha256": "d0d80afc39baff30a21aa33c7468e8a7a5530900c480ea54b24d73d3fbed83f2",
+      "validation_sha256": "a6f134c3073d0503eb745d4e19e600ad7efbbc8a9b78bfe7d149d60ab1cdcb40",
+      "history_sha256": "e9b2da743527a513076a1048fb8f4118895ae3802ba699011dfac651eecefa8b",
+      "selected_epoch": 1,
+      "epochs_completed": 5,
+      "training_history": [
+        {
+          "epoch": 1,
+          "train_ce": 4.911132696443722,
+          "validation_ce": 6.546770678860601,
+          "recall@10": 0.16771647186147187,
+          "ndcg@10": 0.11267822176087627,
+          "mean_gate": 0.10750092566013336
+        },
+        {
+          "epoch": 2,
+          "train_ce": 4.903411394766936,
+          "validation_ce": 6.54282097491445,
+          "recall@10": 0.16738686147186144,
+          "ndcg@10": 0.11245755882865476,
+          "mean_gate": 0.0978064015507698
+        },
+        {
+          "epoch": 3,
+          "train_ce": 4.896912718468926,
+          "validation_ce": 6.539762076219171,
+          "recall@10": 0.16632852813852814,
+          "ndcg@10": 0.11235896857932999,
+          "mean_gate": 0.08937584608793259
+        },
+        {
+          "epoch": 4,
+          "train_ce": 4.891405777723561,
+          "validation_ce": 6.5374077189873905,
+          "recall@10": 0.16635034632034632,
+          "ndcg@10": 0.111681209678045,
+          "mean_gate": 0.08200830966234207
+        },
+        {
+          "epoch": 5,
+          "train_ce": 4.886714415406276,
+          "validation_ce": 6.535608097135089,
+          "recall@10": 0.1657503463203463,
+          "ndcg@10": 0.11122563060681473,
+          "mean_gate": 0.07551965117454529
+        }
+      ],
+      "seconds": 3.0064875000025495,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.13187526695526694,
+          "ndcg@5": 0.10097180044657923,
+          "recall@10": 0.16771647186147187,
+          "ndcg@10": 0.11267822176087627,
+          "recall@20": 0.2176056082806083,
+          "ndcg@20": 0.12581665389985297
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9935,
+          "top_10_items_share": 0.06714,
+          "context_repeat_fraction": 0.44564,
+          "mean_duration_seconds": 191.5821,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.17119244391971664,
+            "ndcg@10": 0.11804698985072004
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.16068320278503043,
+            "ndcg@10": 0.1016754725137833
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.1722184455019261,
+            "ndcg@10": 0.11371435502423925
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.161987984512737,
+            "ndcg@10": 0.13326359031514745
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "gate_mean": 0.10750092566013336,
+      "gate_quantiles": [
+        0.0,
+        0.10797601193189621,
+        0.10797601193189621,
+        0.10797601193189621,
+        0.10797601193189621
+      ],
+      "validation_ce": 6.546770678860601
+    },
+    "context-4/42": {
+      "variant": {
+        "name": "context-4",
+        "gate": "context",
+        "tau": 4.0
+      },
+      "seed": 42,
+      "parameters": 161,
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/context-4/seed-42/gate.pt",
+      "checkpoint_sha256": "be07e1f8fb815bdc452ddd078832c17976a7ff49a13408cf0bd09ec1b9a7cc48",
+      "validation_sha256": "987f93910250438278911442fb38632d328c178397859432c8fe8cf39b019c47",
+      "history_sha256": "767172de80d73f90e24f43cfd0e3c66936ab40e751e3de944390947f5fa91b84",
+      "selected_epoch": 1,
+      "epochs_completed": 5,
+      "training_history": [
+        {
+          "epoch": 1,
+          "train_ce": 4.892512063116369,
+          "validation_ce": 6.531056779684592,
+          "recall@10": 0.16391106060606062,
+          "ndcg@10": 0.10992996759784678,
+          "mean_gate": 0.04859597608447075
+        },
+        {
+          "epoch": 2,
+          "train_ce": 4.856822734397585,
+          "validation_ce": 6.540372547685076,
+          "recall@10": 0.15949922799422797,
+          "ndcg@10": 0.10630455598892641,
+          "mean_gate": 0.015493820421397686
+        },
+        {
+          "epoch": 3,
+          "train_ce": 4.849956416141022,
+          "validation_ce": 6.547954810172506,
+          "recall@10": 0.1572039898989899,
+          "ndcg@10": 0.10484079899900553,
+          "mean_gate": 0.008338995277881622
+        },
+        {
+          "epoch": 4,
+          "train_ce": 4.848750416492989,
+          "validation_ce": 6.551498648112826,
+          "recall@10": 0.15543732323232323,
+          "ndcg@10": 0.10408766384495344,
+          "mean_gate": 0.006039268337190151
+        },
+        {
+          "epoch": 5,
+          "train_ce": 4.848317654604839,
+          "validation_ce": 6.552748378941603,
+          "recall@10": 0.15523732323232323,
+          "ndcg@10": 0.10389994214254901,
+          "mean_gate": 0.005334294866770506
+        }
+      ],
+      "seconds": 2.993843084004766,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.12779693362193364,
+          "ndcg@5": 0.09806527308403666,
+          "recall@10": 0.16391106060606062,
+          "ndcg@10": 0.10992996759784678,
+          "recall@20": 0.21483814074814073,
+          "ndcg@20": 0.12330900302174018
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9905,
+          "top_10_items_share": 0.0701,
+          "context_repeat_fraction": 0.37656,
+          "mean_duration_seconds": 191.3347,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.16706021251475797,
+            "ndcg@10": 0.11706714544917357
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.1610095735422106,
+            "ndcg@10": 0.10053731998895755
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.16632676184001813,
+            "ndcg@10": 0.1087442749004076
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.14924742474247424,
+            "ndcg@10": 0.12327422771205064
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "gate_mean": 0.04859597608447075,
+      "gate_quantiles": [
+        0.0,
+        0.045352927967906,
+        0.04886642098426819,
+        0.0519620344042778,
+        0.05905844643712044
+      ],
+      "validation_ce": 6.531056779684592
+    },
+    "global-16/42": {
+      "variant": {
+        "name": "global-16",
+        "gate": "global",
+        "tau": 16.0
+      },
+      "seed": 42,
+      "parameters": 1,
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/global-16/seed-42/gate.pt",
+      "checkpoint_sha256": "55525559eaf885c9761f751e35abab5e7430e1ee9fda60cbe1583d4918e17e08",
+      "validation_sha256": "ec3c6b64372e7da252dffd2172d04f7c4722be1b5cd291ffd23deaecc2790e8d",
+      "history_sha256": "47febd079fa41ef3d84ca30dbfb95984ce1c4feed2d72798199c85fe39c48d7b",
+      "selected_epoch": 1,
+      "epochs_completed": 5,
+      "training_history": [
+        {
+          "epoch": 1,
+          "train_ce": 4.883847775893704,
+          "validation_ce": 6.4657837138848375,
+          "recall@10": 0.17486608225108224,
+          "ndcg@10": 0.11571241085348777,
+          "mean_gate": 0.1075640469789505
+        },
+        {
+          "epoch": 2,
+          "train_ce": 4.878122022946251,
+          "validation_ce": 6.465573657421768,
+          "recall@10": 0.1745344155844156,
+          "ndcg@10": 0.11514175262507229,
+          "mean_gate": 0.09800483286380768
+        },
+        {
+          "epoch": 3,
+          "train_ce": 4.87343602724455,
+          "validation_ce": 6.465918172606453,
+          "recall@10": 0.17362965367965366,
+          "ndcg@10": 0.114749519988012,
+          "mean_gate": 0.08980244398117065
+        },
+        {
+          "epoch": 4,
+          "train_ce": 4.869565264604769,
+          "validation_ce": 6.466662955289334,
+          "recall@10": 0.17255632034632035,
+          "ndcg@10": 0.11442928054053736,
+          "mean_gate": 0.08265431970357895
+        },
+        {
+          "epoch": 5,
+          "train_ce": 4.866351542420608,
+          "validation_ce": 6.467698468141816,
+          "recall@10": 0.1714246536796537,
+          "ndcg@10": 0.11369328827607955,
+          "mean_gate": 0.07638177275657654
+        }
+      ],
+      "seconds": 2.9332773340065614,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.13481963924963924,
+          "ndcg@5": 0.102477924166782,
+          "recall@10": 0.17486608225108224,
+          "ndcg@10": 0.11571241085348777,
+          "recall@20": 0.2294572388722389,
+          "ndcg@20": 0.1300240615788741
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9945,
+          "top_10_items_share": 0.0687,
+          "context_repeat_fraction": 0.52946,
+          "mean_duration_seconds": 191.5698,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.17724321133412044,
+            "ndcg@10": 0.12257214539767938
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.168733681462141,
+            "ndcg@10": 0.10499415506745616
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.1790165420348969,
+            "ndcg@10": 0.11458841298086174
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.17243260040289743,
+            "ndcg@10": 0.1370106894573581
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "gate_mean": 0.1075640469789505,
+      "gate_quantiles": [
+        0.0,
+        0.10803942382335663,
+        0.10803942382335663,
+        0.10803942382335663,
+        0.10803942382335663
+      ],
+      "validation_ce": 6.4657837138848375
+    },
+    "context-16/42": {
+      "variant": {
+        "name": "context-16",
+        "gate": "context",
+        "tau": 16.0
+      },
+      "seed": 42,
+      "parameters": 161,
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/context-16/seed-42/gate.pt",
+      "checkpoint_sha256": "797ea968426c17818942950676c12dd7f4926bbdf81fcb433919243d52d5ad86",
+      "validation_sha256": "2d2275c7b4f799df34e2bfeb388c1fcb1f90456c864a57848dfb609c4063ae9b",
+      "history_sha256": "2d402186c933a0c3301bbf1cdddc8ae55c8192706d98f7c985d5952c9791d724",
+      "selected_epoch": 1,
+      "epochs_completed": 5,
+      "training_history": [
+        {
+          "epoch": 1,
+          "train_ce": 4.870189692991289,
+          "validation_ce": 6.4759103128788995,
+          "recall@10": 0.16808782106782108,
+          "ndcg@10": 0.11081251566170845,
+          "mean_gate": 0.05001828446984291
+        },
+        {
+          "epoch": 2,
+          "train_ce": 4.84793679598911,
+          "validation_ce": 6.49975911278585,
+          "recall@10": 0.1615221717171717,
+          "ndcg@10": 0.1070056329999144,
+          "mean_gate": 0.02219175174832344
+        },
+        {
+          "epoch": 3,
+          "train_ce": 4.844669361532356,
+          "validation_ce": 6.503269947269186,
+          "recall@10": 0.1608221717171717,
+          "ndcg@10": 0.1065996155336192,
+          "mean_gate": 0.01930234394967556
+        },
+        {
+          "epoch": 4,
+          "train_ce": 4.842757287332472,
+          "validation_ce": 6.490229132553981,
+          "recall@10": 0.1634531240981241,
+          "ndcg@10": 0.10790312613422941,
+          "mean_gate": 0.02905147150158882
+        },
+        {
+          "epoch": 5,
+          "train_ce": 4.8394332581779205,
+          "validation_ce": 6.480688900748966,
+          "recall@10": 0.165777886002886,
+          "ndcg@10": 0.10905806944606393,
+          "mean_gate": 0.03885338827967644
+        }
+      ],
+      "seconds": 3.029821832999005,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.12593580808080806,
+          "ndcg@5": 0.0967965530794434,
+          "recall@10": 0.16808782106782108,
+          "ndcg@10": 0.11081251566170845,
+          "recall@20": 0.21813259962259962,
+          "ndcg@20": 0.12405457520948557
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.986,
+          "top_10_items_share": 0.07146,
+          "context_repeat_fraction": 0.3907,
+          "mean_duration_seconds": 191.1782,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.1741440377804014,
+            "ndcg@10": 0.1196693505047142
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.16362053959965187,
+            "ndcg@10": 0.10079729293330404
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.1674597779288466,
+            "ndcg@10": 0.10784339099647375
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.15986503412245986,
+            "ndcg@10": 0.12634857301624353
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "gate_mean": 0.05001828446984291,
+      "gate_quantiles": [
+        0.0,
+        0.04643881283700466,
+        0.05003712512552738,
+        0.05397475063800812,
+        0.06623324006795883
+      ],
+      "validation_ce": 6.4759103128788995
+    },
+    "global-16/43": {
+      "variant": {
+        "name": "global-16",
+        "gate": "global",
+        "tau": 16.0
+      },
+      "seed": 43,
+      "parameters": 1,
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/global-16/seed-43/gate.pt",
+      "checkpoint_sha256": "c9be3908a546a3cea1befa1c38d6b8d7c52d144513abe2f1794c47e02acea3a6",
+      "validation_sha256": "c6bf1f6b234214cf7367fb25e361b3f7ec7fadc8332d93934fcdc18b8e6c7be1",
+      "history_sha256": "a1d81e79fc475cd9ad301bac7f1f0308644f1b669f1997b70d91acdcdfb7b9bc",
+      "selected_epoch": 1,
+      "epochs_completed": 5,
+      "training_history": [
+        {
+          "epoch": 1,
+          "train_ce": 4.883874155575026,
+          "validation_ce": 6.465786663364433,
+          "recall@10": 0.17486608225108224,
+          "ndcg@10": 0.11573304146641308,
+          "mean_gate": 0.1076190173625946
+        },
+        {
+          "epoch": 2,
+          "train_ce": 4.8781558838624415,
+          "validation_ce": 6.465572790510673,
+          "recall@10": 0.1745844155844156,
+          "ndcg@10": 0.11517818634172741,
+          "mean_gate": 0.0980849340558052
+        },
+        {
+          "epoch": 3,
+          "train_ce": 4.873457525173293,
+          "validation_ce": 6.4659146171398465,
+          "recall@10": 0.17372965367965368,
+          "ndcg@10": 0.11479015890422706,
+          "mean_gate": 0.08985000848770142
+        },
+        {
+          "epoch": 4,
+          "train_ce": 4.869589481384335,
+          "validation_ce": 6.466660663705785,
+          "recall@10": 0.17255632034632035,
+          "ndcg@10": 0.11442928054053736,
+          "mean_gate": 0.08267118036746979
+        },
+        {
+          "epoch": 5,
+          "train_ce": 4.866369526939789,
+          "validation_ce": 6.467691271854751,
+          "recall@10": 0.1714246536796537,
+          "ndcg@10": 0.11369941740010486,
+          "mean_gate": 0.07641856372356415
+        }
+      ],
+      "seconds": 2.9516205830004765,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.13481963924963924,
+          "ndcg@5": 0.10249398000895237,
+          "recall@10": 0.17486608225108224,
+          "ndcg@10": 0.11573304146641308,
+          "recall@20": 0.2294572388722389,
+          "ndcg@20": 0.13004543378469197
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9945,
+          "top_10_items_share": 0.0687,
+          "context_repeat_fraction": 0.52956,
+          "mean_duration_seconds": 191.5715,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.17724321133412044,
+            "ndcg@10": 0.1224948551063149
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.168733681462141,
+            "ndcg@10": 0.10504655664111923
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.1790165420348969,
+            "ndcg@10": 0.11469297015784755
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.17243260040289743,
+            "ndcg@10": 0.1370106894573581
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "gate_mean": 0.1076190173625946,
+      "gate_quantiles": [
+        0.0,
+        0.10809463262557983,
+        0.10809463262557983,
+        0.10809463262557983,
+        0.10809463262557983
+      ],
+      "validation_ce": 6.465786663364433
+    },
+    "global-16/44": {
+      "variant": {
+        "name": "global-16",
+        "gate": "global",
+        "tau": 16.0
+      },
+      "seed": 44,
+      "parameters": 1,
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/global-16/seed-44/gate.pt",
+      "checkpoint_sha256": "1902a0c534956c9b78f9f60f9245de383776293bbf5ebab6931ba5eae617544b",
+      "validation_sha256": "cd3cbea63475ad91f7a756c82d5f7449bcfd6504852c18118d14a2f25ecc78cf",
+      "history_sha256": "94db68ec5aa0fc995285d318429d2d45f83718ffdea11b152c32beea999b0ff8",
+      "selected_epoch": 1,
+      "epochs_completed": 5,
+      "training_history": [
+        {
+          "epoch": 1,
+          "train_ce": 4.883798000234797,
+          "validation_ce": 6.465777144281287,
+          "recall@10": 0.17486608225108224,
+          "ndcg@10": 0.11570590445018561,
+          "mean_gate": 0.10744122415781021
+        },
+        {
+          "epoch": 2,
+          "train_ce": 4.87805179157201,
+          "validation_ce": 6.465574685234669,
+          "recall@10": 0.1745344155844156,
+          "ndcg@10": 0.11515024323149696,
+          "mean_gate": 0.09791728854179382
+        },
+        {
+          "epoch": 3,
+          "train_ce": 4.873377460736563,
+          "validation_ce": 6.4659280712458305,
+          "recall@10": 0.17362965367965366,
+          "ndcg@10": 0.114749519988012,
+          "mean_gate": 0.08966976404190063
+        },
+        {
+          "epoch": 4,
+          "train_ce": 4.8695162156033955,
+          "validation_ce": 6.4666799375276085,
+          "recall@10": 0.17275632034632035,
+          "ndcg@10": 0.11449066719711047,
+          "mean_gate": 0.0825294703245163
+        },
+        {
+          "epoch": 5,
+          "train_ce": 4.8663045122379485,
+          "validation_ce": 6.4677111297411845,
+          "recall@10": 0.1714246536796537,
+          "ndcg@10": 0.11371072665577439,
+          "mean_gate": 0.07631704211235046
+        }
+      ],
+      "seconds": 2.934444042002724,
+      "validation": {
+        "queries": 5000,
+        "users": 734,
+        "metrics": {
+          "recall@5": 0.13481963924963924,
+          "ndcg@5": 0.10247141776347984,
+          "recall@10": 0.17486608225108224,
+          "ndcg@10": 0.11570590445018561,
+          "recall@20": 0.2292572388722389,
+          "ndcg@20": 0.1299732127307945
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9945,
+          "top_10_items_share": 0.06868,
+          "context_repeat_fraction": 0.5291,
+          "mean_duration_seconds": 191.5711,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1694,
+            "recall@10": 0.17724321133412044,
+            "ndcg@10": 0.12257214539767938
+          },
+          "medium": {
+            "queries": 1532,
+            "recall@10": 0.168733681462141,
+            "ndcg@10": 0.10499415506745616
+          },
+          "long": {
+            "queries": 1471,
+            "recall@10": 0.1790165420348969,
+            "ndcg@10": 0.11458841298086174
+          },
+          "mixed": {
+            "queries": 303,
+            "recall@10": 0.17243260040289743,
+            "ndcg@10": 0.13690332306623323
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "gate_mean": 0.10744122415781021,
+      "gate_quantiles": [
+        0.0,
+        0.10791604965925217,
+        0.10791604965925217,
+        0.10791604965925217,
+        0.10791604965925217
+      ],
+      "validation_ce": 6.465777144281287
+    }
+  },
+  "selection": {
+    "screening_challenger": "global-16",
+    "confirmation": [
+      {
+        "seed": 42,
+        "eligible": true
+      },
+      {
+        "seed": 43,
+        "eligible": true
+      },
+      {
+        "seed": 44,
+        "eligible": true
+      }
+    ],
+    "selected_variant": "global-16",
+    "accepted_on_development": true,
+    "checkpoint": {
+      "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/global-16/seed-42/gate.pt",
+      "sha256": "55525559eaf885c9761f751e35abab5e7430e1ee9fda60cbe1583d4918e17e08"
+    },
+    "holdout_used_for_selection": false,
+    "recorded_at_utc": "2026-10-15T07:39:26.548785+00:00"
+  },
+  "holdout": {
+    "opened_at_utc": "2026-10-15T07:39:26.549158+00:00",
+    "selection_sha256": "15738550e89195b53aaee1506fc16404fba48b679a9302c2eda3df9315f5703b",
+    "preparation": {
+      "selected_users": 1000,
+      "excluded_users": 2000,
+      "user_overlap": 0,
+      "queries": 5000,
+      "query_users": 753,
+      "targets": 5694,
+      "skipped_short_histories": 0,
+      "response_labels_read": false,
+      "evaluated": false,
+      "frozen": {
+        "inputs": {
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/rl-pilot.json": "122df4ca04dfcaa587445b493e663a5d958b23236fb37cbaa8e1aa8deed17aa8",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-protocol.md": "3922c3310c56bca6745748a6199bbed6901e34b69aff479aca3eed07dc33b447",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/baseline-selected.json": "f9bfcf3170557b0b048514683bc031c5368de47c43c1198e9a61a3bc4753dcf4",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/small-tuning-v1/runs/lr-low/seed-42/baseline.pt": "bc9467e3137a14b8399cfba2e4705f80f0996d4bea5b43f19b38457516208faf",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/manifest.json": "6017fed06393bd416ecbe08b98080c6ddd2628a7fc4cab600b7fb4223eea33db",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/catalog.json": "9c055d1a0b3928153acda8a16c4e290d930fdedd94778d46ac61801da0fbe514",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/manifest.json": "4874171cddc788a8337f9993a25d2921ba41c083b1ff6441ec453ca18e4d7629",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/raw/yambda-50m-multi_event.parquet": "b92f6c97277a554c8a7d6cfea900eca51639fd53a3e6c4fa58b82e35fd35804d",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/small-tuning-result.json": "6852f95801e4c66bc9ff29349720136778aa80ed553808013f3e5881a4b9fc38",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-result.json": "3dc91c1bba581102ac740cd30aed17f5ee5b55d7df0f454a9fccb990c2685598",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-signal-result.json": "27033b07541583a54ce3373a33e2c3e854ad29b9e61e4e1f29bad605ae208fe5",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/train.npz": "488ebafffb924b9bed034039cd5a1ccb9946cc652b8f75e32e1d27bfbeedad3d",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/validation.npz": "ceb777e8445d7343411ecb039486dff74d2f9b8aeb89021d23f206294d780d86",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/test.npz": "ba0fdfaa56cf69692dd48e8b5de5ead5052ac619db6d046e15600423fa4d13af",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/train.npz": "6bc6be670c18c03ef5ae2fd509e73e4cf7414543218100728219835dbae55596",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/selection.npz": "5b2a2a4aa609f0ffa7939f894882a510a65a70bace81b3bcaf76d829c8147bfe",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/validation.npz": "d29a755db2a0df1dd3eb249a23edc8f671f82e3ce03c1fc68786ae2f43009d0b",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/reward.pt": "2a4a9019eab2d7cbfc9ae397d13cbb6d7d5b8884f1570f3a941ff386f770f894",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/selection-predictions.npz": "72f47f4aea1f12a0a6bf3bcb85ba50da77aa32d9e1e9a4213d035e8730f1fe76",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/validation-predictions.npz": "658585a4c93c69aa74ac4ef2ccf16e593456ed9d5326ea7b63d9da71656ae36e",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/training-history.json": "1f1860e86c9975d6d65f387f173662da489f35dc2dc3d1a0be2dd108d9c5a385",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/final-evaluation.json": "77ff356b5476f972e9e6b8d5cc672af4a843150b3e51f77c7505002496117f88",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-protocol.md": "cf560f30a73ecaf3f22179de54eb87d93ac2bae7142a58ba120a9f1f090ada03",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-result.json": "c9878601e476d53dc0532d896c4534e11c5f3d676e95b7d0c18d8d7246e31468",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-execution.json": "8f759eb5d88c4d6e58f37867d5c48322fd0a3eb88a88cfae88803dec9cbc8d00",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward-signal.json": "c70b2b8a065fb1d26ae14d7150bfe90bec0d931853763bcaa9a7c9aec097522e",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-kl/seed-42/policy.pt": "47612400c5a0768c85f80693844b513746c33c7eb145b8e8d65dbd4a9a1471ac",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-strong-kl/seed-42/policy.pt": "7d0f719af8b3a0e93ffc9861831cc00e8d544b41d1c8eeedbab7eed110e43724",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/mixed-objective.json": "306698737d9f2021c89617a49be7b0b619f6b136da79ece928c8ce15704948de",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-protocol.md": "67fd1c59a43e4aca77fcfa05e66c22ac788bc73a2b3249e142420d0d35531799",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-result.json": "0df23f5ec2ef57f68cee2f1be0ce1bfd60c220db81457e074c5a188eaa810165",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/manifest.json": "a38620e8dad5eaeed1c4e16cf98534e807be217412256a942931e429fe0e18c2",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/listen-events.parquet": "51a3dcd08b8d2a6f9d5d8d1222fb1ce9cc365a8fda2d71fa45a3b2a4f62868c7",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/train.npz": "b30ef61422f40bf48b167a62bb4d58c4dd87e86111c62ba683a381a5d2abf7e2",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/validation.npz": "ba01bbd6e1674edda9a61546551729b6e205ee619d892ae54d37004684ada107",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/rollout-inputs.npz": "09b9a6fc05efc1011f941f58051ba98636930c6857863b6d3f87f2733edecb4e",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/recency.json": "c4ddab23e0f5a654405e0e24f9d86e44fe8899e11680b4e889c0827ddea43161",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-protocol.md": "a6da50be4088ab01665fe96c748851394be238856341ba1a35e660ba16ddf775",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-result.json": "5faebec1b2cab5200e9d203320477b3ed1cc4e04e5f91228e63b11d143d354fa",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/users.npz": "bf99ca9850574a384796d7a6d71640016c057424fd0573e5377fbf0339371e1a",
+          "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/manifest.json": "e511619304fa12d58b39fae3f7e11ac10b6535e740c6a75f687cc1286889fb0c"
+        },
+        "source_files": {
+          "__init__.py": "cd4e71abac041d54337132310fc423b22aadf8a403a1c07d3c0985b6f9dcfa6d",
+          "__main__.py": "b2ac0f5a590badd7e0a10aaf0637f8233b35a65c9233d607d3b982ac39a7eaea",
+          "cli.py": "b281b6682e6e1f531b565ef4db719784d82ef561050fcd4ec8e9fc73077d8111",
+          "data.py": "8b6d7a36cc7069e922e0972f114cce1b781b6fe402628ae0d7d296255f896c38",
+          "evaluation.py": "8e62b5bed9ca85d35904118a584549353796d843d01e707bbbd9c15a7ee58c84",
+          "final_evaluation.py": "c87a51bce8b186e9f205bf12e0f5762dc78c072fa07cad4608d3ae358a6517ea",
+          "mixed_data.py": "0f903a7b2826067cb5908a211bd309cbc5dc0f2736f994d1b0874554f9c9fdac",
+          "mixed_experiment.py": "3bda41e0fb81dc1283c8630f038ec9d2bf2787ca65df00d83034373e7b5fe6bf",
+          "mixed_training.py": "6f0742e1cc7fdb693017f98256680f58ca3f7ecbdf9d668e8b491055adc7e13b",
+          "model.py": "7e38b843500e5f7d348287f91f4090e9938aadb1474a512f0f02b940b4672cfe",
+          "policy_data.py": "0e14dab3d068b171ffeb1a65cacb164dffad49900418ddde3f9ec2f8627be1ae",
+          "policy_evaluation.py": "be276122fb8de4ff07d34f5eb3a7eb547261d2ccf542531abe5e3c91563385d0",
+          "policy_optimization.py": "bd99d53159476ae23ee994f640ca86de42983a7076c9a21a5150d8c65eb399e1",
+          "policy_rollout.py": "0ce38ab6c7f60ebe42f4a92662c79fa2ba3c47bc18fee348136bab7bab18b853",
+          "recency_data.py": "f4533c02140c9c6d0b4dd475130e99b861b628efa0c8cb659211f595cb3dfcef",
+          "recency_experiment.py": "19423b4688a9b5b3d832aad6580d3ee004d72f115363f7f8ba22567bead0daa9",
+          "recency_model.py": "78709ff2a61ba2cd3a0ce8c47d7f070cb24a86a28941429b667b956fd35ab759",
+          "reward.py": "b32e6a8e310e5a50e47768c6ced5bbed11fbedd242b97f9aa9bbeca007d2d978",
+          "reward_catalog.py": "638572c17286bb6b73856309b64ddb1b1ed131c84ddac56242e56e36c7c22896",
+          "reward_data.py": "0b122902a0fa43d86f720253e06c452119dcfc3f16b03c507e2a07004f9c6125",
+          "reward_evaluation.py": "775d93b97cf03fe805868d983debf1d332110e9e6b26a20767bc7eacf0573d6b",
+          "reward_model.py": "6c106e96b142a9b5a4de0bca13131c43956ce97a548413add1e272a31df0ae1f",
+          "reward_signal.py": "b16ea89ca644552ab52fcc91dcc00abe039ad22ab1d54dc49a17c1d319d4f265",
+          "status.py": "a47c35327f5c1eaecc199ab9c3d956f14f59b4773a2565e4875cc05292d3657d",
+          "train.py": "abcdb42f938f3767d6296ec47dfc3d5132e4635aaad1d029d9ef1ecefee6ad2e",
+          "tuning.py": "e9f2a846d4fc1e4b87d01935469b748e23092d94f9edcb2b7dccb29e52538a44"
+        }
+      },
+      "source_commit": "5c8158e4d9f300168951fb2c8d719c59c4249584",
+      "recorded_at_utc": "2026-10-15T07:38:22.802043+00:00",
+      "artifacts": {
+        "queries.npz": "3b3a015cd473b43097c344c69fe9ddb12d28a6e678e8c97349aea260759f502b",
+        "users.npz": "e25ae4f24d35d4190256067dff94089153ec4530c05d6f20ae1b6fe0008489a2"
+      }
+    },
+    "policies": {
+      "baseline": {
+        "queries": 5000,
+        "users": 753,
+        "metrics": {
+          "recall@5": 0.09789190476190476,
+          "ndcg@5": 0.07291321898113265,
+          "recall@10": 0.12501190476190477,
+          "ndcg@10": 0.0818950056825514,
+          "recall@20": 0.1734735714285714,
+          "ndcg@20": 0.09436804455186883
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.936,
+          "top_10_items_share": 0.06488,
+          "context_repeat_fraction": 0.23888,
+          "mean_duration_seconds": 192.4905,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1656,
+            "recall@10": 0.1213768115942029,
+            "ndcg@10": 0.08037795961710797
+          },
+          "medium": {
+            "queries": 1520,
+            "recall@10": 0.1307017543859649,
+            "ndcg@10": 0.0838277999826927
+          },
+          "long": {
+            "queries": 1550,
+            "recall@10": 0.12518279569892474,
+            "ndcg@10": 0.0805007587467056
+          },
+          "mixed": {
+            "queries": 274,
+            "recall@10": 0.11445081682307959,
+            "ndcg@10": 0.0882288148019692
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "train_popularity": {
+        "queries": 5000,
+        "users": 753,
+        "metrics": {
+          "recall@5": 0.014614285714285713,
+          "ndcg@5": 0.008519597908457365,
+          "recall@10": 0.02482333333333333,
+          "ndcg@10": 0.01196517023669805,
+          "recall@20": 0.04398857142857143,
+          "ndcg@20": 0.01686809769413866
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.005,
+          "top_10_items_share": 1.0,
+          "context_repeat_fraction": 0.04294,
+          "mean_duration_seconds": 168.5,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1656,
+            "recall@10": 0.0322061191626409,
+            "ndcg@10": 0.01776927725151292
+          },
+          "medium": {
+            "queries": 1520,
+            "recall@10": 0.03245614035087719,
+            "ndcg@10": 0.013962373366398504
+          },
+          "long": {
+            "queries": 1550,
+            "recall@10": 0.008709677419354838,
+            "ndcg@10": 0.0027276642390368076
+          },
+          "mixed": {
+            "queries": 274,
+            "recall@10": 0.029014598540145983,
+            "ndcg@10": 0.018062923239241142
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "recent_items": {
+        "queries": 5000,
+        "users": 753,
+        "metrics": {
+          "recall@5": 0.11612857142857143,
+          "ndcg@5": 0.08693379108984162,
+          "recall@10": 0.15547412698412696,
+          "ndcg@10": 0.09982621891709015,
+          "recall@20": 0.19752126984126983,
+          "ndcg@20": 0.11086148249287299
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.9795,
+          "top_10_items_share": 0.16516,
+          "context_repeat_fraction": 0.8598,
+          "mean_duration_seconds": 188.9413,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1656,
+            "recall@10": 0.15096618357487923,
+            "ndcg@10": 0.09619572070897245
+          },
+          "medium": {
+            "queries": 1520,
+            "recall@10": 0.16480263157894737,
+            "ndcg@10": 0.10606865711822855
+          },
+          "long": {
+            "queries": 1550,
+            "recall@10": 0.15335483870967742,
+            "ndcg@10": 0.09616739890820215
+          },
+          "mixed": {
+            "queries": 274,
+            "recall@10": 0.14295852160815664,
+            "ndcg@10": 0.10783632833566274
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        }
+      },
+      "global-16": {
+        "queries": 5000,
+        "users": 753,
+        "metrics": {
+          "recall@5": 0.12161158730158732,
+          "ndcg@5": 0.08923518737165813,
+          "recall@10": 0.15819825396825396,
+          "ndcg@10": 0.10132994408646984,
+          "recall@20": 0.20721992063492062,
+          "ndcg@20": 0.11390566916430339
+        },
+        "behavior_at_10": {
+          "catalog_coverage": 0.987,
+          "top_10_items_share": 0.05988,
+          "context_repeat_fraction": 0.49692,
+          "mean_duration_seconds": 192.565,
+          "duration_known_fraction": 1.0
+        },
+        "target_duration_tertiles_seconds": [
+          175.0,
+          215.0
+        ],
+        "target_duration_slices": {
+          "short": {
+            "queries": 1656,
+            "recall@10": 0.15619967793880835,
+            "ndcg@10": 0.09816930410847298
+          },
+          "medium": {
+            "queries": 1520,
+            "recall@10": 0.16622807017543859,
+            "ndcg@10": 0.10654464731754514
+          },
+          "long": {
+            "queries": 1550,
+            "recall@10": 0.15518279569892474,
+            "ndcg@10": 0.09824771549376701
+          },
+          "mixed": {
+            "queries": 274,
+            "recall@10": 0.14279052253504806,
+            "ndcg@10": 0.1089398901120817
+          },
+          "unknown": {
+            "queries": 0,
+            "recall@10": null,
+            "ndcg@10": null
+          }
+        },
+        "gate_mean": 0.10717511922121048,
+        "gate_quantiles": [
+          0.0,
+          0.10803942382335663,
+          0.10803942382335663,
+          0.10803942382335663,
+          0.10803942382335663
+        ],
+        "ce": 6.755562443488836
+      }
+    },
+    "intervals_for_selected": {
+      "baseline": {
+        "recall@10": {
+          "estimate": 0.0331863492063492,
+          "ci95": [
+            0.02652906544003679,
+            0.04001226184932045
+          ],
+          "clusters": 753,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights in the observed cohort."
+        },
+        "ndcg@10": {
+          "estimate": 0.019434938403918432,
+          "ci95": [
+            0.015593360442377618,
+            0.02332900076117186
+          ],
+          "clusters": 753,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights in the observed cohort."
+        }
+      },
+      "recent_items": {
+        "recall@10": {
+          "estimate": 0.0027241269841269842,
+          "ci95": [
+            -0.005813224083008105,
+            0.01094468229865531
+          ],
+          "clusters": 753,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights in the observed cohort."
+        },
+        "ndcg@10": {
+          "estimate": 0.0015037251693796846,
+          "ci95": [
+            -0.0024560303736699545,
+            0.005446003761576221
+          ],
+          "clusters": 753,
+          "observations": 5000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights in the observed cohort."
+        }
+      }
+    },
+    "primary_confirmation": {
+      "ndcg_superiority_vs_baseline": true,
+      "ndcg_superiority_vs_recent": false,
+      "both_passed": false
+    },
+    "slices": {
+      "baseline": {
+        "all_targets_in_history": {
+          "queries": 946,
+          "recall@10": 0.4394040068458674,
+          "ndcg@10": 0.3302652797856313
+        },
+        "some_target_new_to_history": {
+          "queries": 4054,
+          "recall@10": 0.05164857753658938,
+          "ndcg@10": 0.023937857359533722
+        }
+      },
+      "train_popularity": {
+        "all_targets_in_history": {
+          "queries": 946,
+          "recall@10": 0.024992449411054062,
+          "ndcg@10": 0.01191712691827999
+        },
+        "some_target_new_to_history": {
+          "queries": 4054,
+          "recall@10": 0.02478387013414147,
+          "ndcg@10": 0.011976381134385145
+        }
+      },
+      "recent_items": {
+        "all_targets_in_history": {
+          "queries": 946,
+          "recall@10": 0.7877378435517971,
+          "ndcg@10": 0.5045488523024668
+        },
+        "some_target_new_to_history": {
+          "queries": 4054,
+          "recall@10": 0.007935529087477779,
+          "ndcg@10": 0.005384282266235084
+        }
+      },
+      "global-16": {
+        "all_targets_in_history": {
+          "queries": 946,
+          "recall@10": 0.6515252189670795,
+          "ndcg@10": 0.4515367429391358
+        },
+        "some_target_new_to_history": {
+          "queries": 4054,
+          "recall@10": 0.043080516205824544,
+          "ndcg@10": 0.019609265321146208
+        }
+      }
+    },
+    "response_labels_read": false,
+    "limitations": "Previously unused users, same source/time/catalog; no causal user-benefit evaluation.",
+    "artifacts": {
+      "baseline.npy": "e8ef1e2a65996f9cfc7fab8c0e80ea8a687b9b09c6e3511711ca86e099ca7149",
+      "rankings.npz": "8d9aff7763388d280df8ac30cde66166af8d2d515e72a309d386c4900cc3efe2",
+      "opening.json": "eb852341929b54a4e8d02890574d03f058298fb247e50280b2f6a7120ad99163"
+    }
+  },
+  "rollouts": {
+    "baseline-greedy": {
+      "contexts": 1000,
+      "synthetic_feedback": true,
+      "mean_unique_items": 1.027,
+      "consecutive_repeat_by_step": [
+        null,
+        0.984,
+        0.994,
+        0.996,
+        0.999
+      ],
+      "sha256": "a01a06897b9e97f00af6de8c98891448a27f5e80b3d9e4b4ac15ce372a1ee40a"
+    },
+    "baseline-sampled": {
+      "contexts": 1000,
+      "synthetic_feedback": true,
+      "mean_unique_items": 4.253,
+      "consecutive_repeat_by_step": [
+        null,
+        0.143,
+        0.17,
+        0.168,
+        0.166
+      ],
+      "sha256": "b0ce4075c79d601555e4e2319a767686619b2d1a98bab4c98292b48c32fce7a3"
+    },
+    "global-16-greedy": {
+      "contexts": 1000,
+      "synthetic_feedback": true,
+      "mean_unique_items": 1.021,
+      "consecutive_repeat_by_step": [
+        null,
+        0.99,
+        0.994,
+        0.996,
+        0.999
+      ],
+      "sha256": "4d00452f1907eb9a418127f57d4383427b0d50064f5a0dfc6bc3786a0d01a5e8"
+    },
+    "global-16-sampled": {
+      "contexts": 1000,
+      "synthetic_feedback": true,
+      "mean_unique_items": 4.121,
+      "consecutive_repeat_by_step": [
+        null,
+        0.159,
+        0.183,
+        0.18,
+        0.171
+      ],
+      "sha256": "0b541ccd3f226c78cd13b575d4b53f0be8398f9dec316ed30e1d3f30340313b2"
+    },
+    "recent_items-greedy": {
+      "contexts": 1000,
+      "synthetic_feedback": true,
+      "mean_unique_items": 1.0,
+      "consecutive_repeat_by_step": [
+        null,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "sha256": "0e46f465c225d28c6ff45f7d1ffa80865b998648e646f6ca0ffe3785120e0b0d"
+    }
+  },
+  "series_seconds": 38.51825000000099,
+  "environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.4",
+    "torch": "2.14.1",
+    "backbone_device": "mps",
+    "gate_device": "cpu"
+  },
+  "historical_test_reevaluated": false,
+  "rl_retrained": false,
+  "reward_retrained": false
+}

@@ -1,0 +1,76 @@
+{
+  "source_commit": "5c8158e4d9f300168951fb2c8d719c59c4249584",
+  "result_sha256": "f451e3fe3ac8012fccdcb6cacfe5753dd614f8c93553e9a47cd8eac16618b329",
+  "commands": {
+    "prepare": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.recency_experiment --device auto --prepare-only",
+    "series": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.recency_experiment --device auto --resume",
+    "audit": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.recency_experiment --device auto --audit"
+  },
+  "execution": {
+    "prepare": {
+      "wall_seconds": 4.12,
+      "maximum_rss_bytes": 974323712,
+      "peak_memory_footprint_bytes": 913589688,
+      "final_record": {
+        "stage": "recency_prepared",
+        "selected_users": 1000,
+        "excluded_users": 2000,
+        "queries": 5000,
+        "user_overlap": 0,
+        "response_labels_read": false
+      },
+      "log_sha256": "35d006a71488f5c39f55a080402072abb6f299668374b813822f152801816663"
+    },
+    "series": {
+      "wall_seconds": 52.75,
+      "maximum_rss_bytes": 1235566592,
+      "peak_memory_footprint_bytes": 1950599088,
+      "final_record": {
+        "stage": "recency_complete",
+        "runs": 8,
+        "selected": "global-16",
+        "primary": {
+          "ndcg_superiority_vs_baseline": true,
+          "ndcg_superiority_vs_recent": false,
+          "both_passed": false
+        }
+      },
+      "log_sha256": "ae1f4434ddc93039bd1a660c108e79ee0a9e16f4dc476667d805ce9f2a2ac571"
+    },
+    "audit": {
+      "wall_seconds": 29.06,
+      "maximum_rss_bytes": 1505312768,
+      "peak_memory_footprint_bytes": 2242136224,
+      "final_record": {
+        "stage": "recency_audit_complete",
+        "runs_checked": 8,
+        "backbone_forward_maximum_difference": {
+          "train": 0.0,
+          "validation": 0.0,
+          "holdout": 0.0
+        },
+        "selection_recalculated": true,
+        "raw_holdout_reconstructed": true,
+        "user_overlap": 0,
+        "metrics_and_intervals_recalculated": true,
+        "rollouts_replayed": 5,
+        "historical_test_reevaluated": false
+      },
+      "log_sha256": "a8880bb529ba2889960f13b74d712908f186d5c1d8c95827014d2f4e4b4933a5"
+    }
+  },
+  "training_seconds_sum": 23.893955418017867,
+  "selected_global_gate": {
+    "variant": {
+      "name": "global-16",
+      "gate": "global",
+      "tau": 16.0
+    },
+    "bias": -2.1109256744384766,
+    "sigmoid_bias": 0.10803942382335663,
+    "no_known_history_gate": 0.0,
+    "parameters": 1,
+    "checkpoint_sha256": "55525559eaf885c9761f751e35abab5e7430e1ee9fda60cbe1583d4918e17e08"
+  },
+  "scope": "Fixed original backbone; seeds vary gate optimization only. macOS process resource measurements, no isolated MPS/system peak. No automated tests run."
+}
