@@ -1,0 +1,72 @@
+{
+  "source_commit": "de11aa4f723926a09c1c2c1fa0e65e0fd534d0fa",
+  "result_sha256": "6d08e6bc6a54e5c4683793f852ed08a79d6f7446a27eecee3b3496a949d60cd3",
+  "final_result_sha256": "c561389161f0e6d4261c14d2ea1b65646827f6a0daa02fd129c502f7be272cfd",
+  "execution": {
+    "prepare": {
+      "wall_seconds": 6.71,
+      "maximum_rss_bytes": 828899328,
+      "peak_memory_footprint_bytes": 795395584,
+      "final_record": {
+        "stage": "shortlist_mass_prepared",
+        "users": 1738,
+        "queries": 19938,
+        "query_users": 1279,
+        "final_opened": false
+      },
+      "log_sha256": "4dcbff253275fcf1b517424897e1a2b829de29ce80898bd6dbce2b60252a64f6"
+    },
+    "series": {
+      "wall_seconds": 140.18,
+      "maximum_rss_bytes": 2338897920,
+      "peak_memory_footprint_bytes": 4505390896,
+      "final_record": {
+        "stage": "shortlist_mass_complete",
+        "rules": 16,
+        "final_opened": true,
+        "primary": {
+          "reward_improvement": true,
+          "ndcg_noninferiority": false,
+          "ndcg_strict_improvement": false,
+          "sampled_point_guards_passed": true,
+          "absolute_ndcg_margin": 0.0010120708195673206,
+          "static_passed": false,
+          "all_passed": false
+        }
+      },
+      "log_sha256": "56e9299c083716839f8ee950565d0ce5f1dbca5eda8d6c3a658b020b9d2bd1b6"
+    },
+    "audit": {
+      "wall_seconds": 135.12,
+      "maximum_rss_bytes": 2895970304,
+      "peak_memory_footprint_bytes": 4925444128,
+      "final_record": {
+        "stage": "shortlist_mass_audit_complete",
+        "rules_checked": 16,
+        "raw_preparation_reproduced": true,
+        "maximum_forward_difference": 0.0,
+        "mass_and_identity_checks_passed": true,
+        "rollouts_replayed": 25,
+        "selection_recalculated": true,
+        "final_recalculated": true
+      },
+      "log_sha256": "503ac39687432635e1e7a9902a913f244c0375dc2570ebc23dd114bf06c67774"
+    }
+  },
+  "new_training_runs": 0,
+  "commands": {
+    "prepare": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.shortlist_mass_experiment --device auto --prepare-only",
+    "series": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.shortlist_mass_experiment --device auto --resume",
+    "audit": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.shortlist_mass_experiment --device auto --audit"
+  },
+  "final_opened": true,
+  "final_used_for_selection": false,
+  "automated_tests_run": false,
+  "pdf_changed": false,
+  "notes": [
+    "Final cohort includes less active and late-arriving users; it differs from previous early-active cohorts.",
+    "Sampled behavior changes have paired user-cluster intervals conditional on fixed models and sampling setup; causal user benefit is not measured.",
+    "Overall preregistered criterion failed because NDCG noninferiority was not established.",
+    "False opening flags in preparation artifacts describe their historical preparation stage."
+  ]
+}
