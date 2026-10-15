@@ -13,7 +13,7 @@
   },
   "documentation": {
     "README.md": "fd42acd1318b936a7474729005bdff773b18372193691aca675a665ce699d80f",
-    "Воспроизведение.md": "a846819dff640a17666f780e40a583cb152afc2a2c58926dd3e1a86d95771c5a",
+    "Воспроизведение.md": "99841486ddbc095a111006f1c98775b0228938779a6f1727fdddc3a57abe6bbf",
     "История-исследования.md": "3cc3e07adf1a1917a03b940fa65463c172eb290c4389da333c3b814a68cf97ed",
     "Решение.md": "2cce0f00964b21928f4dbb61c3e8fac150fa0692467442ca0d6e0b18c2d32e89"
   },
@@ -49,7 +49,8 @@
         "sha256": "bdb97f914f10cd942ab73a60e7e7b97135c739212cd207063cfc025195fefef7"
       }
     ],
-    "code_configs_and_existing_experiment_artifacts_unchanged": true
+    "code_configs_and_existing_experiment_artifacts_unchanged": true,
+    "pdf_marked_as_binary_in_git": true
   },
   "readme_lines": {
     "before": 304,
