@@ -1,0 +1,3221 @@
+{
+  "experiment": "candidate-policy-v1",
+  "provenance": {
+    "config": {
+      "experiment": "candidate-policy-v1",
+      "historical_report": "../experiments/ranked-policy-result.json",
+      "historical_execution": "../experiments/ranked-policy-execution.json",
+      "ranking_data_dir": "../data/processed/candidate-ranking-v1",
+      "new_data_dir": "../data/processed/candidate-policy-v1",
+      "recency_execution": "../experiments/recency-execution.json",
+      "data": {
+        "development_users": 300,
+        "final_users": 1200,
+        "development_queries": 10000,
+        "final_queries": 20000,
+        "development_user_seed": 20261022,
+        "final_user_seed": 20261023,
+        "development_query_seed": 20261024,
+        "final_query_seed": 20261025
+      },
+      "training": {
+        "epochs": 5,
+        "batch_size": 64,
+        "learning_rate": 5e-05,
+        "weight_decay": 0.0,
+        "gradient_clip": 1.0,
+        "seed": 42,
+        "confirmation_seeds": [
+          43,
+          44
+        ],
+        "log_floor": 1e-30
+      },
+      "variants": [
+        {
+          "name": "small-kl-01",
+          "data": "small",
+          "beta": 0.1,
+          "repeat_penalty": 0.1
+        },
+        {
+          "name": "small-kl-1",
+          "data": "small",
+          "beta": 1.0,
+          "repeat_penalty": 0.1
+        },
+        {
+          "name": "expanded-kl-01",
+          "data": "expanded",
+          "beta": 0.1,
+          "repeat_penalty": 0.1
+        },
+        {
+          "name": "expanded-kl-1",
+          "data": "expanded",
+          "beta": 1.0,
+          "repeat_penalty": 0.1
+        }
+      ],
+      "reranking": {
+        "candidate_counts": [
+          50,
+          100
+        ],
+        "reward_weights": [
+          0,
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "repeat_penalty": 0.1
+      },
+      "selection": {
+        "minimum_relative_ndcg": 0.99,
+        "minimum_relative_coverage": 0.95,
+        "maximum_relative_concentration": 1.25,
+        "maximum_sampled_repeat_increase": 0.01,
+        "maximum_unique_decrease": 0.05,
+        "criterion": "maximum_top10_calibrated_reward_above_reference",
+        "tie_break": "configuration_order"
+      },
+      "evaluation": {
+        "bootstrap_repeats": 2000,
+        "bootstrap_seed": 42,
+        "forward_tolerance": 2e-06,
+        "ndcg_noninferiority_margin": 0.01
+      },
+      "rollout": {
+        "contexts": 1000,
+        "steps": 5,
+        "seed": 42,
+        "modes": [
+          "greedy",
+          "sampled"
+        ],
+        "reward_history": "frozen_observed_response_history"
+      },
+      "execution": {
+        "inference_batch_size": 128,
+        "reward_batch_size": 32,
+        "threads": 4
+      }
+    },
+    "frozen": {
+      "inputs": {
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/rl-pilot.json": "122df4ca04dfcaa587445b493e663a5d958b23236fb37cbaa8e1aa8deed17aa8",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-protocol.md": "3922c3310c56bca6745748a6199bbed6901e34b69aff479aca3eed07dc33b447",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/baseline-selected.json": "f9bfcf3170557b0b048514683bc031c5368de47c43c1198e9a61a3bc4753dcf4",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/small-tuning-v1/runs/lr-low/seed-42/baseline.pt": "bc9467e3137a14b8399cfba2e4705f80f0996d4bea5b43f19b38457516208faf",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/manifest.json": "6017fed06393bd416ecbe08b98080c6ddd2628a7fc4cab600b7fb4223eea33db",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/catalog.json": "9c055d1a0b3928153acda8a16c4e290d930fdedd94778d46ac61801da0fbe514",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/manifest.json": "4874171cddc788a8337f9993a25d2921ba41c083b1ff6441ec453ca18e4d7629",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/raw/yambda-50m-multi_event.parquet": "b92f6c97277a554c8a7d6cfea900eca51639fd53a3e6c4fa58b82e35fd35804d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/small-tuning-result.json": "6852f95801e4c66bc9ff29349720136778aa80ed553808013f3e5881a4b9fc38",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-result.json": "3dc91c1bba581102ac740cd30aed17f5ee5b55d7df0f454a9fccb990c2685598",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-signal-result.json": "27033b07541583a54ce3373a33e2c3e854ad29b9e61e4e1f29bad605ae208fe5",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/train.npz": "488ebafffb924b9bed034039cd5a1ccb9946cc652b8f75e32e1d27bfbeedad3d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/validation.npz": "ceb777e8445d7343411ecb039486dff74d2f9b8aeb89021d23f206294d780d86",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/test.npz": "ba0fdfaa56cf69692dd48e8b5de5ead5052ac619db6d046e15600423fa4d13af",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/train.npz": "6bc6be670c18c03ef5ae2fd509e73e4cf7414543218100728219835dbae55596",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/selection.npz": "5b2a2a4aa609f0ffa7939f894882a510a65a70bace81b3bcaf76d829c8147bfe",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/validation.npz": "d29a755db2a0df1dd3eb249a23edc8f671f82e3ce03c1fc68786ae2f43009d0b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/reward.pt": "2a4a9019eab2d7cbfc9ae397d13cbb6d7d5b8884f1570f3a941ff386f770f894",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/selection-predictions.npz": "72f47f4aea1f12a0a6bf3bcb85ba50da77aa32d9e1e9a4213d035e8730f1fe76",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/validation-predictions.npz": "658585a4c93c69aa74ac4ef2ccf16e593456ed9d5326ea7b63d9da71656ae36e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/training-history.json": "1f1860e86c9975d6d65f387f173662da489f35dc2dc3d1a0be2dd108d9c5a385",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/final-evaluation.json": "77ff356b5476f972e9e6b8d5cc672af4a843150b3e51f77c7505002496117f88",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-protocol.md": "cf560f30a73ecaf3f22179de54eb87d93ac2bae7142a58ba120a9f1f090ada03",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-result.json": "c9878601e476d53dc0532d896c4534e11c5f3d676e95b7d0c18d8d7246e31468",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-execution.json": "8f759eb5d88c4d6e58f37867d5c48322fd0a3eb88a88cfae88803dec9cbc8d00",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward-signal.json": "c70b2b8a065fb1d26ae14d7150bfe90bec0d931853763bcaa9a7c9aec097522e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-kl/seed-42/policy.pt": "47612400c5a0768c85f80693844b513746c33c7eb145b8e8d65dbd4a9a1471ac",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-strong-kl/seed-42/policy.pt": "7d0f719af8b3a0e93ffc9861831cc00e8d544b41d1c8eeedbab7eed110e43724",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/mixed-objective.json": "306698737d9f2021c89617a49be7b0b619f6b136da79ece928c8ce15704948de",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-protocol.md": "67fd1c59a43e4aca77fcfa05e66c22ac788bc73a2b3249e142420d0d35531799",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-result.json": "0df23f5ec2ef57f68cee2f1be0ce1bfd60c220db81457e074c5a188eaa810165",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/manifest.json": "a38620e8dad5eaeed1c4e16cf98534e807be217412256a942931e429fe0e18c2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/listen-events.parquet": "51a3dcd08b8d2a6f9d5d8d1222fb1ce9cc365a8fda2d71fa45a3b2a4f62868c7",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/train.npz": "b30ef61422f40bf48b167a62bb4d58c4dd87e86111c62ba683a381a5d2abf7e2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/validation.npz": "ba01bbd6e1674edda9a61546551729b6e205ee619d892ae54d37004684ada107",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/rollout-inputs.npz": "09b9a6fc05efc1011f941f58051ba98636930c6857863b6d3f87f2733edecb4e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/recency.json": "c4ddab23e0f5a654405e0e24f9d86e44fe8899e11680b4e889c0827ddea43161",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-protocol.md": "a6da50be4088ab01665fe96c748851394be238856341ba1a35e660ba16ddf775",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-result.json": "5faebec1b2cab5200e9d203320477b3ed1cc4e04e5f91228e63b11d143d354fa",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/users.npz": "bf99ca9850574a384796d7a6d71640016c057424fd0573e5377fbf0339371e1a",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/manifest.json": "e511619304fa12d58b39fae3f7e11ac10b6535e740c6a75f687cc1286889fb0c",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward-history.json": "fab6eceb3adf8649f9a1fcdabca09aabc0bb2d4efe03ba31d02541b45c0197d0",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-history-protocol.md": "240a915fe88776bc9bbae0556370e240f2af878c1447bb2f3f944b51ffb367ec",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-result.json": "f451e3fe3ac8012fccdcb6cacfe5753dd614f8c93553e9a47cd8eac16618b329",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-execution.json": "cb14b423391f3498c5d6cab6fec72fe4d23c8021ddf76d6f8faca5639479363b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1/manifest.json": "fa37d69dd1d2f85834917bd8fb5db7090c272065df90b4b005506c3e84e6bb05",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1/users.npz": "e25ae4f24d35d4190256067dff94089153ec4530c05d6f20ae1b6fe0008489a2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward.json": "1b39504dae6a20453ea862baf129a67cb842546162cbb72fe63fc0507895f8d7",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/cache/validation.npy": "58f1c8902c6884d6fae796a956af96ac0f495d2bb02d76e8f55b040e8c753581",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/holdout/baseline.npy": "e8ef1e2a65996f9cfc7fab8c0e80ea8a687b9b09c6e3511711ca86e099ca7149",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1/queries.npz": "3b3a015cd473b43097c344c69fe9ddb12d28a6e678e8c97349aea260759f502b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/global-16/seed-42/gate.pt": "55525559eaf885c9761f751e35abab5e7430e1ee9fda60cbe1583d4918e17e08",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/ranking.json": "a90cc540f18c6e97cbb4a9d5320ab91eb38f916fc83f06e60239c74df43446a2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-protocol.md": "358d2db8e7e56256d2d39607d567fa8b71d41880c76c224f58901a5276107695",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-history-result.json": "9fc47dfc93b88494a91adb21c958c89d9c5addf6cb4d74aebddb2f07cc2c7d21",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-history-execution.json": "06ea496bfd15e11dd02fd85fb26323948d51178302a44d1751f4ee60dbd3ea25",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/requirements-ranking-lock.txt": "17714fd27f6e01aae1f63616a39fea0cb72320a4115f5cb7701dd3a58b97fe47",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/requirements-ranking.txt": "6329cf41fc45752021b68005d72661cec09f3e70c62b6245ad0d0947ec9e10fa",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-dependencies.json": "8af009d98f0d37230d89436616222af5d26c4a94b9400d248d257f8eb3ec866b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/manifest.json": "a9cb200ea21dcf2130278d68cad5ed15025b9116fac78ca5112ca7924ed23d51",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/development-users.npz": "2304b4dc55243a6c4f5b03254353e64e3c32b676e62a0ae0ebb5d39341212f6f",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/final-users.npz": "9e3165f090ce6fa723fc072570bbdc26e968cb13155de8abded6fbf9d4b26d67",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/ranked-policy.json": "d0370933ccfc3ecce0d3c9f43d352d2b6a1eb7b219bf6d585cba8bac10460321",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranked-policy-protocol.md": "ffdeac8b1abf2797cd753e6f258f4d07c09319e60b073cfcb7c987624a65b09c",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-result.json": "4f0dfa37f58ba1df422e78fa016d1a0b5bffd8eb13c879ffbec7820447e81f66",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-execution.json": "789436c83fd2ac1e482202e186db3a9b0e39f318eba5af60dc9c55cd47a6e250",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-ranking-v1/runs/boosting-expanded/seed-42/ranker.cbm": "9c6c31084c6103f5857962dfc30f67ac41f280c64dc26bac0dace1090b10e118",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-ranking-v1/manifest.json": "a4a351a4b764f9b4faf9c7bb8ab631afae78246990a5b5302ccec819563babc3",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-ranking-v1/priors.npz": "56ce7b1ef7a2e25e263cae5cc84172af347601526101e899fa552601ab640ef8",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-ranking-v1/populations.npz": "a848738bd4b61d4e47bcefec44ed068a740f1de94a789b66e45d87d468ae0b43",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/final.npz": "1c3f53b6219d496ad6ea5a323501ffefe4d77d5616898bf6bc04b4942291952c",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/candidate-policy.json": "e0e7f3e538d107e73c59dcce3408c9cde5bfb79d6845da247e73a4a240bace50",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/candidate-policy-protocol.md": "bc13ba23489e6d5762605029f553b19b38bfb704ee42124b2e8a589f483a4c84",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranked-policy-result.json": "12c355b7a05ba73453cdf4abd6fe9b44469b74b8038de8cfe28ce5c1f89e7cc9",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranked-policy-execution.json": "cec17fedcb3a73df9847d9c1035bd2ccd7c480473c803677a16b0d2e8147d586",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/runs/repeat-kl-01/seed-42/policy.pt": "b44851f3f5f0406f97f1aa58fc80f2f77615a25ced41e9918dfc27d05e1f40e0"
+      },
+      "source_files": {
+        "__init__.py": "cd4e71abac041d54337132310fc423b22aadf8a403a1c07d3c0985b6f9dcfa6d",
+        "__main__.py": "b2ac0f5a590badd7e0a10aaf0637f8233b35a65c9233d607d3b982ac39a7eaea",
+        "candidate_policy_data.py": "05893de4b63ad1e6f6cfc9182348f8df69727096996b9f3f41eb5c512ced39e7",
+        "candidate_policy_experiment.py": "b2f33fdf8e525ed9cde709bd780b5d3857c45ccf1526378a6008b8e938e249d8",
+        "cli.py": "b281b6682e6e1f531b565ef4db719784d82ef561050fcd4ec8e9fc73077d8111",
+        "data.py": "8b6d7a36cc7069e922e0972f114cce1b781b6fe402628ae0d7d296255f896c38",
+        "evaluation.py": "8e62b5bed9ca85d35904118a584549353796d843d01e707bbbd9c15a7ee58c84",
+        "final_evaluation.py": "c87a51bce8b186e9f205bf12e0f5762dc78c072fa07cad4608d3ae358a6517ea",
+        "history_reward_data.py": "511aa9a74ee212ea4f9352e08108818b8d36096255d555cdc27c493081652173",
+        "history_reward_experiment.py": "8f9f9917bf357dd729ec908d9f82f0d73e4ac8f6fa2b7f9b161fee39b537d8f3",
+        "history_reward_model.py": "766f17ff77fa3691c99dd5af9f4c134e5fbcb611f5b8e611992145d3a224a9f1",
+        "mixed_data.py": "0f903a7b2826067cb5908a211bd309cbc5dc0f2736f994d1b0874554f9c9fdac",
+        "mixed_experiment.py": "3bda41e0fb81dc1283c8630f038ec9d2bf2787ca65df00d83034373e7b5fe6bf",
+        "mixed_training.py": "6f0742e1cc7fdb693017f98256680f58ca3f7ecbdf9d668e8b491055adc7e13b",
+        "model.py": "7e38b843500e5f7d348287f91f4090e9938aadb1474a512f0f02b940b4672cfe",
+        "policy_data.py": "0e14dab3d068b171ffeb1a65cacb164dffad49900418ddde3f9ec2f8627be1ae",
+        "policy_evaluation.py": "be276122fb8de4ff07d34f5eb3a7eb547261d2ccf542531abe5e3c91563385d0",
+        "policy_optimization.py": "bd99d53159476ae23ee994f640ca86de42983a7076c9a21a5150d8c65eb399e1",
+        "policy_rollout.py": "0ce38ab6c7f60ebe42f4a92662c79fa2ba3c47bc18fee348136bab7bab18b853",
+        "ranked_policy_data.py": "59474a1b5611a9b73c134c4467c3cfa8f9e10a75201312b02febf576eb392eb7",
+        "ranked_policy_experiment.py": "35baed483fd5ba724b897f8f0da101d9b1099a821446b5c57d684ef4143a300e",
+        "ranked_policy_training.py": "f8e6aaa5d69006abc21a644cf90f29a36966d3c1886bddda18be68c391eb9e46",
+        "ranking_data.py": "bd99fb6aac9025de57acbb8de904c1b4f829caaa70024d8dbbb53c2042ddd4f5",
+        "ranking_experiment.py": "39074cfc1469881affdbd751fed0aa30873faf3dd4200dc65594cf3396e03618",
+        "ranking_model.py": "26d800ea1031900936ec6228e07f1528d1f1c16ddc0ee611b54d6dcf348da636",
+        "recency_data.py": "f4533c02140c9c6d0b4dd475130e99b861b628efa0c8cb659211f595cb3dfcef",
+        "recency_experiment.py": "19423b4688a9b5b3d832aad6580d3ee004d72f115363f7f8ba22567bead0daa9",
+        "recency_model.py": "78709ff2a61ba2cd3a0ce8c47d7f070cb24a86a28941429b667b956fd35ab759",
+        "reward.py": "b32e6a8e310e5a50e47768c6ced5bbed11fbedd242b97f9aa9bbeca007d2d978",
+        "reward_catalog.py": "638572c17286bb6b73856309b64ddb1b1ed131c84ddac56242e56e36c7c22896",
+        "reward_data.py": "0b122902a0fa43d86f720253e06c452119dcfc3f16b03c507e2a07004f9c6125",
+        "reward_evaluation.py": "775d93b97cf03fe805868d983debf1d332110e9e6b26a20767bc7eacf0573d6b",
+        "reward_model.py": "6c106e96b142a9b5a4de0bca13131c43956ce97a548413add1e272a31df0ae1f",
+        "reward_signal.py": "b16ea89ca644552ab52fcc91dcc00abe039ad22ab1d54dc49a17c1d319d4f265",
+        "status.py": "a47c35327f5c1eaecc199ab9c3d956f14f59b4773a2565e4875cc05292d3657d",
+        "train.py": "abcdb42f938f3767d6296ec47dfc3d5132e4635aaad1d029d9ef1ecefee6ad2e",
+        "tuning.py": "e9f2a846d4fc1e4b87d01935469b748e23092d94f9edcb2b7dccb29e52538a44"
+      }
+    },
+    "paths": {
+      "config": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/candidate-policy.json",
+      "protocol": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/candidate-policy-protocol.md",
+      "output": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1",
+      "data": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-policy-v1"
+    },
+    "source_commit": "2de90515f57ba856abfef3653a6cb9cb8a65c45f",
+    "recorded_at_utc": "2026-10-15T12:01:57.400203+00:00"
+  },
+  "preparation": {
+    "frozen": {
+      "inputs": {
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/rl-pilot.json": "122df4ca04dfcaa587445b493e663a5d958b23236fb37cbaa8e1aa8deed17aa8",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-protocol.md": "3922c3310c56bca6745748a6199bbed6901e34b69aff479aca3eed07dc33b447",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/baseline-selected.json": "f9bfcf3170557b0b048514683bc031c5368de47c43c1198e9a61a3bc4753dcf4",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/small-tuning-v1/runs/lr-low/seed-42/baseline.pt": "bc9467e3137a14b8399cfba2e4705f80f0996d4bea5b43f19b38457516208faf",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/manifest.json": "6017fed06393bd416ecbe08b98080c6ddd2628a7fc4cab600b7fb4223eea33db",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/catalog.json": "9c055d1a0b3928153acda8a16c4e290d930fdedd94778d46ac61801da0fbe514",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/manifest.json": "4874171cddc788a8337f9993a25d2921ba41c083b1ff6441ec453ca18e4d7629",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/raw/yambda-50m-multi_event.parquet": "b92f6c97277a554c8a7d6cfea900eca51639fd53a3e6c4fa58b82e35fd35804d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/small-tuning-result.json": "6852f95801e4c66bc9ff29349720136778aa80ed553808013f3e5881a4b9fc38",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-result.json": "3dc91c1bba581102ac740cd30aed17f5ee5b55d7df0f454a9fccb990c2685598",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-signal-result.json": "27033b07541583a54ce3373a33e2c3e854ad29b9e61e4e1f29bad605ae208fe5",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/train.npz": "488ebafffb924b9bed034039cd5a1ccb9946cc652b8f75e32e1d27bfbeedad3d",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/validation.npz": "ceb777e8445d7343411ecb039486dff74d2f9b8aeb89021d23f206294d780d86",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/test.npz": "ba0fdfaa56cf69692dd48e8b5de5ead5052ac619db6d046e15600423fa4d13af",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/train.npz": "6bc6be670c18c03ef5ae2fd509e73e4cf7414543218100728219835dbae55596",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/selection.npz": "5b2a2a4aa609f0ffa7939f894882a510a65a70bace81b3bcaf76d829c8147bfe",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-v1/validation.npz": "d29a755db2a0df1dd3eb249a23edc8f671f82e3ce03c1fc68786ae2f43009d0b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/reward.pt": "2a4a9019eab2d7cbfc9ae397d13cbb6d7d5b8884f1570f3a941ff386f770f894",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/selection-predictions.npz": "72f47f4aea1f12a0a6bf3bcb85ba50da77aa32d9e1e9a4213d035e8730f1fe76",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/validation-predictions.npz": "658585a4c93c69aa74ac4ef2ccf16e593456ed9d5326ea7b63d9da71656ae36e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/reward-v1/training-history.json": "1f1860e86c9975d6d65f387f173662da489f35dc2dc3d1a0be2dd108d9c5a385",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/final-evaluation.json": "77ff356b5476f972e9e6b8d5cc672af4a843150b3e51f77c7505002496117f88",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-protocol.md": "cf560f30a73ecaf3f22179de54eb87d93ac2bae7142a58ba120a9f1f090ada03",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-result.json": "c9878601e476d53dc0532d896c4534e11c5f3d676e95b7d0c18d8d7246e31468",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/rl-pilot-execution.json": "8f759eb5d88c4d6e58f37867d5c48322fd0a3eb88a88cfae88803dec9cbc8d00",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward-signal.json": "c70b2b8a065fb1d26ae14d7150bfe90bec0d931853763bcaa9a7c9aec097522e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-kl/seed-42/policy.pt": "47612400c5a0768c85f80693844b513746c33c7eb145b8e8d65dbd4a9a1471ac",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/runs/raw-strong-kl/seed-42/policy.pt": "7d0f719af8b3a0e93ffc9861831cc00e8d544b41d1c8eeedbab7eed110e43724",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/mixed-objective.json": "306698737d9f2021c89617a49be7b0b619f6b136da79ece928c8ce15704948de",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-protocol.md": "67fd1c59a43e4aca77fcfa05e66c22ac788bc73a2b3249e142420d0d35531799",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/final-evaluation-result.json": "0df23f5ec2ef57f68cee2f1be0ce1bfd60c220db81457e074c5a188eaa810165",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/manifest.json": "a38620e8dad5eaeed1c4e16cf98534e807be217412256a942931e429fe0e18c2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mvp/listen-events.parquet": "51a3dcd08b8d2a6f9d5d8d1222fb1ce9cc365a8fda2d71fa45a3b2a4f62868c7",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/train.npz": "b30ef61422f40bf48b167a62bb4d58c4dd87e86111c62ba683a381a5d2abf7e2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/validation.npz": "ba01bbd6e1674edda9a61546551729b6e205ee619d892ae54d37004684ada107",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/policy-rl-pilot-v1/cache/rollout-inputs.npz": "09b9a6fc05efc1011f941f58051ba98636930c6857863b6d3f87f2733edecb4e",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/recency.json": "c4ddab23e0f5a654405e0e24f9d86e44fe8899e11680b4e889c0827ddea43161",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-protocol.md": "a6da50be4088ab01665fe96c748851394be238856341ba1a35e660ba16ddf775",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/mixed-objective-result.json": "5faebec1b2cab5200e9d203320477b3ed1cc4e04e5f91228e63b11d143d354fa",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/users.npz": "bf99ca9850574a384796d7a6d71640016c057424fd0573e5377fbf0339371e1a",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/mixed-holdout-v1/manifest.json": "e511619304fa12d58b39fae3f7e11ac10b6535e740c6a75f687cc1286889fb0c",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward-history.json": "fab6eceb3adf8649f9a1fcdabca09aabc0bb2d4efe03ba31d02541b45c0197d0",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-history-protocol.md": "240a915fe88776bc9bbae0556370e240f2af878c1447bb2f3f944b51ffb367ec",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-result.json": "f451e3fe3ac8012fccdcb6cacfe5753dd614f8c93553e9a47cd8eac16618b329",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/recency-execution.json": "cb14b423391f3498c5d6cab6fec72fe4d23c8021ddf76d6f8faca5639479363b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1/manifest.json": "fa37d69dd1d2f85834917bd8fb5db7090c272065df90b4b005506c3e84e6bb05",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1/users.npz": "e25ae4f24d35d4190256067dff94089153ec4530c05d6f20ae1b6fe0008489a2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/reward.json": "1b39504dae6a20453ea862baf129a67cb842546162cbb72fe63fc0507895f8d7",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/cache/validation.npy": "58f1c8902c6884d6fae796a956af96ac0f495d2bb02d76e8f55b040e8c753581",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/holdout/baseline.npy": "e8ef1e2a65996f9cfc7fab8c0e80ea8a687b9b09c6e3511711ca86e099ca7149",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/recency-holdout-v1/queries.npz": "3b3a015cd473b43097c344c69fe9ddb12d28a6e678e8c97349aea260759f502b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/recency-v1/runs/global-16/seed-42/gate.pt": "55525559eaf885c9761f751e35abab5e7430e1ee9fda60cbe1583d4918e17e08",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/ranking.json": "a90cc540f18c6e97cbb4a9d5320ab91eb38f916fc83f06e60239c74df43446a2",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-protocol.md": "358d2db8e7e56256d2d39607d567fa8b71d41880c76c224f58901a5276107695",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-history-result.json": "9fc47dfc93b88494a91adb21c958c89d9c5addf6cb4d74aebddb2f07cc2c7d21",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/reward-history-execution.json": "06ea496bfd15e11dd02fd85fb26323948d51178302a44d1751f4ee60dbd3ea25",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/requirements-ranking-lock.txt": "17714fd27f6e01aae1f63616a39fea0cb72320a4115f5cb7701dd3a58b97fe47",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/requirements-ranking.txt": "6329cf41fc45752021b68005d72661cec09f3e70c62b6245ad0d0947ec9e10fa",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-dependencies.json": "8af009d98f0d37230d89436616222af5d26c4a94b9400d248d257f8eb3ec866b",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/manifest.json": "a9cb200ea21dcf2130278d68cad5ed15025b9116fac78ca5112ca7924ed23d51",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/development-users.npz": "2304b4dc55243a6c4f5b03254353e64e3c32b676e62a0ae0ebb5d39341212f6f",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/final-users.npz": "9e3165f090ce6fa723fc072570bbdc26e968cb13155de8abded6fbf9d4b26d67",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/ranked-policy.json": "d0370933ccfc3ecce0d3c9f43d352d2b6a1eb7b219bf6d585cba8bac10460321",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranked-policy-protocol.md": "ffdeac8b1abf2797cd753e6f258f4d07c09319e60b073cfcb7c987624a65b09c",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-result.json": "4f0dfa37f58ba1df422e78fa016d1a0b5bffd8eb13c879ffbec7820447e81f66",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranking-execution.json": "789436c83fd2ac1e482202e186db3a9b0e39f318eba5af60dc9c55cd47a6e250",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-ranking-v1/runs/boosting-expanded/seed-42/ranker.cbm": "9c6c31084c6103f5857962dfc30f67ac41f280c64dc26bac0dace1090b10e118",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-ranking-v1/manifest.json": "a4a351a4b764f9b4faf9c7bb8ab631afae78246990a5b5302ccec819563babc3",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-ranking-v1/priors.npz": "56ce7b1ef7a2e25e263cae5cc84172af347601526101e899fa552601ab640ef8",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/candidate-ranking-v1/populations.npz": "a848738bd4b61d4e47bcefec44ed068a740f1de94a789b66e45d87d468ae0b43",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/data/processed/reward-history-v1/final.npz": "1c3f53b6219d496ad6ea5a323501ffefe4d77d5616898bf6bc04b4942291952c",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/configs/candidate-policy.json": "e0e7f3e538d107e73c59dcce3408c9cde5bfb79d6845da247e73a4a240bace50",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/candidate-policy-protocol.md": "bc13ba23489e6d5762605029f553b19b38bfb704ee42124b2e8a589f483a4c84",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranked-policy-result.json": "12c355b7a05ba73453cdf4abd6fe9b44469b74b8038de8cfe28ce5c1f89e7cc9",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/experiments/ranked-policy-execution.json": "cec17fedcb3a73df9847d9c1035bd2ccd7c480473c803677a16b0d2e8147d586",
+        "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/ranked-policy-v1/runs/repeat-kl-01/seed-42/policy.pt": "b44851f3f5f0406f97f1aa58fc80f2f77615a25ced41e9918dfc27d05e1f40e0"
+      },
+      "source_files": {
+        "__init__.py": "cd4e71abac041d54337132310fc423b22aadf8a403a1c07d3c0985b6f9dcfa6d",
+        "__main__.py": "b2ac0f5a590badd7e0a10aaf0637f8233b35a65c9233d607d3b982ac39a7eaea",
+        "candidate_policy_data.py": "05893de4b63ad1e6f6cfc9182348f8df69727096996b9f3f41eb5c512ced39e7",
+        "candidate_policy_experiment.py": "b2f33fdf8e525ed9cde709bd780b5d3857c45ccf1526378a6008b8e938e249d8",
+        "cli.py": "b281b6682e6e1f531b565ef4db719784d82ef561050fcd4ec8e9fc73077d8111",
+        "data.py": "8b6d7a36cc7069e922e0972f114cce1b781b6fe402628ae0d7d296255f896c38",
+        "evaluation.py": "8e62b5bed9ca85d35904118a584549353796d843d01e707bbbd9c15a7ee58c84",
+        "final_evaluation.py": "c87a51bce8b186e9f205bf12e0f5762dc78c072fa07cad4608d3ae358a6517ea",
+        "history_reward_data.py": "511aa9a74ee212ea4f9352e08108818b8d36096255d555cdc27c493081652173",
+        "history_reward_experiment.py": "8f9f9917bf357dd729ec908d9f82f0d73e4ac8f6fa2b7f9b161fee39b537d8f3",
+        "history_reward_model.py": "766f17ff77fa3691c99dd5af9f4c134e5fbcb611f5b8e611992145d3a224a9f1",
+        "mixed_data.py": "0f903a7b2826067cb5908a211bd309cbc5dc0f2736f994d1b0874554f9c9fdac",
+        "mixed_experiment.py": "3bda41e0fb81dc1283c8630f038ec9d2bf2787ca65df00d83034373e7b5fe6bf",
+        "mixed_training.py": "6f0742e1cc7fdb693017f98256680f58ca3f7ecbdf9d668e8b491055adc7e13b",
+        "model.py": "7e38b843500e5f7d348287f91f4090e9938aadb1474a512f0f02b940b4672cfe",
+        "policy_data.py": "0e14dab3d068b171ffeb1a65cacb164dffad49900418ddde3f9ec2f8627be1ae",
+        "policy_evaluation.py": "be276122fb8de4ff07d34f5eb3a7eb547261d2ccf542531abe5e3c91563385d0",
+        "policy_optimization.py": "bd99d53159476ae23ee994f640ca86de42983a7076c9a21a5150d8c65eb399e1",
+        "policy_rollout.py": "0ce38ab6c7f60ebe42f4a92662c79fa2ba3c47bc18fee348136bab7bab18b853",
+        "ranked_policy_data.py": "59474a1b5611a9b73c134c4467c3cfa8f9e10a75201312b02febf576eb392eb7",
+        "ranked_policy_experiment.py": "35baed483fd5ba724b897f8f0da101d9b1099a821446b5c57d684ef4143a300e",
+        "ranked_policy_training.py": "f8e6aaa5d69006abc21a644cf90f29a36966d3c1886bddda18be68c391eb9e46",
+        "ranking_data.py": "bd99fb6aac9025de57acbb8de904c1b4f829caaa70024d8dbbb53c2042ddd4f5",
+        "ranking_experiment.py": "39074cfc1469881affdbd751fed0aa30873faf3dd4200dc65594cf3396e03618",
+        "ranking_model.py": "26d800ea1031900936ec6228e07f1528d1f1c16ddc0ee611b54d6dcf348da636",
+        "recency_data.py": "f4533c02140c9c6d0b4dd475130e99b861b628efa0c8cb659211f595cb3dfcef",
+        "recency_experiment.py": "19423b4688a9b5b3d832aad6580d3ee004d72f115363f7f8ba22567bead0daa9",
+        "recency_model.py": "78709ff2a61ba2cd3a0ce8c47d7f070cb24a86a28941429b667b956fd35ab759",
+        "reward.py": "b32e6a8e310e5a50e47768c6ced5bbed11fbedd242b97f9aa9bbeca007d2d978",
+        "reward_catalog.py": "638572c17286bb6b73856309b64ddb1b1ed131c84ddac56242e56e36c7c22896",
+        "reward_data.py": "0b122902a0fa43d86f720253e06c452119dcfc3f16b03c507e2a07004f9c6125",
+        "reward_evaluation.py": "775d93b97cf03fe805868d983debf1d332110e9e6b26a20767bc7eacf0573d6b",
+        "reward_model.py": "6c106e96b142a9b5a4de0bca13131c43956ce97a548413add1e272a31df0ae1f",
+        "reward_signal.py": "b16ea89ca644552ab52fcc91dcc00abe039ad22ab1d54dc49a17c1d319d4f265",
+        "status.py": "a47c35327f5c1eaecc199ab9c3d956f14f59b4773a2565e4875cc05292d3657d",
+        "train.py": "abcdb42f938f3767d6296ec47dfc3d5132e4635aaad1d029d9ef1ecefee6ad2e",
+        "tuning.py": "e9f2a846d4fc1e4b87d01935469b748e23092d94f9edcb2b7dccb29e52538a44"
+      }
+    },
+    "source_commit": "2de90515f57ba856abfef3653a6cb9cb8a65c45f",
+    "recorded_at_utc": "2026-10-15T12:01:59.562451+00:00",
+    "partitions": {
+      "validation": {
+        "queries": 10000,
+        "query_users": 265,
+        "targets": 12110
+      },
+      "final": {
+        "queries": 20000,
+        "query_users": 1038,
+        "targets": 22885
+      }
+    },
+    "populations": {
+      "excluded_users": 6000,
+      "development_users": 300,
+      "final_users": 1200
+    },
+    "small_train_contexts": 4000,
+    "expanded_train_contexts": 11977,
+    "train_timestamp_min": 16809945,
+    "training_lower_bound": 16809665,
+    "final_response_read": false,
+    "final_predictions_read": false,
+    "artifacts": {
+      "final.npz": "2340d43219f87f3d1f3d9c38caf60a8c7efb24b65a2088d3255c5868ca2474f2",
+      "populations.npz": "c16545e9aa8150697dc37785d4d3f7dd374788b6cea84c052e69919e3d25cb38",
+      "train.npz": "a9de3aff54270952dd52bdfe121b99b036439acac6724d4c42081fcd8713ba7e",
+      "validation.npz": "c1d85afb4df347e59ff7523cd77c503406fdb928a3ddc29194bae5d8654c81ac"
+    }
+  },
+  "cache": {
+    "development_reward_model": {
+      "metrics": {
+        "calibrated": {
+          "pairs": 12110,
+          "mse": 0.1382642290395097,
+          "rmse": 0.37183898267867194,
+          "mae": 0.3045201907057429,
+          "r2": 0.2759261559385927,
+          "pearson": 0.5254789572895755,
+          "bias": -0.005402179754052302,
+          "mean_prediction": 0.651948333678661,
+          "mean_observed": 0.6573505134327132
+        },
+        "history_user": {
+          "pairs": 12110,
+          "mse": 0.1409636072533878,
+          "rmse": 0.3754512048900467,
+          "mae": 0.3032377018993928,
+          "r2": 0.2617898231106721,
+          "pearson": 0.514997438404473,
+          "bias": -0.013670982517806535,
+          "mean_prediction": 0.6436795309149067,
+          "mean_observed": 0.6573505134327132
+        },
+        "history_candidate": {
+          "pairs": 12110,
+          "mse": 0.13835132996515145,
+          "rmse": 0.3719560860708579,
+          "mae": 0.29854815833925785,
+          "r2": 0.2754700184221225,
+          "pearson": 0.526952047842956,
+          "bias": -0.009324573269106207,
+          "mean_prediction": 0.648025940163607,
+          "mean_observed": 0.6573505134327132
+        },
+        "item_prior": {
+          "pairs": 12110,
+          "mse": 0.18822960773952924,
+          "rmse": 0.4338543623608379,
+          "mae": 0.4012811835026207,
+          "r2": 0.014263222028413347,
+          "pearson": 0.12340796521353808,
+          "bias": 0.003632173744283315,
+          "mean_prediction": 0.6609826871769966,
+          "mean_observed": 0.6573505134327132
+        }
+      },
+      "maximum_direct_difference": 2.9801992651457e-08
+    },
+    "final_opened": false,
+    "artifacts": {
+      "observed-validation.npz": "f3694485a71333da50a1ab20b9c266b9546594767852e7cc726bd210e035ba68",
+      "train.npz": "e4e27d3343823904bbc24225ed3688f2337da65db2c1577f93709ae27ca7276e",
+      "validation.npz": "5f7b02466b7fdf5b1f42b0ee13362c7cdd9f209f67875a2e82caecbba0a93e3e"
+    }
+  },
+  "reference": {
+    "ranking": {
+      "queries": 10000,
+      "users": 265,
+      "metrics": {
+        "recall@5": 0.12009295770134006,
+        "ndcg@5": 0.08721378594480199,
+        "recall@10": 0.16527164576164574,
+        "ndcg@10": 0.10207453093878421,
+        "recall@20": 0.2306619213330243,
+        "ndcg@20": 0.11916593808842968
+      },
+      "behavior_at_10": {
+        "catalog_coverage": 0.986,
+        "top_10_items_share": 0.07196,
+        "context_repeat_fraction": 0.52094,
+        "mean_duration_seconds": 189.75525,
+        "duration_known_fraction": 1.0
+      },
+      "target_duration_tertiles_seconds": [
+        175.0,
+        215.0
+      ],
+      "target_duration_slices": {
+        "short": {
+          "queries": 3397,
+          "recall@10": 0.16426258463350016,
+          "ndcg@10": 0.10325645880166745
+        },
+        "medium": {
+          "queries": 3160,
+          "recall@10": 0.1646993670886076,
+          "ndcg@10": 0.09807838760743172
+        },
+        "long": {
+          "queries": 2805,
+          "recall@10": 0.16530005941770648,
+          "ndcg@10": 0.09742351560249642
+        },
+        "mixed": {
+          "queries": 638,
+          "recall@10": 0.17335390431001718,
+          "ndcg@10": 0.1360226531882306
+        },
+        "unknown": {
+          "queries": 0,
+          "recall@10": null,
+          "ndcg@10": null
+        }
+      }
+    },
+    "top10_reward": 0.660958128414303,
+    "distribution": {
+      "expected_reward": 0.6549320637188548,
+      "entropy": 5.675603847882413,
+      "kl_to_reference": -5.433598996918907e-10
+    }
+  },
+  "rerankers": {
+    "rerank-50-0": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 50,
+        "reward_weight": 0,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12009295770134006,
+            "ndcg@5": 0.08721378594480199,
+            "recall@10": 0.16527164576164574,
+            "ndcg@10": 0.10207453093878421,
+            "recall@20": 0.2306619213330243,
+            "ndcg@20": 0.11916593808842968
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.986,
+            "top_10_items_share": 0.07196,
+            "context_repeat_fraction": 0.52094,
+            "mean_duration_seconds": 189.75525,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.16426258463350016,
+              "ndcg@10": 0.10325645880166745
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.1646993670886076,
+              "ndcg@10": 0.09807838760743172
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.16530005941770648,
+              "ndcg@10": 0.09742351560249642
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.17335390431001718,
+              "ndcg@10": 0.1360226531882306
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.660958128414303,
+        "distribution": {
+          "expected_reward": 0.6605365936959774,
+          "entropy": 3.406077896124162,
+          "kl_to_reference": 0.7348386793354698
+        }
+      },
+      "shortlist": {
+        "candidate_count": 50,
+        "mean_reference_probability_mass": 0.4920726418495178,
+        "target_recall_within_shortlist": 0.3345993917874065
+      },
+      "seconds": 3.1263419589959085,
+      "artifacts": {
+        "validation.npz": "ae1583deef3e789f5a5b87b83d408ac499db3e5554ba7b8291a9932819f48d28"
+      }
+    },
+    "rerank-50-1": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 50,
+        "reward_weight": 1,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12119629103467339,
+            "ndcg@5": 0.08815405036361978,
+            "recall@10": 0.1663052171902172,
+            "ndcg@10": 0.10302992716881162,
+            "recall@20": 0.23176393882941676,
+            "ndcg@20": 0.12018620389447786
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9865,
+            "top_10_items_share": 0.07298,
+            "context_repeat_fraction": 0.52659,
+            "mean_duration_seconds": 189.09425,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.16691198115984693,
+              "ndcg@10": 0.10511592694382746
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16643987341772154,
+              "ndcg@10": 0.09914868160318328
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.16369578134284019,
+              "ndcg@10": 0.09709954054966238
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.1738801022500082,
+              "ndcg@10": 0.1372200983574802
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6623594531297684,
+        "distribution": {
+          "expected_reward": 0.6620054723050124,
+          "entropy": 3.4067951567647463,
+          "kl_to_reference": 0.735837135165246
+        }
+      },
+      "shortlist": {
+        "candidate_count": 50,
+        "mean_reference_probability_mass": 0.4920726418495178,
+        "target_recall_within_shortlist": 0.3345993917874065
+      },
+      "seconds": 2.4151259579957696,
+      "artifacts": {
+        "validation.npz": "90481b6c6730542ecc4b07c381f16618f443836b32aff67cea0e3cbb55b7449a"
+      }
+    },
+    "rerank-50-2": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 50,
+        "reward_weight": 2,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12296879103467341,
+            "ndcg@5": 0.08914053407246371,
+            "recall@10": 0.1678156475931476,
+            "ndcg@10": 0.1039363829121726,
+            "recall@20": 0.23201587605885401,
+            "ndcg@20": 0.1207623677068445
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.986,
+            "top_10_items_share": 0.07393,
+            "context_repeat_fraction": 0.53223,
+            "mean_duration_seconds": 188.484,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.16970856638210186,
+              "ndcg@10": 0.10669514490593106
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16860232067510547,
+              "ndcg@10": 0.10064445592407964
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.16262626262626265,
+              "ndcg@10": 0.09645980463038259
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.1766559183878933,
+              "ndcg@10": 0.13842349399367304
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6637813123546541,
+        "distribution": {
+          "expected_reward": 0.6635082814738389,
+          "entropy": 3.404581912291098,
+          "kl_to_reference": 0.7388284077020251
+        }
+      },
+      "shortlist": {
+        "candidate_count": 50,
+        "mean_reference_probability_mass": 0.4920726418495178,
+        "target_recall_within_shortlist": 0.3345993917874065
+      },
+      "seconds": 2.54408154200064,
+      "artifacts": {
+        "validation.npz": "4a85a18ec0cebfca0e6723871af51b8369a621582a88b99d114264f946257436"
+      }
+    },
+    "rerank-50-4": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 50,
+        "reward_weight": 4,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.1252383087391911,
+            "ndcg@5": 0.09054948696379643,
+            "recall@10": 0.16976620314870317,
+            "ndcg@10": 0.10520169023060987,
+            "recall@20": 0.23295047562595356,
+            "ndcg@20": 0.12180960533433485
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9865,
+            "top_10_items_share": 0.07599,
+            "context_repeat_fraction": 0.54331,
+            "mean_duration_seconds": 187.357,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.17260327740162887,
+              "ndcg@10": 0.10908558459099923
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.17113396624472574,
+              "ndcg@10": 0.10237412507483444
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.16244800950683305,
+              "ndcg@10": 0.09552915897142208
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.18006065541331998,
+              "ndcg@10": 0.14105273557861853
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6663950479947031,
+        "distribution": {
+          "expected_reward": 0.6666097176815614,
+          "entropy": 3.391643051575071,
+          "kl_to_reference": 0.7507653647571532
+        }
+      },
+      "shortlist": {
+        "candidate_count": 50,
+        "mean_reference_probability_mass": 0.4920726418495178,
+        "target_recall_within_shortlist": 0.3345993917874065
+      },
+      "seconds": 2.396179499999562,
+      "artifacts": {
+        "validation.npz": "71d70ca21387ef40810f4bec36c8ce8621bb9ce477c21daa4c6dbcfa5ad8e097"
+      }
+    },
+    "rerank-50-8": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 50,
+        "reward_weight": 8,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12799858508049683,
+            "ndcg@5": 0.09266595508276713,
+            "recall@10": 0.17277600563788065,
+            "ndcg@10": 0.10735004553816557,
+            "recall@20": 0.2334949230195186,
+            "ndcg@20": 0.12329156925255443
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.986,
+            "top_10_items_share": 0.07951,
+            "context_repeat_fraction": 0.56101,
+            "mean_duration_seconds": 185.22425,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.17770581885977824,
+              "ndcg@10": 0.11392676892679238
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.17730485232067508,
+              "ndcg@10": 0.10481053395676342
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.1590017825311943,
+              "ndcg@10": 0.09324557280761547
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.18465526078182817,
+              "ndcg@10": 0.1469217904523641
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6712862399056554,
+        "distribution": {
+          "expected_reward": 0.6730943206639572,
+          "entropy": 3.334615735553249,
+          "kl_to_reference": 0.7979732195684038
+        }
+      },
+      "shortlist": {
+        "candidate_count": 50,
+        "mean_reference_probability_mass": 0.4920726418495178,
+        "target_recall_within_shortlist": 0.3345993917874065
+      },
+      "seconds": 2.5141176670003915,
+      "artifacts": {
+        "validation.npz": "f2340bf450a480c4b1a95fc569e0ce35e18c602568309a371bb81f0f533bb5d1"
+      }
+    },
+    "rerank-50-16": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 50,
+        "reward_weight": 16,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12601962191947486,
+            "ndcg@5": 0.09098541783064805,
+            "recall@10": 0.1735577368641707,
+            "ndcg@10": 0.10662481731127389,
+            "recall@20": 0.2310919838059544,
+            "ndcg@20": 0.12168233285985638
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.986,
+            "top_10_items_share": 0.08366,
+            "context_repeat_fraction": 0.58343,
+            "mean_duration_seconds": 181.7307,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.1838877440879207,
+              "ndcg@10": 0.11727193829153262
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.17989978902953588,
+              "ndcg@10": 0.10535098972513046
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.14955436720142604,
+              "ndcg@10": 0.08456668298025014
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.19267612639765969,
+              "ndcg@10": 0.15322370759465317
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6779813282877207,
+        "distribution": {
+          "expected_reward": 0.6858530486752598,
+          "entropy": 3.1307121694932096,
+          "kl_to_reference": 0.9703486410855708
+        }
+      },
+      "shortlist": {
+        "candidate_count": 50,
+        "mean_reference_probability_mass": 0.4920726418495178,
+        "target_recall_within_shortlist": 0.3345993917874065
+      },
+      "seconds": 2.3291359590002685,
+      "artifacts": {
+        "validation.npz": "d893b5d38912146f8adabfc2a90e39e8c43aae6ff2437d404bf84b2d40f1d9f6"
+      }
+    },
+    "rerank-100-0": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 100,
+        "reward_weight": 0,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12009295770134006,
+            "ndcg@5": 0.08721378594480199,
+            "recall@10": 0.16527164576164574,
+            "ndcg@10": 0.10207453093878421,
+            "recall@20": 0.2306619213330243,
+            "ndcg@20": 0.11916593808842968
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.986,
+            "top_10_items_share": 0.07196,
+            "context_repeat_fraction": 0.52094,
+            "mean_duration_seconds": 189.75525,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.16426258463350016,
+              "ndcg@10": 0.10325645880166745
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.1646993670886076,
+              "ndcg@10": 0.09807838760743172
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.16530005941770648,
+              "ndcg@10": 0.09742351560249642
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.17335390431001718,
+              "ndcg@10": 0.1360226531882306
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.660958128414303,
+        "distribution": {
+          "expected_reward": 0.6586366736302364,
+          "entropy": 3.975509736982974,
+          "kl_to_reference": 0.5071492501225695
+        }
+      },
+      "shortlist": {
+        "candidate_count": 100,
+        "mean_reference_probability_mass": 0.6102481484413147,
+        "target_recall_within_shortlist": 0.44297556477291766
+      },
+      "seconds": 3.251920875001815,
+      "artifacts": {
+        "validation.npz": "ae1583deef3e789f5a5b87b83d408ac499db3e5554ba7b8291a9932819f48d28"
+      }
+    },
+    "rerank-100-1": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 100,
+        "reward_weight": 1,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12119629103467339,
+            "ndcg@5": 0.08815405036361978,
+            "recall@10": 0.1663052171902172,
+            "ndcg@10": 0.10302992716881162,
+            "recall@20": 0.23176393882941676,
+            "ndcg@20": 0.12018620389447786
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9865,
+            "top_10_items_share": 0.07298,
+            "context_repeat_fraction": 0.52659,
+            "mean_duration_seconds": 189.09425,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.16691198115984693,
+              "ndcg@10": 0.10511592694382746
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16643987341772154,
+              "ndcg@10": 0.09914868160318328
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.16369578134284019,
+              "ndcg@10": 0.09709954054966238
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.1738801022500082,
+              "ndcg@10": 0.1372200983574802
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6623594531297684,
+        "distribution": {
+          "expected_reward": 0.6599760729188963,
+          "entropy": 3.974601566863896,
+          "kl_to_reference": 0.5080394125607539
+        }
+      },
+      "shortlist": {
+        "candidate_count": 100,
+        "mean_reference_probability_mass": 0.6102481484413147,
+        "target_recall_within_shortlist": 0.44297556477291766
+      },
+      "seconds": 2.401262500003213,
+      "artifacts": {
+        "validation.npz": "90481b6c6730542ecc4b07c381f16618f443836b32aff67cea0e3cbb55b7449a"
+      }
+    },
+    "rerank-100-2": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 100,
+        "reward_weight": 2,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12296879103467341,
+            "ndcg@5": 0.08914053407246371,
+            "recall@10": 0.1678156475931476,
+            "ndcg@10": 0.1039363829121726,
+            "recall@20": 0.23201587605885401,
+            "ndcg@20": 0.1207623677068445
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.986,
+            "top_10_items_share": 0.07393,
+            "context_repeat_fraction": 0.53223,
+            "mean_duration_seconds": 188.484,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.16970856638210186,
+              "ndcg@10": 0.10669514490593106
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16860232067510547,
+              "ndcg@10": 0.10064445592407964
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.16262626262626265,
+              "ndcg@10": 0.09645980463038259
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.1766559183878933,
+              "ndcg@10": 0.13842349399367304
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6637813123546541,
+        "distribution": {
+          "expected_reward": 0.6613532134687075,
+          "entropy": 3.9706800873225503,
+          "kl_to_reference": 0.510715743262383
+        }
+      },
+      "shortlist": {
+        "candidate_count": 100,
+        "mean_reference_probability_mass": 0.6102481484413147,
+        "target_recall_within_shortlist": 0.44297556477291766
+      },
+      "seconds": 2.4887090409974917,
+      "artifacts": {
+        "validation.npz": "4a85a18ec0cebfca0e6723871af51b8369a621582a88b99d114264f946257436"
+      }
+    },
+    "rerank-100-4": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 100,
+        "reward_weight": 4,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.1252383087391911,
+            "ndcg@5": 0.09054948696379643,
+            "recall@10": 0.16976620314870317,
+            "ndcg@10": 0.10520169023060987,
+            "recall@20": 0.23305047562595355,
+            "ndcg@20": 0.12183314622567153
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9865,
+            "top_10_items_share": 0.07599,
+            "context_repeat_fraction": 0.54331,
+            "mean_duration_seconds": 187.357,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.17260327740162887,
+              "ndcg@10": 0.10908558459099923
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.17113396624472574,
+              "ndcg@10": 0.10237412507483444
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.16244800950683305,
+              "ndcg@10": 0.09552915897142208
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.18006065541331998,
+              "ndcg@10": 0.14105273557861853
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6663950479947031,
+        "distribution": {
+          "expected_reward": 0.6642225851898659,
+          "entropy": 3.954044469805783,
+          "kl_to_reference": 0.521491152518048
+        }
+      },
+      "shortlist": {
+        "candidate_count": 100,
+        "mean_reference_probability_mass": 0.6102481484413147,
+        "target_recall_within_shortlist": 0.44297556477291766
+      },
+      "seconds": 2.4370959580046474,
+      "artifacts": {
+        "validation.npz": "0c7a73a49c196c6faa3746e379ebd90ff102e5471a74f231563965310f2ea573"
+      }
+    },
+    "rerank-100-8": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 100,
+        "reward_weight": 8,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12799858508049683,
+            "ndcg@5": 0.09266595508276713,
+            "recall@10": 0.17267600563788063,
+            "ndcg@10": 0.10731994253859918,
+            "recall@20": 0.23404575635285196,
+            "ndcg@20": 0.12343913241290197
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.986,
+            "top_10_items_share": 0.07955,
+            "context_repeat_fraction": 0.56133,
+            "mean_duration_seconds": 185.1797,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.17770581885977824,
+              "ndcg@10": 0.11392324665144764
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.17698839662447258,
+              "ndcg@10": 0.10471905774590333
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.1590017825311943,
+              "ndcg@10": 0.09324557280761547
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.18465526078182817,
+              "ndcg@10": 0.1469217904523641
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6713939265236258,
+        "distribution": {
+          "expected_reward": 0.6703694284834788,
+          "entropy": 3.8880112464226366,
+          "kl_to_reference": 0.5651841186461956
+        }
+      },
+      "shortlist": {
+        "candidate_count": 100,
+        "mean_reference_probability_mass": 0.6102481484413147,
+        "target_recall_within_shortlist": 0.44297556477291766
+      },
+      "seconds": 2.4192417499943986,
+      "artifacts": {
+        "validation.npz": "ced83a36ccaaf8774e0994221531b455579a1c394cc918a67bd17617b86153f9"
+      }
+    },
+    "rerank-100-16": {
+      "descriptor": {
+        "kind": "reranker",
+        "candidate_count": 100,
+        "reward_weight": 16,
+        "repeat_penalty": 0.1
+      },
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12591962191947487,
+            "ndcg@5": 0.09093541783064804,
+            "recall@10": 0.17442107019750402,
+            "ndcg@10": 0.10688014649033108,
+            "recall@20": 0.23355634527781585,
+            "ndcg@20": 0.12234499940762983
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9865,
+            "top_10_items_share": 0.08384,
+            "context_repeat_fraction": 0.58836,
+            "mean_duration_seconds": 181.26785,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.1852124423510941,
+              "ndcg@10": 0.11767431050661725
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.18148206751054852,
+              "ndcg@10": 0.10583213153962158
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.14919786096256685,
+              "ndcg@10": 0.084417507660486
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.19288511281354265,
+              "ndcg@10": 0.15335609319665275
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6792130078144372,
+        "distribution": {
+          "expected_reward": 0.6831065199458928,
+          "entropy": 3.6561317077547284,
+          "kl_to_reference": 0.734010071561878
+        }
+      },
+      "shortlist": {
+        "candidate_count": 100,
+        "mean_reference_probability_mass": 0.6102481484413147,
+        "target_recall_within_shortlist": 0.44297556477291766
+      },
+      "seconds": 2.4048780419980176,
+      "artifacts": {
+        "validation.npz": "3048527b5020da96cd016cebf0adce7df710e381532a8a29815fca776b6dcad4"
+      }
+    }
+  },
+  "runs": {
+    "small-kl-01/42": {
+      "variant": {
+        "name": "small-kl-01",
+        "data": "small",
+        "beta": 0.1,
+        "repeat_penalty": 0.1
+      },
+      "seed": 42,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6364825177192688
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6377987184524536
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.6383473663330078
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6386917705535888
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6389684572219848
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12039941051323404,
+            "ndcg@5": 0.08650920797337758,
+            "recall@10": 0.16650261102595662,
+            "ndcg@10": 0.10174070458927062,
+            "recall@20": 0.23246378222131897,
+            "ndcg@20": 0.1188966867423424
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9875,
+            "top_10_items_share": 0.08645,
+            "context_repeat_fraction": 0.51969,
+            "mean_duration_seconds": 185.7644,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.1719654597193602,
+              "ndcg@10": 0.1069594097451615
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16549050632911394,
+              "ndcg@10": 0.09783390236404645
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.15861556743909686,
+              "ndcg@10": 0.09200659767992915
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.17710466602857808,
+              "ndcg@10": 0.13610077276771881
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.662891339583695,
+        "distribution": {
+          "expected_reward": 0.65687598583332,
+          "entropy": 5.630228719335061,
+          "kl_to_reference": 0.0196166212443325
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/small-kl-01/seed-42/policy.pt",
+      "seconds": 14.370383333000063,
+      "artifacts": {
+        "policy.pt": "1d3ce81771a017848f406efd7e65f860c663e3be32c21b3bed4d647923f8d0c5",
+        "validation.npz": "c42fd974eb1151ca9c821b5f4d159cf536db6a7491e63e450887d1d88d2038df",
+        "training-history.json": "444773c10379cd6b4eb5056fedac65042f38f8654572afe7479cd09f5651f7ae"
+      },
+      "training_contexts": 4000,
+      "descriptor": {
+        "kind": "rl",
+        "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/small-kl-01/seed-42/policy.pt",
+        "checkpoint_sha256": "1d3ce81771a017848f406efd7e65f860c663e3be32c21b3bed4d647923f8d0c5"
+      }
+    },
+    "small-kl-1/42": {
+      "variant": {
+        "name": "small-kl-1",
+        "data": "small",
+        "beta": 1.0,
+        "repeat_penalty": 0.1
+      },
+      "seed": 42,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6351775941848755
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6352033052444458
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.6350325355529786
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6347735710144043
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6348469085693359
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12015017058649409,
+            "ndcg@5": 0.08725646231834233,
+            "recall@10": 0.16496688385688385,
+            "ndcg@10": 0.10203265029181911,
+            "recall@20": 0.23100968939829236,
+            "ndcg@20": 0.1192567727080391
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9865,
+            "top_10_items_share": 0.07456,
+            "context_repeat_fraction": 0.5203,
+            "mean_duration_seconds": 189.14405,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.16455696202531644,
+              "ndcg@10": 0.10364033123560383
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16485759493670887,
+              "ndcg@10": 0.09799085187276438
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.1635175282234106,
+              "ndcg@10": 0.09679233180144446
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.1740629653639058,
+              "ndcg@10": 0.1365309013947615
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6612362316846847,
+        "distribution": {
+          "expected_reward": 0.6551870896273669,
+          "entropy": 5.675555471790508,
+          "kl_to_reference": 0.001089524325487544
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/small-kl-1/seed-42/policy.pt",
+      "seconds": 18.782614457995805,
+      "artifacts": {
+        "policy.pt": "0d2e9b385a36190c47a7d5eb35165274e4c97e498d39f4b0a9d2cface76ed0b8",
+        "validation.npz": "29a371e8786787d3dc88c8222bb756a117091114f3abf9331abbd4f7d9a7f511",
+        "training-history.json": "79fd2509251a8656975b199aa47c5509d88ffd3b4978e30a7ba87dca1bf5aa50"
+      },
+      "training_contexts": 4000,
+      "descriptor": {
+        "kind": "rl",
+        "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/small-kl-1/seed-42/policy.pt",
+        "checkpoint_sha256": "0d2e9b385a36190c47a7d5eb35165274e4c97e498d39f4b0a9d2cface76ed0b8"
+      }
+    },
+    "expanded-kl-01/42": {
+      "variant": {
+        "name": "expanded-kl-01",
+        "data": "expanded",
+        "beta": 0.1,
+        "repeat_penalty": 0.1
+      },
+      "seed": 42,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6397995324278949
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6408577147773902
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.6412606122418697
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6415442303712633
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6417287085234865
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12060340406869818,
+            "ndcg@5": 0.08680518315999171,
+            "recall@10": 0.16636832637270135,
+            "ndcg@10": 0.10195098169044682,
+            "recall@20": 0.2307321155546523,
+            "ndcg@20": 0.11880707810991775
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.987,
+            "top_10_items_share": 0.08356,
+            "context_repeat_fraction": 0.5205,
+            "mean_duration_seconds": 185.36915,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.17270140319890098,
+              "ndcg@10": 0.10791778250111973
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16463607594936708,
+              "ndcg@10": 0.09759088398024451
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.15879382055852645,
+              "ndcg@10": 0.091942834553765
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.17452967146344886,
+              "ndcg@10": 0.13577784552865363
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.663086881697923,
+        "distribution": {
+          "expected_reward": 0.6573389116493775,
+          "entropy": 5.618622214495735,
+          "kl_to_reference": 0.024640804949996716
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-42/policy.pt",
+      "seconds": 45.6126102499984,
+      "artifacts": {
+        "policy.pt": "837bc7df8e4f766972d049dd5e18964f44e9357d7c2d7624949c4ca868f6271c",
+        "validation.npz": "3ef2699ddbe1dc573bfb1aa9c44f029b43b60f54361a9f9b6b6e647305001d33",
+        "training-history.json": "dc96c9acda3d093113559f6e0630299f8bc1d7a1987e46aef981671c907716bd"
+      },
+      "training_contexts": 11977,
+      "descriptor": {
+        "kind": "rl",
+        "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-42/policy.pt",
+        "checkpoint_sha256": "837bc7df8e4f766972d049dd5e18964f44e9357d7c2d7624949c4ca868f6271c"
+      }
+    },
+    "expanded-kl-1/42": {
+      "variant": {
+        "name": "expanded-kl-1",
+        "data": "expanded",
+        "beta": 1.0,
+        "repeat_penalty": 0.1
+      },
+      "seed": 42,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6381284433144943
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6380109803011932
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.6379192235414678
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6379282352690845
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6381341331319816
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12020962436800671,
+            "ndcg@5": 0.08724518528420122,
+            "recall@10": 0.16529355052355055,
+            "ndcg@10": 0.10208248875505409,
+            "recall@20": 0.23060250054547846,
+            "ndcg@20": 0.11914684354589726
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.986,
+            "top_10_items_share": 0.07377,
+            "context_repeat_fraction": 0.52082,
+            "mean_duration_seconds": 189.29105,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.1654400942007654,
+              "ndcg@10": 0.10373657855712325
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16406645569620254,
+              "ndcg@10": 0.09778326236007359
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.16423054070112894,
+              "ndcg@10": 0.09718265083892112
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.17526463725523284,
+              "ndcg@10": 0.1361117328071894
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6611976931415499,
+        "distribution": {
+          "expected_reward": 0.6551875148173434,
+          "entropy": 5.674249257687595,
+          "kl_to_reference": 0.0009343030831650552
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-1/seed-42/policy.pt",
+      "seconds": 41.81031216699921,
+      "artifacts": {
+        "policy.pt": "4976f9d125bd7489343c11132f679b9cbb422f8d9163c4a677e297904c821958",
+        "validation.npz": "e5a5e6bf7cc71b162c42432d6d5ceba3822b5645b3159c69007aa41abb4bfcdf",
+        "training-history.json": "74a8e32a4978674854d2d7f203b9b420c20bb160ac1712cc9dd9f04792714808"
+      },
+      "training_contexts": 11977,
+      "descriptor": {
+        "kind": "rl",
+        "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-1/seed-42/policy.pt",
+        "checkpoint_sha256": "4976f9d125bd7489343c11132f679b9cbb422f8d9163c4a677e297904c821958"
+      }
+    },
+    "expanded-kl-01/43": {
+      "variant": {
+        "name": "expanded-kl-01",
+        "data": "expanded",
+        "beta": 0.1,
+        "repeat_penalty": 0.1
+      },
+      "seed": 43,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6397991164743656
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6408364424484942
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.64127126039244
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6415291031732517
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6417277130109594
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12035201517980931,
+            "ndcg@5": 0.08656611804848457,
+            "recall@10": 0.1660194136187886,
+            "ndcg@10": 0.10165462031613388,
+            "recall@20": 0.23025014585768264,
+            "ndcg@20": 0.11843751916067043
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9865,
+            "top_10_items_share": 0.08315,
+            "context_repeat_fraction": 0.52035,
+            "mean_duration_seconds": 185.41695,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.1721617113139044,
+              "ndcg@10": 0.1072233807915768
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16469936708860758,
+              "ndcg@10": 0.09775774583561878
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.15754604872251932,
+              "ndcg@10": 0.09143272982362423
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.17710679653273698,
+              "ndcg@10": 0.1362462298064751
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6630188029684126,
+        "distribution": {
+          "expected_reward": 0.657255896726842,
+          "entropy": 5.617428676192624,
+          "kl_to_reference": 0.02364600692608858
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-43/policy.pt",
+      "seconds": 42.37970900000073,
+      "artifacts": {
+        "policy.pt": "f8ed501798a7d4225080d5307994eadc434a7aa5445418d90617011c4b306654",
+        "validation.npz": "b7330dcf1dfb33230a1a1d1da5aa0be346425303c8d557926d3c9b3418d115e5",
+        "training-history.json": "13330a2ea60a5fb6c9dd4b834019144042ac823eaab53abe00394a574884fd75"
+      },
+      "training_contexts": 11977,
+      "descriptor": {
+        "kind": "rl",
+        "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-43/policy.pt",
+        "checkpoint_sha256": "f8ed501798a7d4225080d5307994eadc434a7aa5445418d90617011c4b306654"
+      }
+    },
+    "expanded-kl-01/44": {
+      "variant": {
+        "name": "expanded-kl-01",
+        "data": "expanded",
+        "beta": 0.1,
+        "repeat_penalty": 0.1
+      },
+      "seed": 44,
+      "epochs": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_update_loss": -0.6397837818569678
+        },
+        {
+          "epoch": 2,
+          "mean_update_loss": -0.6408468666076262
+        },
+        {
+          "epoch": 3,
+          "mean_update_loss": -0.6412590509903414
+        },
+        {
+          "epoch": 4,
+          "mean_update_loss": -0.6415348991165677
+        },
+        {
+          "epoch": 5,
+          "mean_update_loss": -0.6417280719128358
+        }
+      ],
+      "validation": {
+        "ranking": {
+          "queries": 10000,
+          "users": 265,
+          "metrics": {
+            "recall@5": 0.12040479295758708,
+            "ndcg@5": 0.086767273044055,
+            "recall@10": 0.16575590717425276,
+            "ndcg@10": 0.10168928187165557,
+            "recall@20": 0.23030468319534497,
+            "ndcg@20": 0.11863689574746747
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.986,
+            "top_10_items_share": 0.08612,
+            "context_repeat_fraction": 0.51956,
+            "mean_duration_seconds": 185.4464,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 3397,
+              "recall@10": 0.1722598371111765,
+              "ndcg@10": 0.10778448398156514
+            },
+            "medium": {
+              "queries": 3160,
+              "recall@10": 0.16431962025316454,
+              "ndcg@10": 0.09719338643203343
+            },
+            "long": {
+              "queries": 2805,
+              "recall@10": 0.1578134284016637,
+              "ndcg@10": 0.09196875551563266
+            },
+            "mixed": {
+              "queries": 638,
+              "recall@10": 0.17315946459121362,
+              "ndcg@10": 0.1342405427658364
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6630729956150055,
+        "distribution": {
+          "expected_reward": 0.65734584357351,
+          "entropy": 5.61093284673762,
+          "kl_to_reference": 0.025044648441027648
+        }
+      },
+      "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-44/policy.pt",
+      "seconds": 40.911942292004824,
+      "artifacts": {
+        "policy.pt": "10670a7decc302fe9c6a1e95c7d59e2855d8ca55b07355d716897758e59e20eb",
+        "validation.npz": "8ca26ca3990b20f5a79f0f69b50908dc6e15ffab91aa11f51b41f5736352651e",
+        "training-history.json": "3f9b87abf7b649b68fdc0a80703142e0a50e7f547607cb3da39725988268e5e0"
+      },
+      "training_contexts": 11977,
+      "descriptor": {
+        "kind": "rl",
+        "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-44/policy.pt",
+        "checkpoint_sha256": "10670a7decc302fe9c6a1e95c7d59e2855d8ca55b07355d716897758e59e20eb"
+      }
+    }
+  },
+  "rollouts": {
+    "reference": {
+      "sampled": {
+        "mean_unique": 4.219,
+        "repeat_step5": 0.17,
+        "repeat_by_step": [
+          null,
+          0.138,
+          0.153,
+          0.151,
+          0.17
+        ],
+        "reward_by_step": [
+          0.6480700655914843,
+          0.6450872791223228,
+          0.6454711973927915,
+          0.6460818744748831,
+          0.6440183301977813
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/reference-sampled.npz",
+        "sha256": "034d89533b1f6b59bb18bdcf5eb8caae4c1ca338ce63469b3015d41c260b77b2",
+        "descriptor": {
+          "kind": "reference"
+        }
+      },
+      "greedy": {
+        "mean_unique": 1.01,
+        "repeat_step5": 0.999,
+        "repeat_by_step": [
+          null,
+          0.991,
+          0.999,
+          0.999,
+          0.999
+        ],
+        "reward_by_step": [
+          0.6630966487154365,
+          0.6626948933526874,
+          0.6627142799124122,
+          0.6626948933526874,
+          0.6627142799124122
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/reference-greedy.npz",
+        "sha256": "f273946cc8f0c2c531de60798fd3b692fbb99357371fd03acc5f8e8d41b80e28",
+        "descriptor": {
+          "kind": "reference"
+        }
+      }
+    },
+    "rerank-50-0": {
+      "sampled": {
+        "mean_unique": 3.351,
+        "repeat_step5": 0.371,
+        "repeat_by_step": [
+          null,
+          0.28,
+          0.332,
+          0.349,
+          0.371
+        ],
+        "reward_by_step": [
+          0.653952518761158,
+          0.6499619123339653,
+          0.6490731612183154,
+          0.649813326369971,
+          0.647820623897016
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-50-0-sampled.npz",
+        "sha256": "eae344418219cfb1b53139981a2d61d29f78b2ca5c6b0bd606c268469a1ef70a",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 50,
+          "reward_weight": 0,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-50-1": {
+      "sampled": {
+        "mean_unique": 3.372,
+        "repeat_step5": 0.371,
+        "repeat_by_step": [
+          null,
+          0.272,
+          0.316,
+          0.334,
+          0.371
+        ],
+        "reward_by_step": [
+          0.6553994415029883,
+          0.6518898935541511,
+          0.6498115574754775,
+          0.6512441339641809,
+          0.6483422307260335
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-50-1-sampled.npz",
+        "sha256": "c4936ac95ff184001508e5d3721f711f3e1c62085e473482b13f1d323e46c0c7",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 50,
+          "reward_weight": 1,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-50-2": {
+      "sampled": {
+        "mean_unique": 3.468,
+        "repeat_step5": 0.329,
+        "repeat_by_step": [
+          null,
+          0.261,
+          0.302,
+          0.317,
+          0.329
+        ],
+        "reward_by_step": [
+          0.6568103428706527,
+          0.6534088570028543,
+          0.6534848205782473,
+          0.653466292977333,
+          0.6511803120933473
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-50-2-sampled.npz",
+        "sha256": "835db99d4995fe086ee3c324e2b99690a75d0182b662d8f8d4f917e25e354456",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 50,
+          "reward_weight": 2,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-50-4": {
+      "sampled": {
+        "mean_unique": 3.566,
+        "repeat_step5": 0.288,
+        "repeat_by_step": [
+          null,
+          0.233,
+          0.266,
+          0.27,
+          0.288
+        ],
+        "reward_by_step": [
+          0.6594529076889157,
+          0.65746876437217,
+          0.6578517124243081,
+          0.6566605602800846,
+          0.6565249450467527
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-50-4-sampled.npz",
+        "sha256": "0794c87638b6eaf8b195d7e71b55f865b74b1e5b32bad0e14e138c21cd765fc6",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 50,
+          "reward_weight": 4,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-50-8": {
+      "sampled": {
+        "mean_unique": 3.703,
+        "repeat_step5": 0.221,
+        "repeat_by_step": [
+          null,
+          0.197,
+          0.222,
+          0.218,
+          0.221
+        ],
+        "reward_by_step": [
+          0.6665432087630033,
+          0.6616042778678238,
+          0.6634367318674922,
+          0.6635440651290119,
+          0.6654499717168509
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-50-8-sampled.npz",
+        "sha256": "2d25ba5e56554282b0ab2fbf7fd3ff3053c05b39f218272f3704b33ca9f64e6e",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 50,
+          "reward_weight": 8,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-50-16": {
+      "sampled": {
+        "mean_unique": 3.786,
+        "repeat_step5": 0.165,
+        "repeat_by_step": [
+          null,
+          0.147,
+          0.146,
+          0.16,
+          0.165
+        ],
+        "reward_by_step": [
+          0.677790792286396,
+          0.67513417461887,
+          0.6771707401871682,
+          0.6762574535384774,
+          0.6800073233097792
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-50-16-sampled.npz",
+        "sha256": "53b398d9e3b4fa78537b2856e8a1f8f0798f204a3998ede97c41e847eaa1c2a0",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 50,
+          "reward_weight": 16,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-100-0": {
+      "sampled": {
+        "mean_unique": 3.627,
+        "repeat_step5": 0.304,
+        "repeat_by_step": [
+          null,
+          0.21,
+          0.286,
+          0.301,
+          0.304
+        ],
+        "reward_by_step": [
+          0.6506488585919141,
+          0.6483689137697219,
+          0.6483604335188866,
+          0.6500082315132022,
+          0.6472520398721099
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-100-0-sampled.npz",
+        "sha256": "b39826667d49fa55d44ce43f7bfb4b6416d85daa3228ab2c0ba530314fe88fee",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 100,
+          "reward_weight": 0,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-100-1": {
+      "sampled": {
+        "mean_unique": 3.703,
+        "repeat_step5": 0.268,
+        "repeat_by_step": [
+          null,
+          0.206,
+          0.261,
+          0.279,
+          0.268
+        ],
+        "reward_by_step": [
+          0.6524202672243118,
+          0.6503018034882844,
+          0.650152240999043,
+          0.6505990891754627,
+          0.6481611774228513
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-100-1-sampled.npz",
+        "sha256": "02b65f8b3360f9138d8b1f8f6ba70d338dcde4c8b5c394ce60ddbd4cc98fe90e",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 100,
+          "reward_weight": 1,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-100-2": {
+      "sampled": {
+        "mean_unique": 3.757,
+        "repeat_step5": 0.273,
+        "repeat_by_step": [
+          null,
+          0.186,
+          0.24,
+          0.257,
+          0.273
+        ],
+        "reward_by_step": [
+          0.653669603601098,
+          0.650882994774729,
+          0.6510068438947201,
+          0.651425394706428,
+          0.6514235707372427
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-100-2-sampled.npz",
+        "sha256": "e990d571f84d17b053d45a0ba7ff09421d2c841e6a5d2ee48cc4d5ed3d34f9a3",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 100,
+          "reward_weight": 2,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-100-4": {
+      "sampled": {
+        "mean_unique": 3.874,
+        "repeat_step5": 0.213,
+        "repeat_by_step": [
+          null,
+          0.172,
+          0.205,
+          0.209,
+          0.213
+        ],
+        "reward_by_step": [
+          0.6570728655792772,
+          0.6539130315072834,
+          0.6545244104154408,
+          0.6539188701324165,
+          0.6551685273461044
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-100-4-sampled.npz",
+        "sha256": "58837709520602ec81c53363e3fe77d7d4677cec5515ea599a735a894eca2cb3",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 100,
+          "reward_weight": 4,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-100-8": {
+      "sampled": {
+        "mean_unique": 3.961,
+        "repeat_step5": 0.188,
+        "repeat_by_step": [
+          null,
+          0.141,
+          0.169,
+          0.18,
+          0.188
+        ],
+        "reward_by_step": [
+          0.663929907783866,
+          0.6608811641149223,
+          0.6617111800312996,
+          0.6607591483518481,
+          0.661064914830029
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-100-8-sampled.npz",
+        "sha256": "53eebf62b13ea3f8263268180bccefc26bccb99e6f0da94fb450c217c92cfd8e",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 100,
+          "reward_weight": 8,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "rerank-100-16": {
+      "sampled": {
+        "mean_unique": 3.979,
+        "repeat_step5": 0.142,
+        "repeat_by_step": [
+          null,
+          0.116,
+          0.139,
+          0.133,
+          0.142
+        ],
+        "reward_by_step": [
+          0.6746284874975681,
+          0.671877789452672,
+          0.6740394260734319,
+          0.6750951158553362,
+          0.67716130836308
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/rerank-100-16-sampled.npz",
+        "sha256": "8964b3d9aca445f39b62c4fef6eeab130281bd425d2c1299f33d1ac2051daac2",
+        "descriptor": {
+          "kind": "reranker",
+          "candidate_count": 100,
+          "reward_weight": 16,
+          "repeat_penalty": 0.1
+        }
+      }
+    },
+    "small-kl-01/42": {
+      "sampled": {
+        "mean_unique": 4.348,
+        "repeat_step5": 0.116,
+        "repeat_by_step": [
+          null,
+          0.1,
+          0.128,
+          0.118,
+          0.116
+        ],
+        "reward_by_step": [
+          0.6489575589224696,
+          0.6472240031808615,
+          0.6471613180786371,
+          0.6479823790118098,
+          0.6478877318426967
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/small-kl-01-seed-42-sampled.npz",
+        "sha256": "b2e0b298005b9dfd8e7a0ae9b0f148b288a2e3a642229634e1db6a29c2957baf",
+        "descriptor": {
+          "kind": "rl",
+          "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/small-kl-01/seed-42/policy.pt",
+          "checkpoint_sha256": "1d3ce81771a017848f406efd7e65f860c663e3be32c21b3bed4d647923f8d0c5"
+        }
+      }
+    },
+    "small-kl-1/42": {
+      "sampled": {
+        "mean_unique": 4.264,
+        "repeat_step5": 0.144,
+        "repeat_by_step": [
+          null,
+          0.125,
+          0.163,
+          0.142,
+          0.144
+        ],
+        "reward_by_step": [
+          0.6477203143201768,
+          0.6457943531870842,
+          0.6453718462139368,
+          0.6446445047482848,
+          0.6445202412977815
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/small-kl-1-seed-42-sampled.npz",
+        "sha256": "dd1671c96bb51ed33bd7e1b8e31fb410ce409de0f71f4b9087cffda4a9fa27ad",
+        "descriptor": {
+          "kind": "rl",
+          "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/small-kl-1/seed-42/policy.pt",
+          "checkpoint_sha256": "0d2e9b385a36190c47a7d5eb35165274e4c97e498d39f4b0a9d2cface76ed0b8"
+        }
+      }
+    },
+    "expanded-kl-01/42": {
+      "sampled": {
+        "mean_unique": 4.364,
+        "repeat_step5": 0.112,
+        "repeat_by_step": [
+          null,
+          0.085,
+          0.113,
+          0.117,
+          0.112
+        ],
+        "reward_by_step": [
+          0.6508394053950906,
+          0.647505257114768,
+          0.6498460580930113,
+          0.647493985299021,
+          0.6482445906102657
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/expanded-kl-01-seed-42-sampled.npz",
+        "sha256": "381c66adc00075dc35b2d996b6f8556647451fa5ed90a802bbf8f441d0b4bd7e",
+        "descriptor": {
+          "kind": "rl",
+          "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-42/policy.pt",
+          "checkpoint_sha256": "837bc7df8e4f766972d049dd5e18964f44e9357d7c2d7624949c4ca868f6271c"
+        }
+      },
+      "greedy": {
+        "mean_unique": 1.038,
+        "repeat_step5": 0.992,
+        "repeat_by_step": [
+          null,
+          0.965,
+          0.987,
+          0.991,
+          0.992
+        ],
+        "reward_by_step": [
+          0.6687168102785945,
+          0.6680846113339066,
+          0.6682436748221516,
+          0.6679461227431893,
+          0.6681120301261544
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/expanded-kl-01-seed-42-greedy.npz",
+        "sha256": "56bc241894c5dbca2c68f44faeffb6d141340a714fa3b6f92e3db2e14726d8d2",
+        "descriptor": {
+          "kind": "rl",
+          "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-42/policy.pt",
+          "checkpoint_sha256": "837bc7df8e4f766972d049dd5e18964f44e9357d7c2d7624949c4ca868f6271c"
+        }
+      }
+    },
+    "expanded-kl-1/42": {
+      "sampled": {
+        "mean_unique": 4.303,
+        "repeat_step5": 0.135,
+        "repeat_by_step": [
+          null,
+          0.126,
+          0.147,
+          0.14,
+          0.135
+        ],
+        "reward_by_step": [
+          0.6476362774260342,
+          0.6461960141733288,
+          0.6464445146769285,
+          0.6450882990472019,
+          0.6442053713202477
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/expanded-kl-1-seed-42-sampled.npz",
+        "sha256": "4192326823026ef7e814b2c41206c85a99ff1c51de74f050f5fb946ec6b9072f",
+        "descriptor": {
+          "kind": "rl",
+          "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-1/seed-42/policy.pt",
+          "checkpoint_sha256": "4976f9d125bd7489343c11132f679b9cbb422f8d9163c4a677e297904c821958"
+        }
+      }
+    },
+    "expanded-kl-01/43": {
+      "sampled": {
+        "mean_unique": 4.303,
+        "repeat_step5": 0.132,
+        "repeat_by_step": [
+          null,
+          0.094,
+          0.126,
+          0.124,
+          0.132
+        ],
+        "reward_by_step": [
+          0.6495395405888558,
+          0.6485242317579687,
+          0.6486132345572114,
+          0.646967764094472,
+          0.6449418498016893
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/expanded-kl-01-seed-43-sampled.npz",
+        "sha256": "6da2a682e7074b64e3655caa8a09ec79da18e880621979ead2714c0e4518e05d",
+        "descriptor": {
+          "kind": "rl",
+          "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-43/policy.pt",
+          "checkpoint_sha256": "f8ed501798a7d4225080d5307994eadc434a7aa5445418d90617011c4b306654"
+        }
+      }
+    },
+    "expanded-kl-01/44": {
+      "sampled": {
+        "mean_unique": 4.356,
+        "repeat_step5": 0.132,
+        "repeat_by_step": [
+          null,
+          0.084,
+          0.109,
+          0.127,
+          0.132
+        ],
+        "reward_by_step": [
+          0.6497921034768224,
+          0.6478750625699758,
+          0.6500283253341913,
+          0.6478045629262924,
+          0.6485599169097841
+        ],
+        "observed_response_history_frozen": true,
+        "real_feedback_measured": false,
+        "path": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/rollouts/expanded-kl-01-seed-44-sampled.npz",
+        "sha256": "4c3703d8d8aed639482cc55694c27cc17ab04e12544b40e0e863eeb12a6f9e81",
+        "descriptor": {
+          "kind": "rl",
+          "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-44/policy.pt",
+          "checkpoint_sha256": "10670a7decc302fe9c6a1e95c7d59e2855d8ca55b07355d716897758e59e20eb"
+        }
+      }
+    }
+  },
+  "selection": {
+    "selected_reranker": null,
+    "screening_rl": "expanded-kl-01/42",
+    "selected_rl": "expanded-kl-01/42",
+    "rl_confirmation": [
+      {
+        "seed": 42,
+        "passed": true
+      },
+      {
+        "seed": 43,
+        "passed": true
+      },
+      {
+        "seed": 44,
+        "passed": true
+      }
+    ],
+    "primary_challenger": "expanded-kl-01/42",
+    "primary_policy": "rl",
+    "selected_descriptors": {
+      "expanded-kl-01/42": {
+        "kind": "rl",
+        "checkpoint": "/Users/islam/IdeaProjects/t-lab-2026-recsys-rl/outputs/candidate-policy-v1/runs/expanded-kl-01/seed-42/policy.pt",
+        "checkpoint_sha256": "837bc7df8e4f766972d049dd5e18964f44e9357d7c2d7624949c4ca868f6271c"
+      }
+    },
+    "final_used_for_selection": false,
+    "recorded_at_utc": "2026-10-15T12:07:02.602539+00:00"
+  },
+  "final": {
+    "policies": {
+      "reference": {
+        "ranking": {
+          "queries": 20000,
+          "users": 1038,
+          "metrics": {
+            "recall@5": 0.12772515484515484,
+            "ndcg@5": 0.09717534499194744,
+            "recall@10": 0.1670099300699301,
+            "ndcg@10": 0.11008335464955595,
+            "recall@20": 0.2151702401071151,
+            "ndcg@20": 0.12250773716506447
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9915,
+            "top_10_items_share": 0.062345,
+            "context_repeat_fraction": 0.50027,
+            "mean_duration_seconds": 190.838525,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 6911,
+              "recall@10": 0.1743114841074615,
+              "ndcg@10": 0.11785693115584525
+            },
+            "medium": {
+              "queries": 6232,
+              "recall@10": 0.16384520753102266,
+              "ndcg@10": 0.10303595911297514
+            },
+            "long": {
+              "queries": 5848,
+              "recall@10": 0.1676185590515276,
+              "ndcg@10": 0.10930416408890463
+            },
+            "mixed": {
+              "queries": 1009,
+              "recall@10": 0.13301810511919532,
+              "ndcg@10": 0.10488304557888717
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6442595356613398,
+        "distribution": {
+          "expected_reward": 0.6391060952440288,
+          "entropy": 5.651776655518443,
+          "kl_to_reference": -1.626521605535583e-11
+        }
+      },
+      "historical_rl": {
+        "ranking": {
+          "queries": 20000,
+          "users": 1038,
+          "metrics": {
+            "recall@5": 0.1266393215118215,
+            "ndcg@5": 0.0960706176587328,
+            "recall@10": 0.1676861833999334,
+            "ndcg@10": 0.10949956220546124,
+            "recall@20": 0.21464913288100787,
+            "ndcg@20": 0.12163884807038103
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9915,
+            "top_10_items_share": 0.07434,
+            "context_repeat_fraction": 0.49857,
+            "mean_duration_seconds": 186.7532,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 6911,
+              "recall@10": 0.1782182993295712,
+              "ndcg@10": 0.11986626365584897
+            },
+            "medium": {
+              "queries": 6232,
+              "recall@10": 0.16593121523320495,
+              "ndcg@10": 0.1030234292978845
+            },
+            "long": {
+              "queries": 5848,
+              "recall@10": 0.16419858641130872,
+              "ndcg@10": 0.1054626046746416
+            },
+            "mixed": {
+              "queries": 1009,
+              "recall@10": 0.12660092632837927,
+              "ndcg@10": 0.10189115209309427
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6463135464789346,
+        "distribution": {
+          "expected_reward": 0.640985949577107,
+          "entropy": 5.602258355322741,
+          "kl_to_reference": 0.019234826992636515
+        }
+      },
+      "rl": {
+        "ranking": {
+          "queries": 20000,
+          "users": 1038,
+          "metrics": {
+            "recall@5": 0.12745159423909422,
+            "ndcg@5": 0.09644872397797223,
+            "recall@10": 0.1665476823176823,
+            "ndcg@10": 0.10927439538121189,
+            "recall@20": 0.2151213872932623,
+            "ndcg@20": 0.12182467454595157
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9915,
+            "top_10_items_share": 0.071365,
+            "context_repeat_fraction": 0.500945,
+            "mean_duration_seconds": 186.265125,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 6911,
+              "recall@10": 0.17807360246949305,
+              "ndcg@10": 0.12077332760410843
+            },
+            "medium": {
+              "queries": 6232,
+              "recall@10": 0.16304289687633716,
+              "ndcg@10": 0.1016872304111631
+            },
+            "long": {
+              "queries": 5848,
+              "recall@10": 0.1632010943912449,
+              "ndcg@10": 0.10510193046456202
+            },
+            "mixed": {
+              "queries": 1009,
+              "recall@10": 0.1286458338490053,
+              "ndcg@10": 0.10155850473054245
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6465131349390373,
+        "distribution": {
+          "expected_reward": 0.6413793686437471,
+          "entropy": 5.5901583747895565,
+          "kl_to_reference": 0.023964906707300605
+        }
+      },
+      "train_popularity": {
+        "ranking": {
+          "queries": 20000,
+          "users": 1038,
+          "metrics": {
+            "recall@5": 0.014775954184704185,
+            "ndcg@5": 0.00806762054623514,
+            "recall@10": 0.026030990904520313,
+            "ndcg@10": 0.011784341571467943,
+            "recall@20": 0.04814693731921673,
+            "ndcg@20": 0.017488068473331227
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.005,
+            "top_10_items_share": 1.0,
+            "context_repeat_fraction": 0.04684,
+            "mean_duration_seconds": 168.5,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 6911,
+              "recall@10": 0.028613804080451454,
+              "ndcg@10": 0.013706324927493678
+            },
+            "medium": {
+              "queries": 6232,
+              "recall@10": 0.03659873769790329,
+              "ndcg@10": 0.015872203774662228
+            },
+            "long": {
+              "queries": 5848,
+              "recall@10": 0.011143410852713177,
+              "ndcg@10": 0.003488888748983856
+            },
+            "mixed": {
+              "queries": 1009,
+              "recall@10": 0.029355617532612812,
+              "ndcg@10": 0.021450767619125337
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6418159315947444,
+        "distribution": null
+      },
+      "recent_items": {
+        "ranking": {
+          "queries": 20000,
+          "users": 1038,
+          "metrics": {
+            "recall@5": 0.12474762293262293,
+            "ndcg@5": 0.09647021731314666,
+            "recall@10": 0.16603150203962702,
+            "ndcg@10": 0.11020051299018169,
+            "recall@20": 0.21009722002262443,
+            "ndcg@20": 0.12171485719345716
+          },
+          "behavior_at_10": {
+            "catalog_coverage": 0.9825,
+            "top_10_items_share": 0.15769,
+            "context_repeat_fraction": 0.86836,
+            "mean_duration_seconds": 187.87255,
+            "duration_known_fraction": 1.0
+          },
+          "target_duration_tertiles_seconds": [
+            175.0,
+            215.0
+          ],
+          "target_duration_slices": {
+            "short": {
+              "queries": 6911,
+              "recall@10": 0.1649905947040949,
+              "ndcg@10": 0.11391273663133838
+            },
+            "medium": {
+              "queries": 6232,
+              "recall@10": 0.1618260590500642,
+              "ndcg@10": 0.10326980510418551
+            },
+            "long": {
+              "queries": 5848,
+              "recall@10": 0.17238087095303237,
+              "ndcg@10": 0.1114015951707151
+            },
+            "mixed": {
+              "queries": 1009,
+              "recall@10": 0.16233568628266348,
+              "ndcg@10": 0.12061980473421986
+            },
+            "unknown": {
+              "queries": 0,
+              "recall@10": null,
+              "ndcg@10": null
+            }
+          }
+        },
+        "top10_reward": 0.6503120301863179,
+        "distribution": null
+      }
+    },
+    "intervals_vs_reference": {
+      "historical_rl": {
+        "ndcg@10": {
+          "estimate": -0.0005837924440947089,
+          "ci95": [
+            -0.0013411230578153903,
+            0.0001257251791554147
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "recall@10": {
+          "estimate": 0.0006762533300033299,
+          "ci95": [
+            -0.0007562180840616937,
+            0.0021011516950539297
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "reward": {
+          "estimate": 0.0020540108175948263,
+          "ci95": [
+            0.0019393141541108347,
+            0.00216876860299141
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        }
+      },
+      "rl": {
+        "ndcg@10": {
+          "estimate": -0.0008089592683440458,
+          "ci95": [
+            -0.001573021964012123,
+            -2.7765102188554452e-05
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "recall@10": {
+          "estimate": -0.00046224775224775226,
+          "ci95": [
+            -0.001895697628541586,
+            0.0009589252685792857
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "reward": {
+          "estimate": 0.0022535992776975037,
+          "ci95": [
+            0.002133506379040257,
+            0.0023675672396271225
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        }
+      },
+      "train_popularity": {
+        "ndcg@10": {
+          "estimate": -0.098299013078088,
+          "ci95": [
+            -0.11374296270238693,
+            -0.0850713275254478
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "recall@10": {
+          "estimate": -0.14097893916540974,
+          "ci95": [
+            -0.15976284194342988,
+            -0.12404718785132875
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "reward": {
+          "estimate": -0.002443604066595435,
+          "ci95": [
+            -0.003118988748881221,
+            -0.0017851972920685272
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        }
+      },
+      "recent_items": {
+        "ndcg@10": {
+          "estimate": 0.00011715834062572955,
+          "ci95": [
+            -0.0023316431436941425,
+            0.0027126763479672898
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "recall@10": {
+          "estimate": -0.0009784280303030304,
+          "ci95": [
+            -0.006435761578959739,
+            0.0047140244569324015
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "reward": {
+          "estimate": 0.006052494524978101,
+          "ci95": [
+            0.005600602682731423,
+            0.006509867075118672
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        }
+      }
+    },
+    "intervals_vs_historical_rl": {
+      "rl": {
+        "ndcg@10": {
+          "estimate": -0.00022516682424933684,
+          "ci95": [
+            -0.0007529402194888495,
+            0.0003365990235411608
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "recall@10": {
+          "estimate": -0.0011385010822510823,
+          "ci95": [
+            -0.0022391967966502095,
+            -5.891830468549602e-05
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        },
+        "reward": {
+          "estimate": 0.00019958846010267734,
+          "ci95": [
+            0.00015191846826032384,
+            0.0002450017235313058
+          ],
+          "clusters": 1038,
+          "observations": 20000,
+          "bootstrap_repeats": 2000,
+          "bootstrap_seed": 42,
+          "scope": "Percentile user-cluster bootstrap; equal query weights."
+        }
+      }
+    },
+    "primary_confirmation": {
+      "policy": "rl",
+      "reward_improvement": true,
+      "ndcg_noninferiority": false,
+      "absolute_ndcg_margin": 0.0011008335464955594,
+      "both_passed": false
+    },
+    "reward_model": {
+      "metrics": {
+        "calibrated": {
+          "pairs": 22885,
+          "mse": 0.13571367114346383,
+          "rmse": 0.36839336468435996,
+          "mae": 0.300279305670561,
+          "r2": 0.3129623237671171,
+          "pearson": 0.5595615969611996,
+          "bias": 0.004128395744084804,
+          "mean_prediction": 0.6334854276637166,
+          "mean_observed": 0.6293570319196319
+        },
+        "history_user": {
+          "pairs": 22885,
+          "mse": 0.13680506016101887,
+          "rmse": 0.3698716806691462,
+          "mae": 0.2969540573157222,
+          "r2": 0.3074372696722023,
+          "pearson": 0.5550637140914416,
+          "bias": -0.0012514528203312033,
+          "mean_prediction": 0.6281055790993006,
+          "mean_observed": 0.6293570319196319
+        },
+        "history_candidate": {
+          "pairs": 22885,
+          "mse": 0.1351103676662528,
+          "rmse": 0.367573622103454,
+          "mae": 0.2933925609685267,
+          "r2": 0.3160164907906302,
+          "pearson": 0.5626367622022581,
+          "bias": 0.0005406656239229778,
+          "mean_prediction": 0.6298976975435548,
+          "mean_observed": 0.6293570319196319
+        },
+        "item_prior": {
+          "pairs": 22885,
+          "mse": 0.1953106355949904,
+          "rmse": 0.44193962890307814,
+          "mae": 0.4076809143000489,
+          "r2": 0.011258305134926871,
+          "pearson": 0.13174295441449474,
+          "bias": 0.03164181959442346,
+          "mean_prediction": 0.6609988515140554,
+          "mean_observed": 0.6293570319196319
+        }
+      },
+      "maximum_direct_difference": 2.9800752754383097e-08
+    },
+    "opening": {
+      "opened_at_utc": "2026-10-15T12:07:02.602814+00:00",
+      "selection_sha256": "aa4900b94d823b29a90b202250fbb5f3639054826d3a4acafe2324334ff53d04"
+    },
+    "queries": 20000,
+    "users": 1038,
+    "observed_pairs": 22885,
+    "final_used_for_selection": false,
+    "causal_user_effect_measured": false,
+    "artifacts": {
+      "cache.npz": "9d78e64ec5d63b2d54879f6c7ce660e5ff92fc7fb5a3c9b676a553cb0b452e16",
+      "observed.npz": "f5dd2c0fd6d91b8495727110eb88931e9113474cd8c4d21f75cb8f17d82fbe3d",
+      "rankings.npz": "1ad048b935912650af3ee15dea34f9cfac31fb594f86ce270f600db795ae15cc"
+    }
+  },
+  "final_opened": true,
+  "series_seconds": 308.45296037499793,
+  "pdf_changed": false
+}

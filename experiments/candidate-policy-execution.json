@@ -1,0 +1,73 @@
+{
+  "source_commit": "2de90515f57ba856abfef3653a6cb9cb8a65c45f",
+  "result_sha256": "13de5c61a3fc066d84979b2cce2c0c3c1d53e459e711cb85bf5a501d48d8fd7d",
+  "final_result_sha256": "67fd436d1753851969df7ba2f85ba8a520e0e9dec5913c879638acf9b2c5b58c",
+  "execution": {
+    "prepare": {
+      "wall_seconds": 28.65,
+      "maximum_rss_bytes": 1143226368,
+      "peak_memory_footprint_bytes": 2339457184,
+      "final_record": {
+        "stage": "candidate_policy_prepared",
+        "populations": {
+          "excluded_users": 6000,
+          "development_users": 300,
+          "final_users": 1200
+        },
+        "small": 4000,
+        "expanded": 11977,
+        "final_opened": false
+      },
+      "log_sha256": "2a8b43a6ea43f98cf7dafd264183103ccfe6047c9db57e995526b8136b992121"
+    },
+    "series": {
+      "wall_seconds": 313.24,
+      "maximum_rss_bytes": 2517745664,
+      "peak_memory_footprint_bytes": 4649783256,
+      "final_record": {
+        "stage": "candidate_policy_complete",
+        "runs": 6,
+        "final_opened": true,
+        "primary": {
+          "policy": "rl",
+          "reward_improvement": true,
+          "ndcg_noninferiority": false,
+          "absolute_ndcg_margin": 0.0011008335464955594,
+          "both_passed": false
+        }
+      },
+      "log_sha256": "f1b65cb1e7ba7f64336e0d0836c7ea0489d97db7a8eb709a34c3f80d7272445e"
+    },
+    "audit": {
+      "wall_seconds": 124.82,
+      "maximum_rss_bytes": 2802925568,
+      "peak_memory_footprint_bytes": 5058924792,
+      "final_record": {
+        "stage": "candidate_policy_audit_complete",
+        "raw_preparation_reproduced": true,
+        "runs_checked": 6,
+        "rerankers_checked": 12,
+        "rollouts_replayed": 21,
+        "maximum_forward_difference": 0.0,
+        "selection_recalculated": true,
+        "final_recalculated": true
+      },
+      "log_sha256": "8aa5c4760573225313232af2e25a441766aba9906fbcb62b3c994f2190b75522"
+    }
+  },
+  "training_seconds_sum": 203.86757149999903,
+  "commands": {
+    "prepare": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.candidate_policy_experiment --device auto --prepare-only",
+    "series": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.candidate_policy_experiment --device auto --resume",
+    "audit": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.candidate_policy_experiment --device auto --audit"
+  },
+  "final_opened": true,
+  "final_used_for_selection": false,
+  "automated_tests_run": false,
+  "pdf_changed": false,
+  "notes": [
+    "Final opening flags in preparation JSON describe the historical preparation stage; both new evaluation groups are now opened.",
+    "Expanded data increases optimizer steps at fixed epochs; the effects of data and compute are not separated.",
+    "All nonzero rerankers failed the uniqueness guard and were not evaluated on final."
+  ]
+}
