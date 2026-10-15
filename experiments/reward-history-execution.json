@@ -1,0 +1,95 @@
+{
+  "source_commit": "bc91ff4ba21887913a74cfb83b85674eee537371",
+  "result_sha256": "9fc47dfc93b88494a91adb21c958c89d9c5addf6cb4d74aebddb2f07cc2c7d21",
+  "commands": {
+    "prepare": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.history_reward_experiment --device auto --prepare-only",
+    "series": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.history_reward_experiment --device auto --resume",
+    "audit": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.history_reward_experiment --device auto --audit"
+  },
+  "execution": {
+    "prepare": {
+      "wall_seconds": 5.34,
+      "maximum_rss_bytes": 967393280,
+      "peak_memory_footprint_bytes": 918980072,
+      "final_record": {
+        "stage": "history_reward_prepared",
+        "development": {
+          "selected_users": 500,
+          "excluded_users": 3000,
+          "queries": 5000,
+          "query_users": 383
+        },
+        "final_reserve": {
+          "selected_users": 1000,
+          "excluded_users": 3500,
+          "queries": 5000,
+          "query_users": 739
+        },
+        "response_labels_read": false
+      },
+      "log_sha256": "4ea7bcbbaada6e5ad1a815ed17265d77bd74ea0ae32b5cb9f72f4ff047c31c7c"
+    },
+    "series": {
+      "wall_seconds": 37.49,
+      "maximum_rss_bytes": 1091190784,
+      "peak_memory_footprint_bytes": 1002669808,
+      "final_record": {
+        "stage": "history_reward_complete",
+        "runs": 3,
+        "selected_reward": null,
+        "rl_allowed": false,
+        "eligibility": {
+          "history-linear": {
+            "mse_below_original_raw_hybrid_and_history_user": true,
+            "enough_pair_queries": true,
+            "query_macro_at_least_055": false,
+            "query_macro_not_below_item_control": false,
+            "seen_mse_preserved": true
+          },
+          "history-embedding": {
+            "mse_below_original_raw_hybrid_and_history_user": true,
+            "enough_pair_queries": true,
+            "query_macro_at_least_055": false,
+            "query_macro_not_below_item_control": false,
+            "seen_mse_preserved": true
+          },
+          "history-pairwise": {
+            "mse_below_original_raw_hybrid_and_history_user": true,
+            "enough_pair_queries": true,
+            "query_macro_at_least_055": false,
+            "query_macro_not_below_item_control": true,
+            "seen_mse_preserved": true
+          }
+        },
+        "checkpoint": null,
+        "final_reserve_opened": false,
+        "recorded_at_utc": "2026-10-15T08:07:36.326624+00:00"
+      },
+      "log_sha256": "80bc1716f833e4b788e8e882d44e3225a0826a801820ff5923a1b692923f2623"
+    },
+    "audit": {
+      "wall_seconds": 16.78,
+      "maximum_rss_bytes": 1277034496,
+      "peak_memory_footprint_bytes": 1148471072,
+      "final_record": {
+        "stage": "history_reward_audit_complete",
+        "reward_runs": 3,
+        "maximum_forward_difference": 0.0,
+        "raw_cohorts_and_response_histories_reconstructed": true,
+        "all_metrics_and_selection_recalculated": true,
+        "final_reserve_opened": false,
+        "rl_allowed": false
+      },
+      "log_sha256": "5a68107953a3de779fb9bd2976bb6195fc1a320e5211b0491dda0712ac4d99b8"
+    }
+  },
+  "training_seconds_sum": 22.522452167002484,
+  "final_reserve_status": "Prepared ID histories only; no model predictions or response labels opened. Audit reconstructs ID histories, not response or predictions.",
+  "interval_weight_clarification": {
+    "fixed_mixtures": "Equal query weights; the inherited generic scope string says pair weights but observations are query metrics, not candidate pairs.",
+    "reward_mse": "Equal observed-pair weights, user-cluster bootstrap.",
+    "pairwise_query_macro": "Equal eligible-query weights after averaging pairs within each query.",
+    "pairwise_pair_weighted": "Equal candidate-comparison weights."
+  },
+  "scope": "New development cohort was used for recipe selection; no independent final confirmation. Process RSS/footprint only. No automated tests run."
+}
