@@ -1,0 +1,114 @@
+{
+  "checked_on": "2026-10-15",
+  "python": "3.14.7",
+  "catboost": "1.2.10",
+  "catboost_latest_stable": true,
+  "new_packages": [
+    {
+      "name": "catboost",
+      "selected": "1.2.10",
+      "latest_stable": "1.2.10",
+      "primary_registry": "https://pypi.org/project/catboost/",
+      "matches_latest": true
+    },
+    {
+      "name": "pandas",
+      "selected": "3.0.6",
+      "latest_stable": "3.0.6",
+      "primary_registry": "https://pypi.org/project/pandas/",
+      "matches_latest": true
+    },
+    {
+      "name": "python-dateutil",
+      "selected": "2.9.0.post0",
+      "latest_stable": "2.9.0.post0",
+      "primary_registry": "https://pypi.org/project/python-dateutil/",
+      "matches_latest": true
+    },
+    {
+      "name": "six",
+      "selected": "1.17.0",
+      "latest_stable": "1.17.0",
+      "primary_registry": "https://pypi.org/project/six/",
+      "matches_latest": true
+    },
+    {
+      "name": "graphviz",
+      "selected": "0.21",
+      "latest_stable": "0.21",
+      "primary_registry": "https://pypi.org/project/graphviz/",
+      "matches_latest": true
+    },
+    {
+      "name": "matplotlib",
+      "selected": "3.11.2",
+      "latest_stable": "3.11.2",
+      "primary_registry": "https://pypi.org/project/matplotlib/",
+      "matches_latest": true
+    },
+    {
+      "name": "contourpy",
+      "selected": "1.4.0",
+      "latest_stable": "1.4.0",
+      "primary_registry": "https://pypi.org/project/contourpy/",
+      "matches_latest": true
+    },
+    {
+      "name": "cycler",
+      "selected": "0.12.1",
+      "latest_stable": "0.12.1",
+      "primary_registry": "https://pypi.org/project/cycler/",
+      "matches_latest": true
+    },
+    {
+      "name": "fonttools",
+      "selected": "4.67.0",
+      "latest_stable": "4.67.0",
+      "primary_registry": "https://pypi.org/project/fonttools/",
+      "matches_latest": true
+    },
+    {
+      "name": "kiwisolver",
+      "selected": "1.5.1",
+      "latest_stable": "1.5.1",
+      "primary_registry": "https://pypi.org/project/kiwisolver/",
+      "matches_latest": true
+    },
+    {
+      "name": "pillow",
+      "selected": "12.3.0",
+      "latest_stable": "12.3.0",
+      "primary_registry": "https://pypi.org/project/pillow/",
+      "matches_latest": true
+    },
+    {
+      "name": "pyparsing",
+      "selected": "3.3.3",
+      "latest_stable": "3.3.3",
+      "primary_registry": "https://pypi.org/project/pyparsing/",
+      "matches_latest": true
+    },
+    {
+      "name": "plotly",
+      "selected": "7.1.0",
+      "latest_stable": "7.1.0",
+      "primary_registry": "https://pypi.org/project/plotly/",
+      "matches_latest": true
+    },
+    {
+      "name": "narwhals",
+      "selected": "2.27.1",
+      "latest_stable": "2.27.1",
+      "primary_registry": "https://pypi.org/project/narwhals/",
+      "matches_latest": true
+    },
+    {
+      "name": "scipy",
+      "selected": "1.18.1",
+      "latest_stable": "1.18.1",
+      "primary_registry": "https://pypi.org/project/scipy/",
+      "matches_latest": true
+    }
+  ],
+  "original_pins_unchanged": true
+}
