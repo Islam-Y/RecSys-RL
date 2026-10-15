@@ -1,0 +1,19 @@
+{
+  "experiment": "shortlist-mass-v1",
+  "historical_report": "../experiments/ranked-policy-result.json",
+  "historical_execution": "../experiments/ranked-policy-execution.json",
+  "ranking_data_dir": "../data/processed/candidate-ranking-v1",
+  "recency_execution": "../experiments/recency-execution.json",
+  "previous_report": "../experiments/candidate-policy-result.json",
+  "previous_execution": "../experiments/candidate-policy-execution.json",
+  "development_data_dir": "../data/processed/candidate-policy-v1",
+  "development_output_dir": "../outputs/candidate-policy-v1",
+  "new_data_dir": "../data/processed/shortlist-mass-v1",
+  "data": {"final_users": "all_unused_listen_users", "expected_excluded_users": 7500, "expected_final_users": 1738, "minimum_early_listens": 0, "minimum_query_history": 5, "final_queries": 20000, "query_seed": 20261026, "early_activity_cuts": [5, 50]},
+  "reranking": {"candidate_counts": [50, 100], "reward_weights": [0, 1, 2, 4, 8, 16], "repeat_penalty": 0.1},
+  "truncated_controls": [{"candidate_count": 50, "reward_weight": 0}, {"candidate_count": 100, "reward_weight": 0}, {"candidate_count": 50, "reward_weight": 8}, {"candidate_count": 100, "reward_weight": 16}],
+  "selection": {"minimum_relative_ndcg": 0.99, "minimum_relative_coverage": 0.95, "maximum_relative_concentration": 1.25, "maximum_sampled_repeat_increase": 0.01, "maximum_unique_decrease": 0.05, "criterion": "maximum_development_top10_calibrated_reward_above_reference", "tie_break": "configuration_order"},
+  "evaluation": {"bootstrap_repeats": 2000, "bootstrap_seed": 42, "forward_tolerance": 0.000002, "mass_tolerance": 1e-12, "ndcg_noninferiority_margin": 0.01},
+  "rollout": {"contexts": 1000, "steps": 5, "seed": 42, "modes": ["greedy", "sampled"], "reward_history": "frozen_observed_response_history"},
+  "execution": {"inference_batch_size": 128, "reward_batch_size": 32, "threads": 4}
+}
