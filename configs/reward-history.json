@@ -1,0 +1,21 @@
+{
+  "experiment": "reward-history-v1",
+  "reference_report": "../experiments/recency-result.json",
+  "reference_execution": "../experiments/recency-execution.json",
+  "reward_data_dir": "../data/processed/reward-v1",
+  "previous_recency_dir": "../data/processed/recency-holdout-v1",
+  "new_data_dir": "../data/processed/reward-history-v1",
+  "reward_development": {"users": 500, "queries": 5000, "seed": 20261017, "period": "validation"},
+  "final_reserve": {"users": 1000, "queries": 5000, "seed": 20261018, "period": "test"},
+  "history": {"events": 64, "user_smoothing": 5.0, "candidate_smoothing": 5.0, "item_smoothing": 20.0},
+  "training": {"epochs": 12, "patience": 4, "batch_size": 256, "learning_rate": 0.001, "weight_decay": 0.01, "gradient_clip": 1.0, "seed": 42, "pair_batch_size": 128},
+  "variants": [
+    {"name": "history-linear", "kind": "linear", "pair_weight": 0.0},
+    {"name": "history-embedding", "kind": "embedding", "pair_weight": 0.0},
+    {"name": "history-pairwise", "kind": "embedding", "pair_weight": 0.05}
+  ],
+  "selection": {"minimum_pair_queries": 100, "minimum_query_macro_accuracy": 0.55, "maximum_seen_mse_ratio": 1.01, "criterion": "minimum_unseen_development_mse_among_eligible", "tie_break": "configuration_order"},
+  "evaluation": {"bootstrap_repeats": 2000, "bootstrap_seed": 42, "label_tolerance": 0.000001, "prediction_tolerance": 0.00000001, "strong_label_gap": 0.1, "forward_tolerance": 0.000002},
+  "fixed_mixtures": {"tau": 16.0, "controls": [0.1, 0.11920292202211755]},
+  "execution": {"inference_batch_size": 256, "threads": 4}
+}
