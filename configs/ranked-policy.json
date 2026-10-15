@@ -1,0 +1,19 @@
+{
+  "experiment": "ranked-policy-v1",
+  "ranking_report": "../experiments/ranking-result.json",
+  "ranking_execution": "../experiments/ranking-execution.json",
+  "ranking_data_dir": "../data/processed/candidate-ranking-v1",
+  "final_data_dir": "../data/processed/reward-history-v1",
+  "recency_execution": "../experiments/recency-execution.json",
+  "training": {"epochs": 5, "batch_size": 64, "learning_rate": 0.00005, "weight_decay": 0.0, "gradient_clip": 1.0, "seed": 42, "confirmation_seeds": [43, 44], "log_floor": 1e-30},
+  "variants": [
+    {"name": "reward-kl-01", "beta": 0.1, "repeat_penalty": 0.0},
+    {"name": "repeat-kl-01", "beta": 0.1, "repeat_penalty": 0.1},
+    {"name": "reward-kl-1", "beta": 1.0, "repeat_penalty": 0.0},
+    {"name": "repeat-kl-1", "beta": 1.0, "repeat_penalty": 0.1}
+  ],
+  "selection": {"minimum_relative_ndcg": 0.99, "minimum_relative_coverage": 0.95, "maximum_relative_concentration": 1.25, "maximum_sampled_repeat_increase": 0.01, "maximum_unique_decrease": 0.05, "criterion": "maximum_top10_calibrated_reward_above_reference", "tie_break": "configuration_order"},
+  "evaluation": {"bootstrap_repeats": 2000, "bootstrap_seed": 42, "forward_tolerance": 0.000002, "ndcg_noninferiority_margin": 0.01},
+  "rollout": {"contexts": 1000, "steps": 5, "seed": 42, "modes": ["greedy", "sampled"], "reward_history": "frozen_observed_response_history"},
+  "execution": {"inference_batch_size": 128, "reward_batch_size": 32, "threads": 4}
+}
