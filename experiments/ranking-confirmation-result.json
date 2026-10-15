@@ -1,0 +1,614 @@
+{
+  "opening": {
+    "opened_at_utc": "2026-10-15T09:04:05.553104+00:00",
+    "selection_sha256": "48abfb2a4f4764b0fb222df9ad3fdee8095f8b8416e80025a1a9de691e8e4f71",
+    "calibration_sha256": "d482eb7c86d38ab410959e9a8e7123ed86123ccd202b429c97a188230ca74d96"
+  },
+  "statistics": {
+    "gap_010": {
+      "pairs": 2524,
+      "queries": 520,
+      "users": 173,
+      "methods": {
+        "item_prior": {
+          "query_macro": {
+            "estimate": 0.4922043491332219,
+            "ci95": [
+              0.454609864277197,
+              0.5313417639332069
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5303090332805072,
+            "ci95": [
+              0.4864842238638806,
+              0.5706967853438223
+            ],
+            "clusters": 173,
+            "observations": 2524,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "history_candidate": {
+          "query_macro": {
+            "estimate": 0.5351825891014678,
+            "ci95": [
+              0.5120436879211806,
+              0.5607048197227804
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5467511885895404,
+            "ci95": [
+              0.5256380510440836,
+              0.5710644921547742
+            ],
+            "clusters": 173,
+            "observations": 2524,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "history_user": {
+          "query_macro": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 173,
+            "observations": 2524,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "selected": {
+          "query_macro": {
+            "estimate": 0.5842012853036461,
+            "ci95": [
+              0.5468685803977942,
+              0.6213669308073706
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5572503961965135,
+            "ci95": [
+              0.5259940600978337,
+              0.5922049805124867
+            ],
+            "clusters": 173,
+            "observations": 2524,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "calibrated": {
+          "query_macro": {
+            "estimate": 0.5842012853036461,
+            "ci95": [
+              0.5468685803977942,
+              0.6213669308073706
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5572503961965135,
+            "ci95": [
+              0.5259940600978337,
+              0.5922049805124867
+            ],
+            "clusters": 173,
+            "observations": 2524,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "matched_data_control": {
+          "query_macro": {
+            "estimate": 0.5133208381767418,
+            "ci95": [
+              0.47559906726574175,
+              0.5531220251648804
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5376386687797148,
+            "ci95": [
+              0.4955436369053932,
+              0.57235797159773
+            ],
+            "clusters": 173,
+            "observations": 2524,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        }
+      },
+      "paired_vs_controls": {
+        "selected": {
+          "item_prior": {
+            "estimate": 0.09199693617042426,
+            "ci95": [
+              0.04553347976877581,
+              0.13700197317704982
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "history_candidate": {
+            "estimate": 0.049018696202178386,
+            "ci95": [
+              0.015057368265762323,
+              0.08193833792920092
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          }
+        },
+        "calibrated": {
+          "item_prior": {
+            "estimate": 0.09199693617042426,
+            "ci95": [
+              0.04553347976877581,
+              0.13700197317704982
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "history_candidate": {
+            "estimate": 0.049018696202178386,
+            "ci95": [
+              0.015057368265762323,
+              0.08193833792920092
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          }
+        },
+        "matched_data_control": {
+          "item_prior": {
+            "estimate": 0.021116489043519916,
+            "ci95": [
+              -0.0296953159087089,
+              0.07361866855648751
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "history_candidate": {
+            "estimate": -0.02186175092472597,
+            "ci95": [
+              -0.06431660984728531,
+              0.019813478824612114
+            ],
+            "clusters": 173,
+            "observations": 520,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          }
+        }
+      }
+    },
+    "unequal": {
+      "pairs": 3589,
+      "queries": 865,
+      "users": 219,
+      "methods": {
+        "item_prior": {
+          "query_macro": {
+            "estimate": 0.49574386464726,
+            "ci95": [
+              0.4655606086332895,
+              0.5258500672559459
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5298133184731123,
+            "ci95": [
+              0.49652131701139723,
+              0.562698531448842
+            ],
+            "clusters": 219,
+            "observations": 3589,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "history_candidate": {
+          "query_macro": {
+            "estimate": 0.5169406011382986,
+            "ci95": [
+              0.4981299039252731,
+              0.5369697506997836
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5281415436054612,
+            "ci95": [
+              0.5131348511383538,
+              0.5445269344325682
+            ],
+            "clusters": 219,
+            "observations": 3589,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "history_user": {
+          "query_macro": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5,
+            "ci95": [
+              0.5,
+              0.5
+            ],
+            "clusters": 219,
+            "observations": 3589,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "selected": {
+          "query_macro": {
+            "estimate": 0.5708605121409207,
+            "ci95": [
+              0.5412160878860668,
+              0.6019996357961407
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.55293953747562,
+            "ci95": [
+              0.5272215954762096,
+              0.5808264817042054
+            ],
+            "clusters": 219,
+            "observations": 3589,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "calibrated": {
+          "query_macro": {
+            "estimate": 0.5708605121409207,
+            "ci95": [
+              0.5412160878860668,
+              0.6019996357961407
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.55293953747562,
+            "ci95": [
+              0.5272215954762096,
+              0.5808264817042054
+            ],
+            "clusters": 219,
+            "observations": 3589,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        },
+        "matched_data_control": {
+          "query_macro": {
+            "estimate": 0.5320973059320157,
+            "ci95": [
+              0.5008389682868704,
+              0.565992367168007
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "pair_weighted": {
+            "estimate": 0.5384508219559766,
+            "ci95": [
+              0.5092938431286187,
+              0.5627663955242453
+            ],
+            "clusters": 219,
+            "observations": 3589,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap on this observed population, with pair weights."
+          }
+        }
+      },
+      "paired_vs_controls": {
+        "selected": {
+          "item_prior": {
+            "estimate": 0.07511664749366069,
+            "ci95": [
+              0.03909377493049172,
+              0.11318915451078106
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "history_candidate": {
+            "estimate": 0.053919911002622035,
+            "ci95": [
+              0.023881017213805013,
+              0.08302262440969295
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          }
+        },
+        "calibrated": {
+          "item_prior": {
+            "estimate": 0.07511664749366069,
+            "ci95": [
+              0.03909377493049172,
+              0.11318915451078106
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "history_candidate": {
+            "estimate": 0.053919911002622035,
+            "ci95": [
+              0.023881017213805013,
+              0.08302262440969295
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          }
+        },
+        "matched_data_control": {
+          "item_prior": {
+            "estimate": 0.03635344128475574,
+            "ci95": [
+              -0.001645174636939284,
+              0.07635178088929874
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          },
+          "history_candidate": {
+            "estimate": 0.015156704793717087,
+            "ci95": [
+              -0.02014262854050429,
+              0.04981277801900005
+            ],
+            "clusters": 219,
+            "observations": 865,
+            "bootstrap_repeats": 2000,
+            "bootstrap_seed": 42,
+            "scope": "Percentile user-cluster bootstrap; equal informative-query weights."
+          }
+        }
+      }
+    },
+    "slices": {
+      "both_in_history": {
+        "pairs": 382,
+        "queries": 99,
+        "query_macro": {
+          "item_prior": 0.5373068289734956,
+          "history_candidate": 0.5968337218337219,
+          "history_user": 0.5,
+          "selected": 0.6393850537789931,
+          "calibrated": 0.6393850537789931,
+          "matched_data_control": 0.5057056019177232
+        }
+      },
+      "both_new_to_history": {
+        "pairs": 1585,
+        "queries": 363,
+        "query_macro": {
+          "item_prior": 0.4803501034684673,
+          "history_candidate": 0.5037278152259995,
+          "history_user": 0.5,
+          "selected": 0.5396605196082028,
+          "calibrated": 0.5396605196082028,
+          "matched_data_control": 0.49311111651862927
+        }
+      },
+      "mixed": {
+        "pairs": 557,
+        "queries": 142,
+        "query_macro": {
+          "item_prior": 0.5436932687086244,
+          "history_candidate": 0.6102177448385274,
+          "history_user": 0.5,
+          "selected": 0.6317960880959052,
+          "calibrated": 0.6317960880959052,
+          "matched_data_control": 0.542894207466887
+        }
+      }
+    }
+  },
+  "regression": {
+    "calibrated": {
+      "pairs": 23467,
+      "mse": 0.14128467942431855,
+      "rmse": 0.3758785434476389,
+      "mae": 0.30796812609858826,
+      "r2": 0.27120057148278043,
+      "pearson": 0.5208723626613057,
+      "bias": -0.0017387736210089674,
+      "mean_prediction": 0.6506382495761437,
+      "mean_observed": 0.6523770231971526
+    },
+    "history_user": {
+      "pairs": 23467,
+      "mse": 0.14312252601271305,
+      "rmse": 0.3783153790327761,
+      "mae": 0.30585009598482515,
+      "r2": 0.2617202686730076,
+      "pearson": 0.5136993481238206,
+      "bias": -0.006576650866206157,
+      "mean_prediction": 0.6458003723309464,
+      "mean_observed": 0.6523770231971526
+    },
+    "history_candidate": {
+      "pairs": 23467,
+      "mse": 0.14118622153552537,
+      "rmse": 0.3757475502721546,
+      "mae": 0.30213637764291174,
+      "r2": 0.2717084542438686,
+      "pearson": 0.5228156947435347,
+      "bias": -0.004105650520830202,
+      "mean_prediction": 0.6482713726763224,
+      "mean_observed": 0.6523770231971526
+    },
+    "item_prior": {
+      "pairs": 23467,
+      "mse": 0.18989781504771303,
+      "rmse": 0.435772664410829,
+      "mae": 0.40320817115161817,
+      "r2": 0.0204357638254985,
+      "pearson": 0.14464710377072956,
+      "bias": 0.008127808778312958,
+      "mean_prediction": 0.6605048319754656,
+      "mean_observed": 0.6523770231971526
+    }
+  },
+  "decision": {
+    "checks": {
+      "enough_informative_queries": true,
+      "query_macro_at_least_055": true,
+      "query_macro_ci_above_chance": true,
+      "paired_improvement_over_item_prior": true,
+      "paired_improvement_over_history_candidate": true,
+      "calibrated_mse_preserved": true,
+      "calibrated_query_macro_preserved": true
+    },
+    "rl_allowed": true,
+    "final_reserve_opened": false
+  },
+  "matched_data_control": {
+    "name": "boosting-small",
+    "model": "boosting",
+    "data": "small"
+  },
+  "calibration": {
+    "score_center": 0.03832270830792744,
+    "score_scale": 0.44294245987267794,
+    "positive_slope": 0.22419363436069853,
+    "history_logit_weight": 0.8322596723582585,
+    "intercept": 0.12651716568657376,
+    "pairs": 14039,
+    "iterations_limit": 100
+  },
+  "artifacts": {
+    "opening.json": "153991af0d31307726cee0bd2cde672225cbf1ac020a24bdcc9accf23f839194",
+    "observed.npz": "610a3b88c7e65b3d11c7605ea199e918b40a407a4db771f63d6003abee246492",
+    "features.npz": "c73aefb60a18abc74318bff68042786fb3589d9a67f6d24df4da0ee03a543444",
+    "scores.npz": "feea4ad27fb1e63603c2016312b85725d412ad0dcdd320cb609cd00777fe060e"
+  },
+  "response_labels_read": true,
+  "final_reserve_opened": false
+}

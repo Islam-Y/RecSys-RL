@@ -1,0 +1,85 @@
+{
+  "source_commit": "669bec68327b1e1fb8556cce37d842c40af5c175",
+  "result_sha256": "4f0dfa37f58ba1df422e78fa016d1a0b5bffd8eb13c879ffbec7820447e81f66",
+  "execution": {
+    "prepare": {
+      "wall_seconds": 20.67,
+      "maximum_rss_bytes": 1344552960,
+      "peak_memory_footprint_bytes": 1904216512,
+      "final_record": {
+        "stage": "ranking_prepared",
+        "partitions": {
+          "small": {
+            "pairs": 18630,
+            "queries": 16181,
+            "users": 814
+          },
+          "expanded": {
+            "pairs": 148472,
+            "queries": 89921,
+            "users": 2462
+          },
+          "development": {
+            "pairs": 23148,
+            "queries": 20000,
+            "users": 432
+          },
+          "calibration": {
+            "pairs": 14039,
+            "queries": 11977,
+            "users": 816
+          }
+        },
+        "populations": {
+          "training_users": 3000,
+          "original_users": 1000,
+          "additional_users": 2000,
+          "development_users": 500,
+          "confirmation_users": 500,
+          "confirmation_excluded_users": 5500,
+          "final_reserve_users": 1000
+        },
+        "confirmation_response_read": false,
+        "final_reserve_opened": false
+      },
+      "log_sha256": "7850037fdb7a602fa8747433eb5dd806f93b3a53a5385593ebbfd003f0c12007"
+    },
+    "series": {
+      "wall_seconds": 57.46,
+      "maximum_rss_bytes": 994131968,
+      "peak_memory_footprint_bytes": 1035650872,
+      "final_record": {
+        "stage": "ranking_complete",
+        "runs": 6,
+        "selected": "boosting-expanded",
+        "rl_allowed": true,
+        "final_reserve_opened": false
+      },
+      "log_sha256": "d5fa517ba38dab48f8726a97620bf0b461c9f46ecf037ec732ab4e02fa365bb2"
+    },
+    "audit": {
+      "wall_seconds": 15.25,
+      "maximum_rss_bytes": 1877803008,
+      "peak_memory_footprint_bytes": 1702807976,
+      "final_record": {
+        "stage": "ranking_audit_complete",
+        "runs_checked": 6,
+        "maximum_forward_difference": 6.217248937900877e-15,
+        "raw_data_priors_histories_reconstructed": true,
+        "selection_and_metrics_recalculated": true,
+        "confirmation_recalculated": true,
+        "rl_allowed": true,
+        "final_reserve_opened": false
+      },
+      "log_sha256": "1856bee3341af95d7d39daa821d8ff0769b1e9853e4d5a3f6b0b9ab6c0f88747"
+    }
+  },
+  "training_seconds_sum": 49.967227958004514,
+  "commands": {
+    "prepare": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.ranking_experiment --prepare-only",
+    "series": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.ranking_experiment --resume",
+    "audit": "/usr/bin/time -l .venv/bin/python -u -m recsys_rl.ranking_experiment --audit"
+  },
+  "final_reserve_opened": false,
+  "automated_tests_run": false
+}
