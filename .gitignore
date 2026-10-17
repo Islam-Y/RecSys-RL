@@ -34,6 +34,9 @@ mlruns/
 .mlflow/
 artifacts/
 outputs/
+output/
+reports/
+models/
 
 # Logs and temporary files
 tmp/
