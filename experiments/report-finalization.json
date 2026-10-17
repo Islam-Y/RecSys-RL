@@ -1,60 +1,88 @@
 {
   "kind": "documentation_finalization",
-  "recorded_at_utc": "2026-10-15T13:57:41.045702+00:00",
-  "base_commit": "783ca71900d54e3803ad67f19914bc469720bd8b",
+  "recorded_at_utc": "2026-10-17T07:30:21.183768+00:00",
+  "base_commit": "a63313243a504bf444bd6801b30aae3e394c94c6",
   "markdown": {
     "path": "Сводный-отчёт.md",
-    "sha256": "65324d62b3a6315e47bcb7009c4783749c95bf656c0154d7744e8361e6493258"
+    "sha256": "18292d3ee9e6d014842d7fbafb067936e35ab004cd46b591cf923fcac23dd0f7"
   },
   "pdf": {
     "path": "output/pdf/recsys-rl-summary.pdf",
-    "sha256": "a5ca2aaf317a1b5ddcea885a25edf3ebef222e23e3aafaf3d4a36031a85082e4",
+    "sha256": "586dfdfbac0356ba17b50085d195d959b33f8e79108f349ff32b091aaa7fd4d2",
     "pages": 8
   },
   "documentation": {
-    "README.md": "fd42acd1318b936a7474729005bdff773b18372193691aca675a665ce699d80f",
-    "Воспроизведение.md": "99841486ddbc095a111006f1c98775b0228938779a6f1727fdddc3a57abe6bbf",
-    "История-исследования.md": "3cc3e07adf1a1917a03b940fa65463c172eb290c4389da333c3b814a68cf97ed",
-    "Решение.md": "2cce0f00964b21928f4dbb61c3e8fac150fa0692467442ca0d6e0b18c2d32e89"
+    "README.md": "725ec2e4274093a0479dddc593a395d086814c303381d2771bfa0be9b6111808",
+    "Задание.md": "5bea143072db14ece6dfa2916159971c10c1fe0a7f8ccdff95d679e20d128a0a",
+    "Сводный-отчёт.md": "18292d3ee9e6d014842d7fbafb067936e35ab004cd46b591cf923fcac23dd0f7",
+    "Воспроизведение.md": "4dd36ac4064db03a8fad2eb2239c617531cf27e269ebe949b9d5d95159d93ca1",
+    "История-исследования.md": "f393cf384c5468f834882ef92d0126c67192fc0d2a18963aa81d7c9d89231738"
+  },
+  "composition": {
+    "primary_documents": [
+      "README.md",
+      "Задание.md",
+      "Сводный-отчёт.md",
+      "Воспроизведение.md",
+      "История-исследования.md"
+    ],
+    "current_pdf": "output/pdf/recsys-rl-summary.pdf",
+    "retired_markdown_reports": [
+      "Отчёт.md",
+      "Итоговый-отчёт.md",
+      "Решение.md",
+      "Дополнение.md",
+      "Переранжирование.md",
+      "Учёт-повторов.md",
+      "Сохранение-массы.md",
+      "Проверка-переносимости.md"
+    ],
+    "retired_pdf_files": [
+      "output/pdf/recsys-rl-final.pdf",
+      "output/pdf/recsys-rl-mixed-objective.pdf",
+      "output/pdf/recsys-rl-ranking-policy.pdf",
+      "output/pdf/recsys-rl-recency.pdf",
+      "output/pdf/recsys-rl-report.pdf"
+    ],
+    "retired_pdf_sha256": {
+      "output/pdf/recsys-rl-final.pdf": "face178b3a3af68df522a97c0888802f852571abd5352a9304d820dd134994e2",
+      "output/pdf/recsys-rl-mixed-objective.pdf": "28e8c6253db0c2d52b1f35dfb794483bd7419f787394653f27e3a8209f54ba90",
+      "output/pdf/recsys-rl-ranking-policy.pdf": "409204d2b5f4ba2b5cb4a087a98db4f54908a525d71ccdf82e354f4cdaf1c560",
+      "output/pdf/recsys-rl-recency.pdf": "c9af8bc326c60b4203bd2111a0f8079f5926c3033b7e325f2ce258379bec5988",
+      "output/pdf/recsys-rl-report.pdf": "bdb97f914f10cd942ab73a60e7e7b97135c739212cd207063cfc025195fefef7"
+    },
+    "previous_publication": {
+      "recorded_at_utc": "2026-10-15T13:57:41.045702+00:00",
+      "markdown_sha256": "65324d62b3a6315e47bcb7009c4783749c95bf656c0154d7744e8361e6493258",
+      "pdf_sha256": "a5ca2aaf317a1b5ddcea885a25edf3ebef222e23e3aafaf3d4a36031a85082e4",
+      "retired_pdf_hashes": {
+        "output/pdf/recsys-rl-final.pdf": "face178b3a3af68df522a97c0888802f852571abd5352a9304d820dd134994e2",
+        "output/pdf/recsys-rl-mixed-objective.pdf": "28e8c6253db0c2d52b1f35dfb794483bd7419f787394653f27e3a8209f54ba90",
+        "output/pdf/recsys-rl-ranking-policy.pdf": "409204d2b5f4ba2b5cb4a087a98db4f54908a525d71ccdf82e354f4cdaf1c560",
+        "output/pdf/recsys-rl-recency.pdf": "c9af8bc326c60b4203bd2111a0f8079f5926c3033b7e325f2ce258379bec5988",
+        "output/pdf/recsys-rl-report.pdf": "bdb97f914f10cd942ab73a60e7e7b97135c739212cd207063cfc025195fefef7"
+      }
+    },
+    "stage_protocols_and_aggregated_json_retained": true,
+    "removed_files_recoverable_from_git_history": true
   },
   "validation": {
     "all_pages_rendered_and_visually_reviewed": true,
-    "render_dpi": 110,
-    "text_outside_page_margins": 0,
+    "render_dpi": 100,
+    "characters_outside_page_bounds": 0,
     "replacement_or_null_glyphs": 0,
     "numbering_checked": true,
-    "metric_values_checked_in_markdown_and_pdf": 65,
-    "local_markdown_links_checked": 182,
+    "local_markdown_links_checked": 129,
+    "broken_local_markdown_links": 0,
     "pdf_uri_annotations_checked": 37,
-    "source_commits_checked": 8,
-    "historical_pdfs_unchanged": [
-      {
-        "path": "output/pdf/recsys-rl-final.pdf",
-        "sha256": "face178b3a3af68df522a97c0888802f852571abd5352a9304d820dd134994e2"
-      },
-      {
-        "path": "output/pdf/recsys-rl-mixed-objective.pdf",
-        "sha256": "28e8c6253db0c2d52b1f35dfb794483bd7419f787394653f27e3a8209f54ba90"
-      },
-      {
-        "path": "output/pdf/recsys-rl-ranking-policy.pdf",
-        "sha256": "409204d2b5f4ba2b5cb4a087a98db4f54908a525d71ccdf82e354f4cdaf1c560"
-      },
-      {
-        "path": "output/pdf/recsys-rl-recency.pdf",
-        "sha256": "c9af8bc326c60b4203bd2111a0f8079f5926c3033b7e325f2ce258379bec5988"
-      },
-      {
-        "path": "output/pdf/recsys-rl-report.pdf",
-        "sha256": "bdb97f914f10cd942ab73a60e7e7b97135c739212cd207063cfc025195fefef7"
-      }
-    ],
-    "code_configs_and_existing_experiment_artifacts_unchanged": true,
+    "retired_file_links_in_pdf": 0,
+    "experiment_metrics_changed": false,
+    "code_configs_and_experiment_artifacts_changed": false,
     "pdf_marked_as_binary_in_git": true
   },
   "readme_lines": {
-    "before": 304,
-    "after": 91
+    "before": 47,
+    "after": 15
   },
   "builder": {
     "path": "/Users/islam/Documents/Codex/Tools/recsys-report/scripts/build_report.py",
@@ -64,7 +92,7 @@
   "training_performed": false,
   "automated_tests_run": false,
   "notes": [
-    "This record describes document publication checks; experimental audit evidence remains in per-stage execution JSON.",
-    "Historical flags about PDF updates describe their original stages; the canonical PDF is recsys-rl-summary.pdf."
+    "This record describes the current documentation composition and PDF checks; experiment audit evidence remains in per-stage execution JSON.",
+    "The previous finalization checks and hashes are retained under composition.previous_publication and composition.retired_pdf_sha256."
   ]
 }
